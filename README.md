@@ -5,7 +5,9 @@ Node
 
 ## 初期設定
 Nodeをインストールしてこのリポジトリをクローンしたらおまじない
+
 ```npm install```
+
 ```npm run build```
 
 ## 実行
