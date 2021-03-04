@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "blockly": "^4.20201217.0",
+    "phaser": "^3.52.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.12"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "eslint": "^7.21.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts":{
+    "start": "webpack-dev-server"
+  }
+}
