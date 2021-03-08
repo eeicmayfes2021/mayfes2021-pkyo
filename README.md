@@ -65,6 +65,11 @@ https://blockly-demo.appspot.com/static/demos/blockfactory/index.html
 
 https://qiita.com/gakuseikai/items/b13b2888e2f110217ff6
 
+ブロックを動作させる方法とweb上にする方法、この二つを読めばできそう↓
+https://developers.google.com/blockly/guides/create-custom-blocks/generating-code
+
+https://developers.google.com/blockly/guides/configure/web/configuration_struct
+
 
 ### ステージ作り部分
 
@@ -87,6 +92,7 @@ https://www.catch.jp/wiki3/tools/phaser_and_tiled
 
 早急
 - ゲーム画面にブロックを操作する部分を加える(方法を解明したい)
+↑ここはBlockly.inject(workspace, hoge)でできそうです。
 - Phaserによる制御(update部分を書いてキャラがブロックの命令に合わせて動くようにしたい)
 
 正直ここはコピペでもいいと思います(ただし内容は理解した方が良さそう)
