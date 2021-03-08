@@ -7,11 +7,26 @@ var config = {
     type: Phaser.AUTO,
     width: 480,
     height: 600,
+    parent: 'phaserDiv',
+    physics:{
+        default: 'arcade',
+        arcade: {
+            gravity: {
+                x: 0,
+                y: 0,
+            },
+            debug: false,
+        }
+    },
+    //ここにシーンを追加(preloadとかはここで定義しなくても良い)
     scene: {
         preload: preload, // 以下に定義する preload 関数をセットする
         create: create, // 以下に定義する create 関数をセットする
         update: update // 以下に定義する update 関数をセットする
-    }
+    },
+    render: {
+        transparent: true,
+    },
 };
 
 const blocklyDiv = document.getElementById("blocklyDiv");
@@ -22,6 +37,7 @@ var game = new Phaser.Game(config);
 // ゲーム開始前に呼び出される関数定義
 function preload ()
 { // アセット（画像とか）の取得を行う
+    //ここのthisはおそらくPhaser.AUTOのこと
     this.load.tilemapTiledJSON('map1', map1);
     this.load.image("tiles", tiles);
     this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 48});
