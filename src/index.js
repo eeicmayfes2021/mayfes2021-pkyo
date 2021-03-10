@@ -66,6 +66,28 @@ function update ()
     //ここでblockが使われたらこの動作をします的なことを書きます
     //多分キャラクターの座標更新だけなので難しくなさそう。
 }
+Blockly.Blocks['move'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldDropdown([["→","right"], ["←","left"], ["↑","up"], ["↓","down"]]), "direction")
+          .appendField(new Blockly.FieldLabelSerializable("に1マス進む"), "string");
+      this.setPreviousStatement(true, null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+};
+Blockly.Blocks['while'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldLabelSerializable("この中をくりかえします"), "string");
+      this.appendStatementInput("NAME")
+          .setCheck(null);
+      this.setColour(230);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
   //ブロックの実際の機能を定義
   Blockly.JavaScript['stoplightswitch'] = function(block) {
     var dropdown_colorlist = block.getFieldValue('colorlist');
