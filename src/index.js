@@ -116,6 +116,18 @@ Blockly.Blocks['move'] = {
       this.setHelpUrl("");
     }
 };
+Blockly.Blocks['while'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldLabelSerializable("この中をくりかえします"), "string");
+      this.appendStatementInput("NAME")
+          .setCheck(null);
+      this.setColour(230);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
+
   //ブロックの実際の機能を定義
   Blockly.JavaScript['stoplightswitch'] = function(block) {
     var dropdown_colorlist = block.getFieldValue('colorlist');
@@ -130,6 +142,11 @@ Blockly.Blocks['move'] = {
     var code = `tryMove(player,${dropdown_direction});yield true;\n`;
     return code;
   };
+  Blockly.JavaScript['while'] = function(block) {
+    var childblock=Blockly.JavaScript.statementToCode(block, 'NAME');
+    var code = `while(true){${childblock}}\n`;
+    return code;
+  };
 
 function tryMove(player, dir) {
     // ここはこれでいいの？ってなるけど
@@ -137,7 +154,8 @@ function tryMove(player, dir) {
     const dy = [0, 0, -1, 1];
     const nextGX = player.gridX + dx[dir];
     const nextGY = player.gridY + dy[dir];
-    //if (mapDat.isWall[nextGY][nextGX])    return;//壁には進めない
+    //console.log(mapDat.layers[0]);
+    //if (mapDat[nextGY][nextGX]==121)    return;//壁には進めない
     player.targetX += dx[dir] * mapDat.tileWidth * map2Img;
     player.gridX = nextGX;
     player.targetY += dy[dir] * mapDat.tileHeight * map2Img;
@@ -172,7 +190,7 @@ function tryMove(player, dir) {
   function runCode() {
     if (isRunning) {
         if (++tick === cmdDelta) {
-            console.log(commandGenerator);
+            //console.log(commandGenerator);
             let gen = commandGenerator.next();//yieldで止まってたコマンドを再開する
             if (!gen.done) tick = 0;
             else {
