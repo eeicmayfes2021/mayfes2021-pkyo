@@ -139,7 +139,9 @@ Blockly.Blocks['while'] = {
   };
   Blockly.JavaScript['move'] = function(block) {
     var dropdown_direction = block.getFieldValue('move_direction');
-    var code = `tryMove(player,${dropdown_direction});yield true;\n`;
+    console.log("!!!!!!!!!!!!!!")
+    console.log(block.id)
+    var code = `workspace.highlightBlock("${block.id}");tryMove(player,${dropdown_direction});yield true;\n`;
     return code;
   };
   Blockly.JavaScript['while'] = function(block) {
@@ -155,6 +157,7 @@ function tryMove(player, dir) {
     const nextGX = player.gridX + dx[dir];
     const nextGY = player.gridY + dy[dir];
     //todo:mapの画像番号が15の時のみ道として判定するガバガバプログラムなので直したい
+    //壁を壊すとかのアレはどうすればいいんだろう…
     if (mapDat.layers[0].data[nextGY][nextGX].index!=1)    return;//壁には進めない
     player.targetX += dx[dir] * mapDat.tileWidth * map2Img;
     player.gridX = nextGX;
