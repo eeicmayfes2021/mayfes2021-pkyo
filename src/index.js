@@ -40,7 +40,7 @@ function preload ()
     //ここのthisはおそらくPhaser.AUTOのこと
     this.load.tilemapTiledJSON('map1', map1);
     this.load.image("tiles", tiles);
-    this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 48});
+    this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
 }
 var mapDat;
 var map2Img;
@@ -54,10 +54,10 @@ function create ()
     map2Img = game.canvas.width / this.backgroundLayer.width;
     this.backgroundLayer.setScale(map2Img);
 
-    let playerX=0;
-    let playerY=0;
+    let playerX=5;
+    let playerY=12;
     //これ、このままではまずくて、ステージとキャラクターのズレをなくすためにステージと同じ座標軸でキャラクターを配置したい
-    player = this.add.sprite(mapDat.tileWidth * playerX * map2Img, mapDat.tileWidth * (playerY+0.9) * map2Img, "player");
+    player = this.add.sprite(mapDat.tileWidth * playerX * map2Img, mapDat.tileWidth * playerY * map2Img, "player");
     //player.setOrigin(0, 1);
     player.gridX=playerX;
     player.gridY=playerY;
@@ -154,8 +154,8 @@ function tryMove(player, dir) {
     const dy = [0, 0, -1, 1];
     const nextGX = player.gridX + dx[dir];
     const nextGY = player.gridY + dy[dir];
-    //console.log(mapDat.layers[0]);
-    //if (mapDat[nextGY][nextGX]==121)    return;//壁には進めない
+    //todo:mapの画像番号が15の時のみ道として判定するガバガバプログラムなので直したい
+    if (mapDat.layers[0].data[nextGY][nextGX].index!=1)    return;//壁には進めない
     player.targetX += dx[dir] * mapDat.tileWidth * map2Img;
     player.gridX = nextGX;
     player.targetY += dy[dir] * mapDat.tileHeight * map2Img;
