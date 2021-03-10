@@ -66,32 +66,6 @@ function update ()
     //ここでblockが使われたらこの動作をします的なことを書きます
     //多分キャラクターの座標更新だけなので難しくなさそう。
 }
-/*
-  const blocklyRunner = new BlocklyRunner(xmlFile1);
-  function startBlockly() {
-    console.log("start");
-    if (!isRunning) {
-        isRunning = true;
-        window.LoopTrap = 1000;
-        Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-
-        console.log(workspace);
-        let code = Blockly.JavaScript.workspaceToCode(workspace);
-        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-
-        try {
-            console.log("code: ", code);
-            commandGenerator = eval("(function* () {" + code + "})()");
-        } catch(err) {
-            console.error(err);
-        }
-
-        blocklyRunner.updateBlockly();
-        return commandGenerator;
-    } else {
-        return null;
-    }
-  };
   //ブロックの実際の機能を定義
   Blockly.JavaScript['stoplightswitch'] = function(block) {
     var dropdown_colorlist = block.getFieldValue('colorlist');
@@ -138,4 +112,3 @@ function update ()
           alert(e);
       }
   }
->>>>>>> sample
