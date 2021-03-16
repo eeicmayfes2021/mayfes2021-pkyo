@@ -101,22 +101,6 @@ function update ()
 Blockly.Blocks['move'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField(new Blockly.FieldDropdown([["→","0"], ["←","1"], ["↑","2"], ["↓","3"]]), "direction")
-          .appendField(new Blockly.FieldLabelSerializable("に1マス進む"), "string");
-      this.setPreviousStatement(true, null);
-      this.setColour(230);
-   this.setTooltip("");
-   this.setHelpUrl("");
-    }
-};
-<<<<<<< HEAD
-Blockly.JavaScript['move'] = function(block){
-    let value = block.getFieldValue('direction');
-    let code = 'try_move(player,' + value + '); yield true;\n';
-=======
-Blockly.Blocks['move'] = {
-    init: function() {
-      this.appendDummyInput()
           .appendField("Move")
           .appendField(new Blockly.FieldDropdown([["→", "0"],["←", "1"],["↑", "2"],["↓", "3"]]), "move_direction");
       this.setNextStatement(true);
@@ -137,21 +121,6 @@ Blockly.Blocks['while'] = {
       this.setHelpUrl("");
     }
   };
-
-  //ブロックの実際の機能を定義
-  Blockly.JavaScript['stoplightswitch'] = function(block) {
-    var dropdown_colorlist = block.getFieldValue('colorlist');
-    var dropdown_switch = block.getFieldValue('switch');
-    var value_lightno = Blockly.JavaScript.valueToCode(block, 'lightno', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
->>>>>>> origin/Naomi
-    return code;
-}
-function try_move(player, direction){
-//ここに動かすやつを書きます。
-    console.log(1);
-}
 Blockly.Blocks['while'] = {
     init: function() {
       this.appendDummyInput()
@@ -163,14 +132,6 @@ Blockly.Blocks['while'] = {
    this.setHelpUrl("");
     }
   };
-<<<<<<< HEAD
-  //ブロックの実際の機能を定義
-  Blockly.JavaScript['while'] = function(block){
-      let code = Blockly.JavaScript.statementToCode(block, 'NAME');
-      return 'while(true)' + code + ';\n';
-  }
-
-=======
   Blockly.JavaScript['move'] = function(block) {
     var dropdown_direction = block.getFieldValue('move_direction');
     console.log("!!!!!!!!!!!!!!")
@@ -199,7 +160,6 @@ function tryMove(player, dir) {
     player.gridY = nextGY;
     
 }
->>>>>>> origin/Naomi
   var options = {
     toolbox: document.getElementById('toolbox'),
     collapse: true,
