@@ -58,10 +58,9 @@ function create ()
     //this.backgroundLayer.setScale(map2Img);
 
     let playerX=4;
-    let playerY=10;
-    //これ、このままではまずくて、ステージとキャラクターのズレをなくすためにステージと同じ座標軸でキャラクターを配置したい
+    let playerY=9;
     player = this.add.sprite(mapDat.tileWidth * playerX * map2Img, mapDat.tileWidth * playerY * map2Img, "player");
-    player.setOrigin(0, 1);
+    player.setOrigin(0, 0);
     player.gridX=playerX;
     player.gridY=playerY;
     player.targetX = player.x;
@@ -109,8 +108,8 @@ Blockly.Blocks['move'] = {
 };
   Blockly.JavaScript['move'] = function(block) {
     var dropdown_direction = block.getFieldValue('move_direction');
-    console.log("!!!!!!!!!!!!!!")
-    console.log(block.id)
+    console.log("!!!!!!!!!!!!!!");
+    console.log(block.id);
     var code = `workspace.highlightBlock("${block.id}");tryMove(player,${dropdown_direction});yield true;\n`;
     return code;
   };
@@ -139,9 +138,8 @@ function tryMove(player, dir) {
     const nextGY = player.gridY + dy[dir];
     //todo:mapの画像番号が15の時のみ道として判定するガバガバプログラムなので直したい
     //壁を壊すとかのアレはどうすればいいんだろう…
-    if (mapDat.layers[1].data[nextGY][nextGX].index!=3) {
+    if (mapDat.layers[1].data[nextGY][nextGX].index != 15) {
       console.log(mapDat.layers[1].data[nextGY][nextGX].index);
-      console.log(mapDat.layers[0].data.length);
       return;//壁には進めない
     }
     player.targetX += dx[dir] * mapDat.tileWidth * map2Img;
