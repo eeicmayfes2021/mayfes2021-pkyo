@@ -71,6 +71,32 @@
          "tilecount":16,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":4,
+         "firstgid":17,
+         "image":"map.png",
+         "imageheight":128,
+         "imagewidth":128,
+         "margin":0,
+         "name":"map4",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":30,
+         "tilewidth":30
+        }, 
+        {
+         "columns":4,
+         "firstgid":33,
+         "image":"nastu1.png",
+         "imageheight":96,
+         "imagewidth":128,
+         "margin":0,
+         "name":"nastu1",
+         "spacing":0,
+         "tilecount":12,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":30,
  "type":"map",
