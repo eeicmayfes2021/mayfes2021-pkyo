@@ -1,10 +1,12 @@
 import Blockly from 'blockly';
 import Phaser from 'phaser';
-import map1 from './stage/tilemap.json';
+import map1 from './stage/tilemapNaomi.json';
 import tiles from './stage/map.png';
+import tiles2 from './stage/tilesets-big.png';
 import player1 from './stage/player.png';
 //import xmlFile1 from '../Blockly/test.xml';
 //import BlocklyRunner from '../Blockly/BlocklyRunner.js';
+
 var config = {
     type: Phaser.AUTO,
     width: 480,
@@ -42,6 +44,7 @@ function preload ()
     //ここのthisはおそらくPhaser.sceneのこと
     this.load.tilemapTiledJSON('map1', map1);
     this.load.image("tiles", tiles);
+    this.load.image("tiles2", tiles2);
     this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
 }
 var mapDat;
@@ -51,14 +54,16 @@ function create ()
 { // 背景を設定したり、プレイヤーの初期配置をしたりする
     //canvasとmapの大きさは比率も合わせて一致している必要があります。
     mapDat = this.add.tilemap("map1");
-    let tileset = mapDat.addTilesetImage("tileset", "tiles");
-    this.backgroundLayer = mapDat.createLayer("ground", tileset);
-    this.movableLayer = mapDat.createLayer("movable", tileset);
+    let tileset = mapDat.addTilesetImage("map", "tiles");
+    let tileset2 = mapDat.addTilesetImage("tilesets-big", "tiles2");
+    this.backgroundLayer = mapDat.createLayer("ground", [tileset,tileset2]);
+    this.movableLayer = mapDat.createLayer("movable", [tileset,tileset2]);
+    this.goalLayer = mapDat.createLayer("goal", [tileset,tileset2]);
     map2Img = game.canvas.width / this.backgroundLayer.width;
     //this.backgroundLayer.setScale(map2Img);
 
-    let playerX=4;
-    let playerY=9;
+    let playerX=2;
+    let playerY=2;
     player = this.add.sprite(mapDat.tileWidth * playerX * map2Img, mapDat.tileWidth * playerY * map2Img, "player");
     player.setOrigin(0, 0);
     player.gridX=playerX;
@@ -108,8 +113,6 @@ Blockly.Blocks['move'] = {
 };
   Blockly.JavaScript['move'] = function(block) {
     var dropdown_direction = block.getFieldValue('move_direction');
-    console.log("!!!!!!!!!!!!!!");
-    console.log(block.id);
     var code = `workspace.highlightBlock("${block.id}");tryMove(player,${dropdown_direction});yield true;\n`;
     return code;
   };
@@ -136,10 +139,10 @@ function tryMove(player, dir) {
     const dy = [0, 0, -1, 1];
     const nextGX = player.gridX + dx[dir];
     const nextGY = player.gridY + dy[dir];
-    //todo:mapの画像番号が15の時のみ道として判定するガバガバプログラムなので直したい
-    //壁を壊すとかのアレはどうすればいいんだろう…
-    if (mapDat.layers[1].data[nextGY][nextGX].index != 15) {
-      console.log(mapDat.layers[1].data[nextGY][nextGX].index);
+    //movableレイヤーが0以上であれば動ける
+    //game.scene.scenes[0].movableLayer.layer.data[i][j].indexでも同じ
+    if (mapDat.layers[1].data[nextGY][nextGX].index <= 0) {
+      //console.log(mapDat.layers[1].data[nextGY][nextGX].index);
       return;//壁には進めない
     }
     player.targetX += dx[dir] * mapDat.tileWidth * map2Img;
@@ -178,6 +181,10 @@ function tryMove(player, dir) {
         if (++tick === cmdDelta) {
             //console.log(commandGenerator);
             let gen = commandGenerator.next();//yieldで止まってたコマンドを再開する
+            //ゴール判定 goal判定
+            if (player.targetX == player.x && mapDat.layers[2].data[player.gridY][player.gridX].index > 0) {
+                clearGame();
+            }
             if (!gen.done) tick = 0;
             else {
                 console.log("end command");
@@ -186,10 +193,25 @@ function tryMove(player, dir) {
         }
     }
   }
-  function endRunning(){
-      isRunning=false;
-      tick=0;
-  }
+function clearGame(){
+    console.log("goal");
+    endRunning();
+    const button2 = new SimpleButton(game.scene.scenes[0], 50, 200, 300, 50, 0xfffff00, 'Game Clear', 'green');
+}
+function endRunning(){
+    isRunning=false;
+    tick=0;
+}
+class SimpleButton {
+    constructor(scene, x, y, width, height, buttonColor, text, textColor) {
+        this.button = scene.add.rectangle(
+            x+width/2, y+height/2,
+            width, height,
+            buttonColor);
+        this.text = scene.add.text(x, y, text, {fontSize: height, color: textColor});
+        this.button.setInteractive();
+    }
+}
 function LoadBlocksandGenerateCommand(){//ボタンを押すと発火
     //多分player位置の初期化もしないといけない
     window.LoopTrap = 1000;
