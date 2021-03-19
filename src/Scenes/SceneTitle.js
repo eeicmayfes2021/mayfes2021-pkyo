@@ -11,7 +11,7 @@ class SceneTitle extends Phaser.Scene {
         this.add.text(200, 100, 'プログラミング教室', {fontSize: 50, color: 'red'});
         var startButton=new SimpleButton(this, 100, 200, 150, 50, 0xfffff00, "START", "red")
         startButton.button.on('pointerdown', function(){
-            this.scene.start("stage1");
+            this.scene.start("game");
         }.bind(this));
         //いらないボタンなどを隠す(クソ実装)
         const executeButton = document.getElementById("executeButton");

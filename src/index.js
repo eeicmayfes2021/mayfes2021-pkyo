@@ -5,6 +5,7 @@ import tiles from './stage/map.png';
 import tiles2 from './stage/tilesets-big.png';
 import player1 from './stage/player.png';
 import SceneTitle from './Scenes/SceneTitle';
+import SceneGame from './Scenes/SceneGame';
 import SimpleButton from './Objects/Objects.js'
 //import xmlFile1 from '../Blockly/test.xml';
 //import BlocklyRunner from '../Blockly/BlocklyRunner.js';
@@ -27,8 +28,9 @@ var config = {
     //ここにシーンを追加(preloadとかはここで定義しなくても良い)
     scene: [
         SceneTitle,
+        SceneGame,
         {
-        key:"stage1",
+        key:"stage2",
         preload: preload, // 以下に定義する preload 関数をセットする
         create: create, // 以下に定義する create 関数をセットする
         update: update // 以下に定義する update 関数をセットする
@@ -129,7 +131,7 @@ Blockly.Blocks['move'] = {
 };
   Blockly.JavaScript['move'] = function(block) {
     var dropdown_direction = block.getFieldValue('move_direction');
-    var code = `workspace.highlightBlock("${block.id}");tryMove(player,${dropdown_direction});yield true;\n`;
+    var code = `this.tryMove(this.player,${dropdown_direction});yield "${block.id}";\n`;
     return code;
   };
   Blockly.Blocks['while'] = {
