@@ -3,8 +3,6 @@ import Phaser from 'phaser';
 import map1 from './stage/tilemap.json';
 import tiles from './stage/map.png';
 import player1 from './stage/player.png';
-import xmlFile1 from '../Blockly/test.xml';
-//import BlocklyRunner from '../Blockly/BlocklyRunner.js';
 var config = {
     type: Phaser.AUTO,
     width: 480,
