@@ -1,4 +1,4 @@
-import Blockly from 'blockly';
+import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
 import Phaser from 'phaser';
 import map1 from './stage/tilemapNaomi.json';
 import tiles from './stage/map.png';
@@ -64,6 +64,7 @@ function preload ()
     //bind
     runCode=runCode.bind(this);
     clearGame=clearGame.bind(this);
+    tryMove=tryMove.bind(this);
 }
 var mapDat;
 var map2Img;
@@ -155,8 +156,8 @@ function tryMove(player, dir) {
     const nextGX = player.gridX + dx[dir];
     const nextGY = player.gridY + dy[dir];
     //movableレイヤーが0以上であれば動ける
-    //game.scene.scenes[0].movableLayer.layer.data[i][j].indexでも同じ
-    if (mapDat.layers[1].data[nextGY][nextGX].index <= 0) {
+    //mapDat.layers[1].data[i][j].indexでも同じ
+    if (this.movableLayer.layer.data[nextGY][nextGX].index <= 0) {
       //console.log(mapDat.layers[1].data[nextGY][nextGX].index);
       return;//壁には進めない
     }
@@ -196,7 +197,7 @@ function tryMove(player, dir) {
             //console.log(commandGenerator);
             let gen = commandGenerator.next();//yieldで止まってたコマンドを再開する
             //ゴール判定 goal判定
-            if (player.targetX == player.x && mapDat.layers[2].data[player.gridY][player.gridX].index > 0) {
+            if (player.targetX == player.x && this.goalLayer.layer.data[player.gridY][player.gridX].index > 0) {
                 clearGame();
             }
             if (!gen.done) tick = 0;
