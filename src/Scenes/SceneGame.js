@@ -1,12 +1,15 @@
 import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
 import Phaser from 'phaser';
-import map1 from '../stage/tilemapNaomi.json';
+//import map1 from '../stage/tilemapNaomi1.json';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import player1 from '../stage/player.png';
 import SimpleButton from '../Objects/Objects.js'
 
 class SceneGame extends Phaser.Scene {
+    init(data){
+        this.stage_num=data.stage_num;
+    }
     constructor(){
         super({key:'game'});
 
@@ -25,7 +28,9 @@ class SceneGame extends Phaser.Scene {
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
-        this.load.tilemapTiledJSON('map1', map1);
+        console.log("loading:"+'../stage/tilemapNaomi'+this.stage_num+'.json')
+        var map1=require('../stage/tilemapNaomi'+this.stage_num+'.json');
+        this.load.tilemapTiledJSON('map'+this.stage_num, map1);
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
@@ -57,15 +62,11 @@ class SceneGame extends Phaser.Scene {
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="visible";
         executeButton.onclick = this.LoadBlocksandGenerateCommand.bind(this);
-        //bind
-        //this.runCode=this.runCode.bind(this);
-        //this.clearGame=this.clearGame.bind(this);
-        //this.tryMove=this.tryMove.bind(this);
     }
     create(){
         // 背景を設定したり、プレイヤーの初期配置をしたりする
         //canvasとmapの大きさは比率も合わせて一致している必要があります。
-        this.mapDat = this.add.tilemap("map1");
+        this.mapDat = this.add.tilemap("map"+this.stage_num);
         let tileset = this.mapDat.addTilesetImage("map", "tiles");
         let tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
         this.backgroundLayer = this.mapDat.createLayer("ground", [tileset,tileset2]);
@@ -105,12 +106,12 @@ class SceneGame extends Phaser.Scene {
     runCode() {
         if (this.isRunning) {
             if (++this.tick === this.cmdDelta) {
-                let gen = this.commandGenerator.next();//yieldで止まってたコマンドを再開する
-                if(gen.value)this.workspace.highlightBlock(gen.value);
                 //ゴール判定 goal判定
                 if (this.goalLayer.layer.data[this.player.gridY][this.player.gridX].index > 0) {
                     this.clearGame();
                 }
+                let gen = this.commandGenerator.next();//yieldで止まってたコマンドを再開する
+                if(gen.value)this.workspace.highlightBlock(gen.value);
                 if (!gen.done) this.tick = 0;
                 else {
                     this.endRunning();
@@ -145,8 +146,17 @@ class SceneGame extends Phaser.Scene {
             this.exitGameScene();
             this.scene.start("title");
         }.bind(this));
+        if(this.stage_num<2){
+            var nextButton=new SimpleButton(this, 50, 350, 200, 30, 0xfffff00, "Next Stage", "red")
+            nextButton.button.on('pointerdown', function(){
+                this.exitGameScene();
+                this.scene.restart({stage_num:this.stage_num+1});
+            }.bind(this));
+        }
     }
     exitGameScene(){
+        this.registry.destroy();
+        this.events.off();
         this.workspace.dispose();
     }
     endRunning(){
@@ -163,7 +173,7 @@ class SceneGame extends Phaser.Scene {
           try{
             this.commandGenerator = eval("(function* () {" + code + "}.bind(this))()");
             //this.commandGenerator.next().bind(this)();
-            console.log("hello");
+            //console.log("hello");
             if(!this.isRunning)this.isRunning=true;
           }catch(e){
               alert(e);
