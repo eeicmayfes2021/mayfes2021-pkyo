@@ -2,7 +2,8 @@ import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
 import Phaser from 'phaser';
 import SceneTitle from './Scenes/SceneTitle';
 import SceneGame from './Scenes/SceneGame';
-import SimpleButton from './Objects/Objects.js'
+import SimpleButton from './Objects/Objects.js';
+require('./Objects/Blocks.js');
 //import xmlFile1 from '../Blockly/test.xml';
 //import BlocklyRunner from '../Blockly/BlocklyRunner.js';
 
@@ -34,37 +35,3 @@ var config = {
 const blocklyDiv = document.getElementById("blocklyDiv");
 blocklyDiv.style.left = config.width;
 var game = new Phaser.Game(config);
-
-Blockly.Blocks['move'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Move")
-          .appendField(new Blockly.FieldDropdown([["→", "0"],["←", "1"],["↑", "2"],["↓", "3"]]), "move_direction");
-      this.setNextStatement(true);
-      this.setPreviousStatement(true);
-      this.setColour(270);
-      this.setTooltip("");
-      this.setHelpUrl("");
-    }
-};
-  Blockly.JavaScript['move'] = function(block) {
-    var dropdown_direction = block.getFieldValue('move_direction');
-    var code = `this.tryMove(this.player,${dropdown_direction});yield "${block.id}";\n`;
-    return code;
-  };
-  Blockly.Blocks['while'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField(new Blockly.FieldLabelSerializable("この中をくりかえします"), "string");
-      this.appendStatementInput("NAME")
-          .setCheck(null);
-      this.setColour(230);
-      this.setTooltip("");
-      this.setHelpUrl("");
-    }
-  };
-  Blockly.JavaScript['while'] = function(block) {
-    var childblock=Blockly.JavaScript.statementToCode(block, 'NAME');
-    var code = `while(true){${childblock}}\n`;
-    return code;
-  };
