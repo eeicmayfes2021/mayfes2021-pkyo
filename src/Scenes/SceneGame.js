@@ -84,12 +84,16 @@ class SceneGame extends Phaser.Scene {
         this.player.gridY=playerY;
         this.player.targetX = this.player.x;
         this.player.targetY = this.player.y;
+         //player animations https://photonstorm.github.io/phaser3-docs/Phaser.Animations.AnimationState.html
+        this.player.anims.create({key:'move3', frames:this.player.anims.generateFrameNames('player', { start: 0, end: 2 }), frameRate:10,repeat:-1});//down
+        this.player.anims.create({key:'move1', frames:this.player.anims.generateFrameNames('player', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
+        this.player.anims.create({key:'move0',frames:this.player.anims.generateFrameNames('player', { start:6, end: 8 }), frameRate:10,repeat:-1});//right
+        this.player.anims.create({key:'move2',   frames:this.player.anims.generateFrameNames('player', { start: 9, end: 11 }), frameRate:10,repeat:-1});//up
     }
     update(){
         //プレイヤーを動かしたり、衝突判定からのロジックを回したり
         //ここでblockが使われたらこの動作をします的なことを書きます
         //多分キャラクターの座標更新だけなので難しくなさそう。
-
         //キャラクターの座標更新
         if (this.player.targetX != this.player.x) {
             const difX = this.player.targetX - this.player.x;
@@ -104,12 +108,13 @@ class SceneGame extends Phaser.Scene {
     }
     //さまざまな関数
     runCode() {
-        if (this.isRunning) {
-            if (++this.tick === this.cmdDelta) {
-                //ゴール判定 goal判定
-                if (this.goalLayer.layer.data[this.player.gridY][this.player.gridX].index > 0) {
-                    this.clearGame();
-                }
+        if (!this.isRunning)return;
+        if (++this.tick === this.cmdDelta) {
+            this.player.anims.stop();
+            //ゴール判定 goal判定
+            if (this.goalLayer.layer.data[this.player.gridY][this.player.gridX].index > 0) {
+                this.clearGame();
+            }else{
                 let gen = this.commandGenerator.next();//yieldで止まってたコマンドを再開する
                 if(gen.value)this.workspace.highlightBlock(gen.value);
                 if (!gen.done) this.tick = 0;
@@ -125,6 +130,7 @@ class SceneGame extends Phaser.Scene {
         const dy = [0, 0, -1, 1];
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
+        this.player.anims.play('move'+dir);
         //movableレイヤーが0以上であれば動ける
         //this.mapDat.layers[1].data[i][j].indexでも同じ
         if (this.movableLayer.layer.data[nextGY][nextGX].index <= 0) {
@@ -155,11 +161,13 @@ class SceneGame extends Phaser.Scene {
         }
     }
     exitGameScene(){
+        //これが何をやってるのかは実はよく知らない
         this.registry.destroy();
         this.events.off();
         this.workspace.dispose();
     }
     endRunning(){
+        this.player.anims.stop();
         this.isRunning=false;
         this.tick=0;
     }
