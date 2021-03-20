@@ -8,8 +8,8 @@ import player1 from './stage/player.png';
 //import BlocklyRunner from '../Blockly/BlocklyRunner.js';
 var config = {
     type: Phaser.AUTO,
-    width: 480,
-    height: 600,
+    width: 512,
+    height: 640,
     parent: 'phaserDiv',
     physics:{
         default: 'arcade',
