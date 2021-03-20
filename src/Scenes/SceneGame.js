@@ -5,6 +5,7 @@ import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import player1 from '../stage/player.png';
 import SimpleButton from '../Objects/Objects.js'
+import stageinfo from '../stage/stageinfo.json';
 
 class SceneGame extends Phaser.Scene {
     init(data){
@@ -28,8 +29,9 @@ class SceneGame extends Phaser.Scene {
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
-        console.log("loading:"+'../stage/tilemapNaomi'+this.stage_num+'.json')
-        var map1=require('../stage/tilemapNaomi'+this.stage_num+'.json');
+        console.log(stageinfo.stages);
+        console.log(stageinfo.stages[this.stage_num].filename)
+        var map1=require('../stage/'+stageinfo.stages[this.stage_num].filename+'.json');
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
@@ -76,8 +78,8 @@ class SceneGame extends Phaser.Scene {
         //configのサイズをbackgroundLayerと合わせるんだったらこれでいいのでは？
         this.map2Img =1;
         //this.backgroundLayer.setScale(this.map2Img);
-        let playerX=2;
-        let playerY=2;
+        let playerX=stageinfo.stages[this.stage_num].playerx;
+        let playerY=stageinfo.stages[this.stage_num].playery;
         this.player = this.add.sprite(this.mapDat.tileWidth * playerX * this.map2Img, this.mapDat.tileWidth * playerY * this.map2Img, "player");
         this.player.setOrigin(0, 0);
         this.player.gridX=playerX;
@@ -152,7 +154,7 @@ class SceneGame extends Phaser.Scene {
             this.exitGameScene();
             this.scene.start("title");
         }.bind(this));
-        if(this.stage_num<2){
+        if(this.stage_num+1<stageinfo.stages.length){
             var nextButton=new SimpleButton(this, 50, 350, 200, 30, 0xfffff00, "Next Stage", "red")
             nextButton.button.on('pointerdown', function(){
                 this.exitGameScene();
@@ -172,7 +174,7 @@ class SceneGame extends Phaser.Scene {
         this.tick=0;
     }
     LoadBlocksandGenerateCommand(){//ボタンを押すと発火
-        //多分player位置の初期化もしないといけない
+        this.resetRunning();//多分player位置の初期化など
         window.LoopTrap = 1000;
           Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";¥n';
           var code = Blockly.JavaScript.workspaceToCode(this.workspace);
@@ -186,6 +188,15 @@ class SceneGame extends Phaser.Scene {
           }catch(e){
               alert(e);
           }
-    }    
+    }  
+    resetRunning(){
+        this.endRunning();
+        let playerX=stageinfo.stages[this.stage_num].playerx;
+        let playerY=stageinfo.stages[this.stage_num].playery;
+        this.player.gridX=playerX;
+        this.player.gridY=playerY;
+        this.player.targetX = this.player.x = this.mapDat.tileWidth * playerX * this.map2Img;
+        this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
+    }  
 } 
 export default SceneGame;
