@@ -17,6 +17,12 @@
             "description":"ステージ1のコピーです",
             "playerx":3,
             "playery":2
+        },
+        {
+            "filename":"obstacle-test",
+            "description":"障害物があるステージのテストです。",
+            "playerx":2,
+            "playery":2
         }
     ]
 }

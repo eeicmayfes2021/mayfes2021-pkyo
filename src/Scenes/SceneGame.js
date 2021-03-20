@@ -74,6 +74,7 @@ class SceneGame extends Phaser.Scene {
         this.backgroundLayer = this.mapDat.createLayer("ground", [tileset,tileset2]);
         this.movableLayer = this.mapDat.createLayer("movable", [tileset,tileset2]);
         this.goalLayer = this.mapDat.createLayer("goal", [tileset,tileset2]);
+        this.obstacleLayer = this.mapDat.createLayer("obstacle", [tileset,tileset2]);//ないときはnullになる
         //this.map2Img = game.canvas.width / this.backgroundLayer.width;
         //configのサイズをbackgroundLayerと合わせるんだったらこれでいいのでは？
         this.map2Img =1;
@@ -133,17 +134,31 @@ class SceneGame extends Phaser.Scene {
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
         this.player.anims.play('move'+dir);
-        //movableレイヤーが0以上であれば動ける
         //this.mapDat.layers[1].data[i][j].indexでも同じ
-        if (this.movableLayer.layer.data[nextGY][nextGX].index <= 0) {
-          //console.log(this.mapDat.layers[1].data[nextGY][nextGX].index);
-          return;//壁には進めない
-        }
+        if (this.movableLayer.layer.data[nextGY][nextGX].index <= 0)return;//壁には進めない
+        if(this.obstacleLayer&&this.obstacleLayer.layer.data[nextGY][nextGX].index > 0)return;//障害物があるとすすめない
         player.targetX += dx[dir] * this.mapDat.tileWidth * this.map2Img;
         player.gridX = nextGX;
         player.targetY += dy[dir] * this.mapDat.tileHeight * this.map2Img;
         player.gridY = nextGY;
         
+    }
+    removeObstacle(player) {
+        //向いている方角の障害物を除去しようとする
+        const dir=this.getDirection(player);
+        const dx = [1, -1, 0, 0];
+        const dy = [0, 0, -1, 1];
+        const nextGX = player.gridX + dx[dir];
+        const nextGY = player.gridY + dy[dir];
+        if (this.obstacleLayer&&this.obstacleLayer.layer.data[nextGY][nextGX].index > 0) {
+          //向いている方向に障害物がある場合、それを取り除く
+          this.obstacleLayer.layer.data[nextGY][nextGX].index=-1;
+          console.log("remove!")
+          return;
+        }
+    }
+    getDirection(player){//向いている方向を検知する(どうやってやるんや)
+        return 0;//とりあえず右を返す
     }
     clearGame(){
         console.log("goal");

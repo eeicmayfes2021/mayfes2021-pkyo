@@ -33,3 +33,19 @@ Blockly.Blocks['move'] = {
     var code = `while(true){${childblock}}\n`;
     return code;
   };
+
+  Blockly.Blocks['remove'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("岩を取り除く")
+      this.setNextStatement(true);
+      this.setPreviousStatement(true);
+      this.setColour(300);
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+};
+  Blockly.JavaScript['remove'] = function(block) {
+    var code = `this.removeObstacle(this.player);yield "${block.id}";\n`;
+    return code;
+  };
