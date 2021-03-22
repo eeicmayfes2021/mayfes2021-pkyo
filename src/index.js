@@ -6,7 +6,6 @@ import SimpleButton from './Objects/Objects.js';
 require('./Objects/Blocks.js');
 //import xmlFile1 from '../Blockly/test.xml';
 //import BlocklyRunner from '../Blockly/BlocklyRunner.js';
-
 var config = {
     type: Phaser.AUTO,
     width: 30*16,
