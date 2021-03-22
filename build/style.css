@@ -27,7 +27,7 @@ h1 {
 
 #blocklyDiv {
   position: absolute;
-  left: 410px;
+  left: 490px;
   top: 10px;
   width: 800px;
   height: 600px;
@@ -36,7 +36,7 @@ h1 {
 
 #executeButton {
   position: absolute;
-  left: 420px;
+  left: 500px;
   top: 550px;
   z-index: 1;
 }
