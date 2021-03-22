@@ -29,7 +29,6 @@ class SceneGame extends Phaser.Scene {
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
-        console.log(stageinfo.stages);
         console.log(stageinfo.stages[this.stage_num].filename)
         var map1=require('../stage/'+stageinfo.stages[this.stage_num].filename+'.json');
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
@@ -69,12 +68,12 @@ class SceneGame extends Phaser.Scene {
         // 背景を設定したり、プレイヤーの初期配置をしたりする
         //canvasとmapの大きさは比率も合わせて一致している必要があります。
         this.mapDat = this.add.tilemap("map"+this.stage_num);
-        let tileset = this.mapDat.addTilesetImage("map", "tiles");
-        let tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
-        this.backgroundLayer = this.mapDat.createLayer("ground", [tileset,tileset2]);
-        this.movableLayer = this.mapDat.createLayer("movable", [tileset,tileset2]);
-        this.goalLayer = this.mapDat.createLayer("goal", [tileset,tileset2]);
-        this.obstacleLayer = this.mapDat.createLayer("obstacle", [tileset,tileset2]);//ないときはnullになる
+        this.tileset = this.mapDat.addTilesetImage("map", "tiles");
+        this.tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
+        this.backgroundLayer = this.mapDat.createLayer("ground", [this.tileset,this.tileset2]);
+        this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
+        this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
+        this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
         //this.map2Img = game.canvas.width / this.backgroundLayer.width;
         //configのサイズをbackgroundLayerと合わせるんだったらこれでいいのでは？
         this.map2Img =1;
@@ -158,6 +157,8 @@ class SceneGame extends Phaser.Scene {
         }
     }
     getDirection(player){//向いている方向を検知する(どうやってやるんや)
+        //todo:この中身を実装する
+        //0:right,1;left,2:up,3,downを返すように
         return 0;//とりあえず右を返す
     }
     clearGame(){
@@ -206,12 +207,16 @@ class SceneGame extends Phaser.Scene {
     }  
     resetRunning(){
         this.endRunning();
+        //todo:マップ(obstacleLayer)の初期化をしないといけない
+        this.create(); //まじでこれでいいの？かなり無駄な気がするぜ！
+        /*
         let playerX=stageinfo.stages[this.stage_num].playerx;
         let playerY=stageinfo.stages[this.stage_num].playery;
         this.player.gridX=playerX;
         this.player.gridY=playerY;
         this.player.targetX = this.player.x = this.mapDat.tileWidth * playerX * this.map2Img;
         this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
+        */
     }  
 } 
 export default SceneGame;
