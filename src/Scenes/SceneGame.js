@@ -159,7 +159,11 @@ class SceneGame extends Phaser.Scene {
     getDirection(player){//向いている方向を検知する(どうやってやるんや)
         //todo:この中身を実装する
         //0:right,1;left,2:up,3,downを返すように
-        return 0;//とりあえず右を返す
+        console.log("getdirection");
+        console.log(this.player.frame.name);
+        let num=parseInt(this.player.frame.name);
+        console.log([3,1,0,2][Math.floor(num/3)]);
+        return [3,1,0,2][Math.floor(num/3)];
     }
     clearGame(){
         console.log("goal");
