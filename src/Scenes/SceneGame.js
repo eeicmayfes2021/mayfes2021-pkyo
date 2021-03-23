@@ -189,7 +189,7 @@ class SceneGame extends Phaser.Scene {
         const dy = [0, 0, -1, 1];
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
-        if (this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY)> 0) {
+        if (this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY)) {
           //向いている方向に障害物がある場合、それを取り除く
           this.obstacleLayer.removeTileAt(nextGX,nextGY,false);
           console.log("remove!");
@@ -199,8 +199,16 @@ class SceneGame extends Phaser.Scene {
     getDirection(player){//向いている方向を検知する(どうやってやるんや)
         //todo:この中身を実装する
         //0:right,1;left,2:up,3,downを返すように
-        let num=parseInt(this.player.frame.name);
+        let num=parseInt(player.frame.name);
+        console.log("direction:"+[3,1,0,2][Math.floor(num/3)]);
         return [3,1,0,2][Math.floor(num/3)];
+    }
+    changeDirection(player,dir){
+        let num=parseInt(player.frame.name);
+        console.log("changeDirection");
+        if(dir==0)player.setFrame( [3,9,0,6][Math.floor(num/3)]+1 );//右
+        else player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
+        console.log(player.frame.name)
     }
     clearGame(){
         console.log("goal");
@@ -279,6 +287,23 @@ class SceneGame extends Phaser.Scene {
             this.player=this.player.setTexture("player2");
         }else{
             this.player.setTexture("player");
+        }
+    }
+    checkIf(player,direction,layer){
+        var player_direction=this.getDirection(player);////0:right,1;left,2:up,3,downを返すように
+        var dir=0;
+        if(direction==0)dir=[0,1,2,3][player_direction];//前
+        if(direction==1)dir=[3,2,0,1][player_direction];//右
+        if(direction==2)dir=[2,3,1,0][player_direction];//左
+        if(direction==3)dir=[1,0,3,2][player_direction];//後ろ
+        const dx = [1, -1, 0, 0];
+        const dy = [0, 0, -1, 1];
+        const nextGX = player.gridX + dx[dir];
+        const nextGY = player.gridY + dy[dir];
+        if (layer.hasTileAt(nextGX,nextGY)) {
+          return true;
+        }else{
+            return false;
         }
     }
 } 
