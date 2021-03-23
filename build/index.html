@@ -9,20 +9,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="phaserDiv"></div>
+    <div id="phaserDiv">
+    </div>
     <!-- blockly workspace -->
-    <div id="blocklyDiv"></div>
+    <div id="blocklyDiv">
+        <div id="numFrame" class="numFrame"></div>
+    </div>
     <xml id="toolbox" style="display: none">
-        <block type="while"></block>
-        <block type="move"></block>
-        <block type="remove"></block>
     </xml>
+    <li>
+    <ul>
+        <div id="playerChangeButton" class="circle_spread_btn" >
+            <i class="fas fa-chevron-circle-left">change player</i>
+        </a>
+    </ul>
+    <ul>
+        <div id="executeButton" class="circle_spread_btn" >
+            <i class="fas fa-chevron-circle-left"></i>
+    </ul>
     <div id="executeButton" class="circle_spread_btn" >
-    <!--ここから変更-->
     <button id="resetbutton">リセット</button>
     <button id="titlebutton">タイトル</button>
-<!--ここまで変更-->
         <i class="fas fa-chevron-circle-left"></i>
     </a>
+    </li>
 </body>
 </html>

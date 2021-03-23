@@ -4,8 +4,10 @@ import Phaser from 'phaser';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import player1 from '../stage/player.png';
+import player2 from '../stage/player2.png';
 import SimpleButton from '../Objects/Objects.js'
 import stageinfo from '../stage/stageinfo.json';
+import { CONTROLS_FLOW_STATEMENTS_HELPURL } from 'blockly/msg/en';
 
 class SceneGame extends Phaser.Scene {
     init(data){
@@ -15,8 +17,8 @@ class SceneGame extends Phaser.Scene {
         super({key:'game'});
 
         //グローバル変数の代わり
-        this.blocklyDiv = document.getElementById("blocklyDiv");
-        this.blocklyDiv.style.left = 30*16;
+        this.leftblock;
+        //this.blocklyDiv.style.left = 30*16;
         this.player;
         this.workspace;
         this.mapDat;
@@ -35,13 +37,14 @@ class SceneGame extends Phaser.Scene {
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         //put the toolbox in the workspace
         var options = {
             toolbox: document.getElementById('toolbox'),
             collapse: true,
             comments: true,
             disable: true,
-            maxBlocks: Infinity,
+            maxBlocks: stageinfo.stages[this.stage_num].blocklimit,
             trashcan: true,
             horizontalLayout: false,
             toolboxPosition: 'start',
@@ -57,12 +60,39 @@ class SceneGame extends Phaser.Scene {
               snap: true
             }
         }
+        //ボタンの配置
+        var toolboxDiv=document.getElementById("toolbox");
+        let blocks=stageinfo.stages[this.stage_num].blocks.split(',');
+        toolboxDiv.innerHTML="";
+        blocks.forEach(block=>{
+            toolboxDiv.innerHTML+=`<block type="${block}"></block>`;
+        });
+        //blocklyを設定
+        var blocklyDiv = document.getElementById("blocklyDiv");
         this.workspace = Blockly.inject('blocklyDiv', options);
-        this.blocklyDiv.style.visibility="visible";
+        blocklyDiv.style.visibility="visible";
+        //制限を記載
+        var numFrame=document.getElementById("numFrame");
+        this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
+        numFrame.innerHTML="残りブロック数:"+this.leftblock;
+        numFrame.style.left=70+'px';
+        numFrame.style.top=(blocklyDiv.offsetHeight-50)+'px';
+        this.workspace.addChangeListener(function(event) {
+            if (event.type === Blockly.Events.BLOCK_CREATE) {
+              this.leftblock -= 1;
+            } else if (event.type === Blockly.Events.BLOCK_DELETE) {
+              this.leftblock += event.ids.length;
+            }
+            numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
+        }.bind(this));
         //ボタンを押すと発火するようにする
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="visible";
         executeButton.onclick = this.LoadBlocksandGenerateCommand.bind(this);
+        //ボタンを押すと発火するようにする
+        const playerChangeButton = document.getElementById("playerChangeButton");
+        playerChangeButton.style.visibility="visible";
+        playerChangeButton.onclick = this.playerChange.bind(this);
         /*ここから変更*/
         const resetbutton = document.getElementById("resetbutton");
         resetbutton.style.visibility="visible";
@@ -95,10 +125,14 @@ class SceneGame extends Phaser.Scene {
         this.player.targetX = this.player.x;
         this.player.targetY = this.player.y;
          //player animations https://photonstorm.github.io/phaser3-docs/Phaser.Animations.AnimationState.html
-        this.player.anims.create({key:'move3', frames:this.player.anims.generateFrameNames('player', { start: 0, end: 2 }), frameRate:10,repeat:-1});//down
-        this.player.anims.create({key:'move1', frames:this.player.anims.generateFrameNames('player', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
-        this.player.anims.create({key:'move0',frames:this.player.anims.generateFrameNames('player', { start:6, end: 8 }), frameRate:10,repeat:-1});//right
-        this.player.anims.create({key:'move2',   frames:this.player.anims.generateFrameNames('player', { start: 9, end: 11 }), frameRate:10,repeat:-1});//up
+        this.player.anims.create({key:'move3-player', frames:this.player.anims.generateFrameNames('player', { start: 0, end: 2 }), frameRate:10,repeat:-1});//down
+        this.player.anims.create({key:'move1-player', frames:this.player.anims.generateFrameNames('player', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
+        this.player.anims.create({key:'move0-player',frames:this.player.anims.generateFrameNames('player', { start:6, end: 8 }), frameRate:10,repeat:-1});//right
+        this.player.anims.create({key:'move2-player',   frames:this.player.anims.generateFrameNames('player', { start: 9, end: 11 }), frameRate:10,repeat:-1});//up
+        this.player.anims.create({key:'move3-player2', frames:this.player.anims.generateFrameNames('player2', { start: 0, end: 2 }), frameRate:10,repeat:-1});//down
+        this.player.anims.create({key:'move1-player2', frames:this.player.anims.generateFrameNames('player2', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
+        this.player.anims.create({key:'move0-player2',frames:this.player.anims.generateFrameNames('player2', { start:6, end: 8 }), frameRate:10,repeat:-1});//right
+        this.player.anims.create({key:'move2-player2',   frames:this.player.anims.generateFrameNames('player2', { start: 9, end: 11 }), frameRate:10,repeat:-1});//up
     }
     update(){
         //プレイヤーを動かしたり、衝突判定からのロジックを回したり
@@ -122,7 +156,7 @@ class SceneGame extends Phaser.Scene {
         if (++this.tick === this.cmdDelta) {
             this.player.anims.stop();
             //ゴール判定 goal判定
-            if (this.goalLayer.layer.data[this.player.gridY][this.player.gridX].index > 0) {
+            if (this.goalLayer.hasTileAt(this.player.gridX,this.player.gridY)) {
                 this.clearGame();
             }else{
                 let gen = this.commandGenerator.next();//yieldで止まってたコマンドを再開する
@@ -140,10 +174,10 @@ class SceneGame extends Phaser.Scene {
         const dy = [0, 0, -1, 1];
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
-        this.player.anims.play('move'+dir);
+        this.player.anims.play('move'+dir+"-"+player.texture.key);
         //this.mapDat.layers[1].data[i][j].indexでも同じ
-        if (this.movableLayer.layer.data[nextGY][nextGX].index <= 0)return;//壁には進めない
-        if(this.obstacleLayer&&this.obstacleLayer.layer.data[nextGY][nextGX].index > 0)return;//障害物があるとすすめない
+        if (!this.movableLayer.hasTileAt(nextGX,nextGY))return;//壁には進めない
+        if(this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY))return;//障害物があるとすすめない
         player.targetX += dx[dir] * this.mapDat.tileWidth * this.map2Img;
         player.gridX = nextGX;
         player.targetY += dy[dir] * this.mapDat.tileHeight * this.map2Img;
@@ -157,20 +191,17 @@ class SceneGame extends Phaser.Scene {
         const dy = [0, 0, -1, 1];
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
-        if (this.obstacleLayer&&this.obstacleLayer.layer.data[nextGY][nextGX].index > 0) {
+        if (this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY)> 0) {
           //向いている方向に障害物がある場合、それを取り除く
-          this.obstacleLayer.layer.data[nextGY][nextGX].index=-1;
-          console.log("remove!")
+          this.obstacleLayer.removeTileAt(nextGX,nextGY,false);
+          console.log("remove!");
           return;
         }
     }
     getDirection(player){//向いている方向を検知する(どうやってやるんや)
         //todo:この中身を実装する
         //0:right,1;left,2:up,3,downを返すように
-        console.log("getdirection");
-        console.log(this.player.frame.name);
         let num=parseInt(this.player.frame.name);
-        console.log([3,1,0,2][Math.floor(num/3)]);
         return [3,1,0,2][Math.floor(num/3)];
     }
     clearGame(){
@@ -210,8 +241,6 @@ class SceneGame extends Phaser.Scene {
           Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
           try{
             this.commandGenerator = eval("(function* () {" + code + "}.bind(this))()");
-            //this.commandGenerator.next().bind(this)();
-            //console.log("hello");
             if(!this.isRunning)this.isRunning=true;
           }catch(e){
               alert(e);
@@ -230,15 +259,29 @@ class SceneGame extends Phaser.Scene {
     resetRunning(){
         this.endRunning();
         //todo:マップ(obstacleLayer)の初期化をしないといけない
-        this.create(); //まじでこれでいいの？かなり無駄な気がするぜ！
-        /*
+        //まじでこれでいいの？かなり無駄な気がするぜ！
+        this.mapDat.destroy();
+        this.mapDat = this.add.tilemap("map"+this.stage_num);
+        this.backgroundLayer = this.mapDat.createLayer("ground", [this.tileset,this.tileset2]);
+        this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
+        this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
+        this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
+        this.player.setDepth(1);
+        //this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
         let playerX=stageinfo.stages[this.stage_num].playerx;
         let playerY=stageinfo.stages[this.stage_num].playery;
         this.player.gridX=playerX;
         this.player.gridY=playerY;
         this.player.targetX = this.player.x = this.mapDat.tileWidth * playerX * this.map2Img;
         this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
-        */
-    }  
+    } 
+    playerChange(){//プレイヤーの容姿を変更する
+        console.log("change!");
+        if(this.player.texture.key=="player"){
+            this.player=this.player.setTexture("player2");
+        }else{
+            this.player.setTexture("player");
+        }
+    }
 } 
 export default SceneGame;
