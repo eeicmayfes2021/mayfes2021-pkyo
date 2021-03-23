@@ -93,14 +93,12 @@ class SceneGame extends Phaser.Scene {
         const playerChangeButton = document.getElementById("playerChangeButton");
         playerChangeButton.style.visibility="visible";
         playerChangeButton.onclick = this.playerChange.bind(this);
-        /*ここから変更*/
         const resetbutton = document.getElementById("resetbutton");
         resetbutton.style.visibility="visible";
         resetbutton.onclick = this.resetCommand.bind(this);
         const titlebutton = document.getElementById("titlebutton");
         titlebutton.style.visibility="visible";
         titlebutton.onclick = this.titleCommand.bind(this);
-        /*ここまで変更*/
     }
     create(){
         // 背景を設定したり、プレイヤーの初期配置をしたりする
