@@ -63,6 +63,14 @@ class SceneGame extends Phaser.Scene {
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="visible";
         executeButton.onclick = this.LoadBlocksandGenerateCommand.bind(this);
+        /*ここから変更*/
+        const resetbutton = document.getElementById("resetbutton");
+        resetbutton.style.visibility="visible";
+        resetbutton.onclick = this.resetCommand.bind(this);
+        const titlebutton = document.getElementById("titlebutton");
+        titlebutton.style.visibility="visible";
+        titlebutton.onclick = this.titleCommand.bind(this);
+        /*ここまで変更*/
     }
     create(){
         // 背景を設定したり、プレイヤーの初期配置をしたりする
@@ -208,7 +216,17 @@ class SceneGame extends Phaser.Scene {
           }catch(e){
               alert(e);
           }
-    }  
+    } 
+    /*ここから変更*/
+    resetCommand(){
+        this.exitGameScene();
+        this.scene.restart({stage_num:this.stage_num});
+    } 
+    titleCommand(){
+        this.exitGameScene();
+        this.scene.start("title");
+    }
+    /*ここまで変更*/
     resetRunning(){
         this.endRunning();
         //todo:マップ(obstacleLayer)の初期化をしないといけない
