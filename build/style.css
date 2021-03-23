@@ -40,7 +40,12 @@ h1 {
   top: 550px;
   z-index: 1;
 }
-
+#numFrame{
+  position:absolute;
+  text-align: center;
+  z-index: 1;
+  color: #000;
+}
 .circle_spread_btn {
 	display: inline-block;
 	position: relative;
