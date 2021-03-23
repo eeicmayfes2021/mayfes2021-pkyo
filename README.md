@@ -10,9 +10,6 @@ Nodeをインストールしてこのリポジトリをクローンしたらお�
 
 これやるとpackage.jsonにある色々をインストールできます。
 
-```npm run build```
-
-これやるとwebpackが走ります(webpackが何かは気にしなくていいです)
 
 ## 実行
 ```npm start```
