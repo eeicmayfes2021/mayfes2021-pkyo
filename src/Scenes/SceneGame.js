@@ -4,6 +4,7 @@ import Phaser from 'phaser';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import player1 from '../stage/player.png';
+import player2 from '../stage/player2.png';
 import SimpleButton from '../Objects/Objects.js'
 import stageinfo from '../stage/stageinfo.json';
 
@@ -15,9 +16,6 @@ class SceneGame extends Phaser.Scene {
         super({key:'game'});
 
         //グローバル変数の代わり
-        this.blocklyDiv = document.getElementById("blocklyDiv");
-        this.toolboxDiv=document.getElementById("toolbox");
-        this.numFrame=document.getElementById("numFrame");
         this.leftblock;
         //this.blocklyDiv.style.left = 30*16;
         this.player;
@@ -38,6 +36,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
+        this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         //put the toolbox in the workspace
         var options = {
             toolbox: document.getElementById('toolbox'),
@@ -61,31 +60,38 @@ class SceneGame extends Phaser.Scene {
             }
         }
         //ボタンの配置
+        var toolboxDiv=document.getElementById("toolbox");
         let blocks=stageinfo.stages[this.stage_num].blocks.split(',');
+        toolboxDiv.innerHTML="";
         blocks.forEach(block=>{
-            this.toolboxDiv.innerHTML+=`<block type="${block}"></block>`;
+            toolboxDiv.innerHTML+=`<block type="${block}"></block>`;
         });
         //blocklyを設定
+        var blocklyDiv = document.getElementById("blocklyDiv");
         this.workspace = Blockly.inject('blocklyDiv', options);
-        this.blocklyDiv.style.visibility="visible";
+        blocklyDiv.style.visibility="visible";
         //制限を記載
+        var numFrame=document.getElementById("numFrame");
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
-        this.numFrame.innerHTML="残りブロック数:"+this.leftblock;
-        console.log(this.blocklyDiv);
-        this.numFrame.style.left=70+'px';
-        this.numFrame.style.top=(this.blocklyDiv.offsetHeight-50)+'px';
+        numFrame.innerHTML="残りブロック数:"+this.leftblock;
+        numFrame.style.left=70+'px';
+        numFrame.style.top=(blocklyDiv.offsetHeight-50)+'px';
         this.workspace.addChangeListener(function(event) {
             if (event.type === Blockly.Events.BLOCK_CREATE) {
               this.leftblock -= 1;
             } else if (event.type === Blockly.Events.BLOCK_DELETE) {
               this.leftblock += event.ids.length;
             }
-            this.numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
+            numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
         }.bind(this));
         //ボタンを押すと発火するようにする
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="visible";
         executeButton.onclick = this.LoadBlocksandGenerateCommand.bind(this);
+        //ボタンを押すと発火するようにする
+        const playerChangeButton = document.getElementById("playerChangeButton");
+        playerChangeButton.style.visibility="visible";
+        playerChangeButton.onclick = this.playerChange.bind(this);
     }
     create(){
         // 背景を設定したり、プレイヤーの初期配置をしたりする
@@ -175,14 +181,13 @@ class SceneGame extends Phaser.Scene {
         if (this.obstacleLayer&&this.obstacleLayer.layer.data[nextGY][nextGX].index > 0) {
           //向いている方向に障害物がある場合、それを取り除く
           this.obstacleLayer.layer.data[nextGY][nextGX].index=-1;
-          console.log("remove!")
+          console.log("remove!");
           return;
         }
     }
     getDirection(player){//向いている方向を検知する(どうやってやるんや)
         //todo:この中身を実装する
         //0:right,1;left,2:up,3,downを返すように
-        console.log("getdirection");
         console.log(this.player.frame.name);
         let num=parseInt(this.player.frame.name);
         console.log([3,1,0,2][Math.floor(num/3)]);
@@ -225,8 +230,6 @@ class SceneGame extends Phaser.Scene {
           Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
           try{
             this.commandGenerator = eval("(function* () {" + code + "}.bind(this))()");
-            //this.commandGenerator.next().bind(this)();
-            //console.log("hello");
             if(!this.isRunning)this.isRunning=true;
           }catch(e){
               alert(e);
@@ -244,6 +247,16 @@ class SceneGame extends Phaser.Scene {
         this.player.targetX = this.player.x = this.mapDat.tileWidth * playerX * this.map2Img;
         this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
         */
-    }  
+    } 
+    playerChange(){//プレイヤーの容姿を変更する
+        //ただし、今の仕様だとresetRunningをするとplayerに戻ってしまう…
+        //つまり動き出すとみつきに戻ってしまうのでほぼ意味がない。参考までの実装。
+        console.log("change!");
+        if(this.player.texture.key=="player"){
+            this.player=this.player.setTexture("player2");
+        }else{
+            this.player.setTexture("player");
+        }
+    }
 } 
 export default SceneGame;

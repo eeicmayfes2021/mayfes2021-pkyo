@@ -40,6 +40,12 @@ h1 {
   top: 550px;
   z-index: 1;
 }
+#playerChangeButton{
+  position: absolute;
+  left: 0px;
+  top: 550px;
+  z-index: 1;
+}
 #numFrame{
   position:absolute;
   text-align: center;

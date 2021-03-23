@@ -14,7 +14,7 @@
             "playerx":2,
             "playery":2,
             "blocks":"move,while",
-            "blocklimit":2
+            "blocklimit":3
         },
         {
             "filename":"tilemapNaomi1",
@@ -30,7 +30,7 @@
             "playerx":2,
             "playery":2,
             "blocks":"move,while,remove",
-            "blocklimit":2
+            "blocklimit":3
         }
     ]
 }

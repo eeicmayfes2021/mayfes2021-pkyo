@@ -20,6 +20,8 @@ class SceneTitle extends Phaser.Scene {
         //いらないボタンなどを隠す(クソ実装)
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="hidden";
+        const playerChangeButton = document.getElementById("playerChangeButton");
+        playerChangeButton.style.visibility="hidden";
         const blocklyDiv = document.getElementById("blocklyDiv");
         blocklyDiv.style.visibility="hidden";
     }
