@@ -28,6 +28,7 @@ class SceneGame extends Phaser.Scene {
         this.tick=0;
         this.isRunning=false;
         this.commandGenerator=undefined;
+        this.funcs={};
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
@@ -272,7 +273,7 @@ class SceneGame extends Phaser.Scene {
         this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
         this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
         this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
-        this.player.setDepth(1);
+        this.player.setDepth(1);//playerを前に持ってくる
         //this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
         let playerX=stageinfo.stages[this.stage_num].playerx;
         let playerY=stageinfo.stages[this.stage_num].playery;
@@ -280,6 +281,7 @@ class SceneGame extends Phaser.Scene {
         this.player.gridY=playerY;
         this.player.targetX = this.player.x = this.mapDat.tileWidth * playerX * this.map2Img;
         this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
+        this.funcs={};//funcsの初期化
     } 
     playerChange(){//プレイヤーの容姿を変更する
         console.log("change!");

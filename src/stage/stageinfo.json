@@ -21,8 +21,8 @@
             "description":"ステージ1のコピーです",
             "playerx":3,
             "playery":2,
-            "blocks":"move,while",
-            "blocklimit":2
+            "blocks":"move,while,grouping,callgroup",
+            "blocklimit":10
         },
         {
             "filename":"obstacle-test",

@@ -55,6 +55,8 @@ Blockly.Blocks['move'] = {
           .appendField(new Blockly.FieldLabelSerializable("この中をくりかえします"), "string");
       this.appendStatementInput("NAME")
           .setCheck(null);
+      this.setNextStatement(true);
+      this.setPreviousStatement(true);
       this.setColour(230);
       this.setTooltip("");
       this.setHelpUrl("");
@@ -124,4 +126,63 @@ Blockly.JavaScript['check'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing})\n`;
   return  [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['grouping'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("グループの名前：")
+        .appendField(new Blockly.FieldTextInput('group1'),'group_name');
+    this.appendDummyInput()
+        .appendField("内容");
+    this.appendStatementInput("group_code");
+    this.setNextStatement(true);
+    this.setPreviousStatement(true);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['grouping'] = function(block) {
+  var group_name = "group-"+block.getFieldValue('group_name');
+  var group_code = Blockly.JavaScript.statementToCode(block,'group_code');
+  // TODO: Assemble JavaScript into code variable.
+  var code = `
+    this.funcs['${group_name}']=function*(){
+      ${group_code}
+    }.bind(this);
+    yield null;
+    `;
+  return  code;
+};
+Blockly.Blocks['callgroup'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("グループ")
+        .appendField(new Blockly.FieldTextInput('group1'),'group_name')
+        .appendField("を実行");
+    this.setNextStatement(true);
+    this.setPreviousStatement(true);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['callgroup'] = function(block) {
+  var raw_group_name=block.getFieldValue('group_name');
+  var group_name = "group-"+raw_group_name;
+  // TODO: Assemble JavaScript into code variable.
+  var code = `
+      if(typeof this.funcs['${group_name}']!="function"){alert("${raw_group_name}というグループはありません！");return;}
+      let tmp_gen=this.funcs['${group_name}']();
+      while(true){
+        let gen_res=tmp_gen.next();
+        if(gen_res.done){
+          break;
+        }else{
+          yield gen_res.value;
+        }
+      }
+    `;
+  return  code;
 };
