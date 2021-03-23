@@ -4,25 +4,33 @@
             "filename":"tilemapNaomi1",
             "description":"まっすぐに進むだけの問題です",
             "playerx":2,
-            "playery":2
+            "playery":2,
+            "blocks":"move,while",
+            "blocklimit":2
         },
         {
             "filename":"tilemapNaomi2",
             "description":"曲がる必要がある問題です",
             "playerx":2,
-            "playery":2
+            "playery":2,
+            "blocks":"move,while",
+            "blocklimit":2
         },
         {
             "filename":"tilemapNaomi1",
             "description":"ステージ1のコピーです",
             "playerx":3,
-            "playery":2
+            "playery":2,
+            "blocks":"move,while",
+            "blocklimit":2
         },
         {
             "filename":"obstacle-test",
             "description":"障害物があるステージのテストです。",
             "playerx":2,
-            "playery":2
+            "playery":2,
+            "blocks":"move,while,remove",
+            "blocklimit":2
         }
     ]
 }

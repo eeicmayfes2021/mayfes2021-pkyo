@@ -16,6 +16,7 @@ class SceneGame extends Phaser.Scene {
 
         //グローバル変数の代わり
         this.blocklyDiv = document.getElementById("blocklyDiv");
+        this.toolboxDiv=document.getElementById("toolbox");
         this.blocklyDiv.style.left = 30*16;
         this.player;
         this.workspace;
@@ -57,6 +58,13 @@ class SceneGame extends Phaser.Scene {
               snap: true
             }
         }
+        //ボタンの配置
+        console.log(this.toolboxDiv.innerHTML);
+        let blocks=stageinfo.stages[this.stage_num].blocks.split(',');
+        blocks.forEach(block=>{
+            this.toolboxDiv.innerHTML+=`<block type="${block}"></block>`;
+        });
+        //blocklyを設定
         this.workspace = Blockly.inject('blocklyDiv', options);
         this.blocklyDiv.style.visibility="visible";
         //ボタンを押すと発火するようにする
