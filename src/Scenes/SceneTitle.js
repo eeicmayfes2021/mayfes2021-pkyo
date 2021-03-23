@@ -24,6 +24,12 @@ class SceneTitle extends Phaser.Scene {
         playerChangeButton.style.visibility="hidden";
         const blocklyDiv = document.getElementById("blocklyDiv");
         blocklyDiv.style.visibility="hidden";
+        /*ここから変更*/
+        const resetbutton = document.getElementById("resetbutton");
+        resetbutton.style.visibility="hidden";
+        const titlebutton = document.getElementById("titlebutton");
+        titlebutton.style.visibility="hidden";
+        /*ここまで変更*/
     }
     update(){}
 } 
