@@ -2,7 +2,7 @@ import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
 import Phaser from 'phaser';
 import SceneTitle from './Scenes/SceneTitle';
 import SceneGame from './Scenes/SceneGame';
-import SimpleButton from './Objects/Objects.js';
+import {SimpleButton, Simpleimage} from './Objects/Objects.js';
 require('./Objects/Blocks.js');
 //import xmlFile1 from '../Blockly/test.xml';
 //import BlocklyRunner from '../Blockly/BlocklyRunner.js';
