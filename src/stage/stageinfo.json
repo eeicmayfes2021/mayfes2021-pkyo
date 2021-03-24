@@ -13,16 +13,16 @@
             "description":"曲がる必要がある問題です",
             "playerx":2,
             "playery":2,
-            "blocks":"move,while",
-            "blocklimit":3
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10
         },
         {
             "filename":"tilemapNaomi1",
             "description":"ステージ1のコピーです",
             "playerx":3,
             "playery":2,
-            "blocks":"move,while",
-            "blocklimit":2
+            "blocks":"move,while,grouping,callgroup",
+            "blocklimit":10
         },
         {
             "filename":"obstacle-test",
