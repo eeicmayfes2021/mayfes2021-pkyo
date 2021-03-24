@@ -3,9 +3,10 @@ import Phaser from 'phaser';
 //import map1 from '../stage/tilemapNaomi1.json';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
+import stageclear from '../stage/stageclear.png';
 import player1 from '../stage/player.png';
 import player2 from '../stage/player2.png';
-import SimpleButton from '../Objects/Objects.js'
+import {SimpleButton, Simpleimage} from '../Objects/Objects.js';
 import stageinfo from '../stage/stageinfo.json';
 import { CONTROLS_FLOW_STATEMENTS_HELPURL } from 'blockly/msg/en';
 
@@ -40,6 +41,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("tiles2", tiles2);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
+        this.load.image("stageclear", stageclear);
         //put the toolbox in the workspace
         var options = {
             toolbox: document.getElementById('toolbox'),
@@ -216,7 +218,7 @@ class SceneGame extends Phaser.Scene {
         window.savenum=-1;
         console.log("goal");
         this.endRunning();
-        let message = new SimpleButton(this, 50, 200, 300, 50, 0xfffff00, 'Game Clear', 'green');
+        let message = new Simpleimage(this, 240, 240, "stageclear");
         let titleButton = new SimpleButton(this, 50, 300, 200, 30, 0xfffff00, 'Title', 'red');
         titleButton.button.on('pointerdown',function(){
             this.exitGameScene();
