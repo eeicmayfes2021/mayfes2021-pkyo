@@ -12,6 +12,7 @@ import { CONTROLS_FLOW_STATEMENTS_HELPURL } from 'blockly/msg/en';
 class SceneGame extends Phaser.Scene {
     init(data){
         this.stage_num=data.stage_num;
+        window.savenum=this.stage_num;
     }
     constructor(){
         super({key:'game'});
@@ -203,6 +204,7 @@ class SceneGame extends Phaser.Scene {
         return [3,1,0,2][Math.floor(num/3)];
     }
     clearGame(){
+        window.savenum=-1;
         console.log("goal");
         this.endRunning();
         let message = new SimpleButton(this, 50, 200, 300, 50, 0xfffff00, 'Game Clear', 'green');
@@ -212,6 +214,7 @@ class SceneGame extends Phaser.Scene {
             this.scene.start("title");
         }.bind(this));
         if(this.stage_num+1<stageinfo.stages.length){
+            window.savenum=this.stage_num+1;
             var nextButton=new SimpleButton(this, 50, 350, 200, 30, 0xfffff00, "Next Stage", "red")
             nextButton.button.on('pointerdown', function(){
                 this.exitGameScene();
@@ -244,7 +247,6 @@ class SceneGame extends Phaser.Scene {
               alert(e);
           }
     } 
-    /*ここから変更*/
     resetCommand(){
         this.exitGameScene();
         this.scene.restart({stage_num:this.stage_num});
@@ -253,7 +255,6 @@ class SceneGame extends Phaser.Scene {
         this.exitGameScene();
         this.scene.start("title");
     }
-    /*ここまで変更*/
     resetRunning(){
         this.endRunning();
         //todo:マップ(obstacleLayer)の初期化をしないといけない

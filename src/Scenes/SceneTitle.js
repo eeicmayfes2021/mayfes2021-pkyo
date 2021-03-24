@@ -24,12 +24,18 @@ class SceneTitle extends Phaser.Scene {
         playerChangeButton.style.visibility="hidden";
         const blocklyDiv = document.getElementById("blocklyDiv");
         blocklyDiv.style.visibility="hidden";
-        /*ここから変更*/
         const resetbutton = document.getElementById("resetbutton");
         resetbutton.style.visibility="hidden";
         const titlebutton = document.getElementById("titlebutton");
         titlebutton.style.visibility="hidden";
-        /*ここまで変更*/
+        if(window.savenum>-1){
+            var startButton=new SimpleButton(this, 100, 200+50*stageinfo.stages.length, 200, 50, 0xfffff00, "Load", "red")
+            startButton.button.on('pointerdown', function(){
+                this.scene.start("game",{stage_num:window.savenum});
+                }.bind(this));
+            }else{
+                var startButton=new SimpleButton(this, 100, 200+50*stageinfo.stages.length, 200, 50, 0xfffff00, "Load", "gray")    
+            }
     }
     update(){}
 } 
