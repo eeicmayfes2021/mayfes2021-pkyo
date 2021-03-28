@@ -79,6 +79,9 @@ class SceneGame extends Phaser.Scene {
         var blocklyDiv = document.getElementById("blocklyDiv");
         this.workspace = Blockly.inject('blocklyDiv', options);
         blocklyDiv.style.visibility="visible";
+        //Button部分の設定
+        const ButtonDiv = document.getElementById("ButtonDiv");
+        ButtonDiv.style.visibility="visible";
         //制限を記載
         var numFrame=document.getElementById("numFrame");
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
@@ -263,6 +266,8 @@ class SceneGame extends Phaser.Scene {
           }
     } 
     resetCommand(){
+        this.isRunning = false;
+        this.commandGenerator = undefined;
         this.exitGameScene();
         this.scene.restart({stage_num:this.stage_num});
     } 
