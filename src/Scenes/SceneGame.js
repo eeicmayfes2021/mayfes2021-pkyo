@@ -4,6 +4,8 @@ import Phaser from 'phaser';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import stageclear from '../stage/stageclear.png';
+import nextstage from '../stage/nextstage.png';
+import gototitle from '../stage/title.png';
 import player1 from '../stage/player.png';
 import player2 from '../stage/player2.png';
 import {SimpleButton, Simpleimage} from '../Objects/Objects.js';
@@ -42,6 +44,8 @@ class SceneGame extends Phaser.Scene {
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
+        this.load.image("nextstage", nextstage);
+        this.load.image("gototitle", gototitle);
         //put the toolbox in the workspace
         var options = {
             toolbox: document.getElementById('toolbox'),
@@ -219,14 +223,14 @@ class SceneGame extends Phaser.Scene {
         console.log("goal");
         this.endRunning();
         let message = new Simpleimage(this, 240, 240, "stageclear");
-        let titleButton = new SimpleButton(this, 50, 300, 200, 30, 0xfffff00, 'Title', 'red');
+        let titleButton = new Simpleimage(this, 200, 500, "gototitle");
         titleButton.button.on('pointerdown',function(){
             this.exitGameScene();
             this.scene.start("title");
         }.bind(this));
         if(this.stage_num+1<stageinfo.stages.length){
             window.savenum=this.stage_num+1;
-            var nextButton=new SimpleButton(this, 50, 350, 200, 30, 0xfffff00, "Next Stage", "red")
+            var nextButton=new Simpleimage(this, 170, 420, "nextstage");
             nextButton.button.on('pointerdown', function(){
                 this.exitGameScene();
                 this.scene.restart({stage_num:this.stage_num+1});
