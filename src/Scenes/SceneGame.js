@@ -242,6 +242,8 @@ class SceneGame extends Phaser.Scene {
     }
     exitGameScene(){
         //これが何をやってるのかは実はよく知らない
+        this.isRunning = false;
+        this.commandGenerator = undefined;
         this.registry.destroy();
         this.events.off();
         this.workspace.dispose();
