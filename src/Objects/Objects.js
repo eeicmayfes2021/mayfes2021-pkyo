@@ -15,5 +15,6 @@ export class Simpleimage {
         this.button = scene.add.image(
             x, y,
             text);
+            this.button.setInteractive();
     }
 };
