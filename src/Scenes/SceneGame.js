@@ -5,6 +5,7 @@ import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
+import nextstage2 from '../stage/nextstage2.png';
 import gototitle from '../stage/title.png';
 import gototitle2 from '../stage/title-next.png';
 import player1 from '../stage/player.png';
@@ -46,6 +47,7 @@ class SceneGame extends Phaser.Scene {
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
         this.load.image("nextstage", nextstage);
+        this.load.image("nextstage2", nextstage2);
         this.load.image("gototitle", gototitle);
         this.load.image("gototitle2", gototitle2);
         //put the toolbox in the workspace
@@ -247,6 +249,14 @@ class SceneGame extends Phaser.Scene {
             nextButton.button.on('pointerdown', function(){
                 this.exitGameScene();
                 this.scene.restart({stage_num:this.stage_num+1});
+            }.bind(this));
+            nextButton.button.on('pointerover', function(){
+                nextButton.button.setTexture("nextstage2");
+                nextButton.button.setScale(1.05, 1.05);
+            }.bind(this));
+            nextButton.button.on('pointerout', function(){
+                nextButton.button.setTexture("nextstage");
+                nextButton.button.setScale(1, 1);
             }.bind(this));
         }
     }

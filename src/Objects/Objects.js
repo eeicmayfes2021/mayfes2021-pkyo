@@ -5,7 +5,7 @@ export class SimpleButton {
             x+width/2, y+height/2,
             width, height,
             buttonColor);
-        this.text = scene.add.text(x, y, text, {fontSize: height, color: textColor});
+        this.text = scene.add.text(x, y, text, {fontFamily: "PixelMplus10", fontSize: height, color: textColor});
         this.button.setInteractive();
     }
 };
