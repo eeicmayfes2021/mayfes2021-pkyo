@@ -6,6 +6,7 @@ import tiles2 from '../stage/tilesets-big.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
 import gototitle from '../stage/title.png';
+import gototitle2 from '../stage/title-next.png';
 import player1 from '../stage/player.png';
 import player2 from '../stage/player2.png';
 import {SimpleButton, Simpleimage} from '../Objects/Objects.js';
@@ -46,6 +47,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("stageclear", stageclear);
         this.load.image("nextstage", nextstage);
         this.load.image("gototitle", gototitle);
+        this.load.image("gototitle2", gototitle2);
         //put the toolbox in the workspace
         var options = {
             toolbox: document.getElementById('toolbox'),
@@ -230,6 +232,14 @@ class SceneGame extends Phaser.Scene {
         titleButton.button.on('pointerdown',function(){
             this.exitGameScene();
             this.scene.start("title");
+        }.bind(this));
+        titleButton.button.on('pointerover',function(){
+            titleButton.button.setTexture("gototitle2");
+            titleButton.button.setScale(1.05, 1.05);
+        }.bind(this));
+        titleButton.button.on('pointerout',function(){
+            titleButton.button.setTexture("gototitle");
+            titleButton.button.setScale(1, 1);
         }.bind(this));
         if(this.stage_num+1<stageinfo.stages.length){
             window.savenum=this.stage_num+1;
