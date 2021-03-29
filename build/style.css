@@ -1,6 +1,12 @@
+@font-face {
+  font-family: PixelMplus10;
+  src: url("font/PixelMplus10-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("font/PixelMplus10-Regular.woff") format("woff"), /* Modern Browsers */
+  url("font/PixelMplus10-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+}
 body {
   background-color: #fff;
-  font-family: sans-serif;
+  font-family: PixelMplus10;
 }
 
 h1 {
@@ -34,17 +40,11 @@ h1 {
 
 #executeButton {
   position: absolute;
-  left: 100px;
+  left: 300px;
   top: 650px;
   z-index: 1;
 }
 #playerChangeButton{
-  position: absolute;
-  left: 20px;
-  top: 650px;
-  z-index: 1;
-}
-#someButton{
   position: absolute;
   left: 200px;
   top: 650px;
@@ -103,7 +103,8 @@ h1 {
 /*ここから変更*/
 #resetbutton{
   position: absolute;
-   left: 300px;
+  text-align: center;
+   left: 400px;
    top: 680px;
    width: 100;
    z-index: 1;
@@ -111,21 +112,23 @@ h1 {
  .arrow {
   display:inline-block;
   text-align: center;
-  height:20px;
-  width:60px;
-  background-color:#5bc0de;
+  height:30px;
+  width:80px;
+  background-color:#5cb7ce;
   position:relative;
+  opacity: 0.9;
 }
 
 .arrow::before {
   position:absolute;
   content:"";
+  text-align: center;
   width:0;
   height:0;
-  border:20px solid transparent;
-  border-right:20px solid #5bc0de;
-  top: -10px;
-  left: -40px;
+  border:30px solid transparent;
+  border-right:30px solid #5cb7ce;
+  top: -15px;
+  left: -50px;
 }
 .arrow:hover {
   cursor: pointer;
@@ -133,8 +136,8 @@ h1 {
  text-align: center;
   transition: transform .3s;
  transform-origin: center;
- transform: scale(0.9, 0.9);
- opacity: 0.7;
+ transform: scale(1.05, 1.05);
+ opacity: 1;
 }
 
  .reset{
@@ -157,26 +160,9 @@ h1 {
 
  #titlebutton{
   position: absolute;
-   left: 300px;
-   top: 630px;
+  text-align: center;
+  font-size: 20px;
+   left: 30px;
+   top: 650px;
    z-index: 1;
  }
- .title{
-  color: #fff;
-  height: 20px;
-  text-align: center;
-  background: rgb(17, 59, 194);
-  border-radius: 5px;
-}
-.title::after{
-  content: "もどる";
-}
-.title:hover {
-  cursor: pointer;
-  text-decoration: none;
- text-align: center;
-  transition: transform .3s;
- transform-origin: center;
- transform: scale(0.9, 0.9);
- opacity: 0.7;
-}
