@@ -46,9 +46,27 @@ h1 {
 }
 #playerChangeButton{
   position: absolute;
-  left: 200px;
+  left: 160px;
   top: 650px;
   z-index: 1;
+}
+.playerChange_btn{
+  display: inline-block;
+	position: relative;
+	width: 100px;
+	height: 52px;
+	text-align: center;
+	text-decoration: none;
+  background-image: url(asset/changeplayer.png);
+}
+.playerChange_btn:hover {
+  background-image: url(asset/changeplayer2.png);
+  cursor: pointer;
+  text-decoration: none;
+ text-align: center;
+  transition: transform .3s;
+ transform-origin: center;
+ transform: scale(0.9, 0.9);
 }
 #numFrame{
   position:absolute;
