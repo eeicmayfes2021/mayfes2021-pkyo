@@ -1,22 +1,17 @@
+@font-face {
+  font-family: PixelMplus10;
+  src: url("font/PixelMplus10-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("font/PixelMplus10-Regular.woff") format("woff"), /* Modern Browsers */
+  url("font/PixelMplus10-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+}
 body {
   background-color: #fff;
-  font-family: sans-serif;
+  font-family: PixelMplus10;
 }
 
 h1 {
   font-weight: normal;
   font-size: 140%;
-}
-
-#circle {
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-  background-color: white;
-  border: solid 1px black;
-  position: absolute;
-  left: 650px;
-  top: 100px;
 }
 
 #phaserDiv {
@@ -29,27 +24,30 @@ h1 {
   position: absolute;
   left: 490px;
   top: 10px;
-  width: 800px;
-  height: 600px;
+  width:  800px;
+  height: 700px;
+  z-index: 0;
+}
+#ButtonDiv {
+  position: absolute;
+  left: 10px;
+  top: 610px;
+  width: 480px;
+  height: 100px;
+  background: #dcdcdc;
   z-index: 0;
 }
 
 #executeButton {
   position: absolute;
-  left: 500px;
-  top: 550px;
+  left: 300px;
+  top: 650px;
   z-index: 1;
 }
 #playerChangeButton{
   position: absolute;
-  left: 0px;
-  top: 550px;
-  z-index: 1;
-}
-#someButton{
-  position: absolute;
-  left: 500px;
-  top: 450px;
+  left: 200px;
+  top: 650px;
   z-index: 1;
 }
 #numFrame{
@@ -105,16 +103,66 @@ h1 {
 /*ここから変更*/
 #resetbutton{
   position: absolute;
-   left: 100px;
-   top: 10px;
-   width: 100px;
-   z-index: 3;
+  text-align: center;
+   left: 400px;
+   top: 680px;
+   width: 100;
+   z-index: 1;
  }
+ .arrow {
+  display:inline-block;
+  text-align: center;
+  height:30px;
+  width:80px;
+  background-color:#5cb7ce;
+  position:relative;
+  opacity: 0.9;
+}
+
+.arrow::before {
+  position:absolute;
+  content:"";
+  text-align: center;
+  width:0;
+  height:0;
+  border:30px solid transparent;
+  border-right:30px solid #5cb7ce;
+  top: -15px;
+  left: -50px;
+}
+.arrow:hover {
+  cursor: pointer;
+  text-decoration: none;
+ text-align: center;
+  transition: transform .3s;
+ transform-origin: center;
+ transform: scale(1.05, 1.05);
+ opacity: 1;
+}
+
+ .reset{
+  color: #fff;
+  height: 20px;
+  text-align: center;
+  background: #399;
+  border-radius: 5px;
+}
+.reset:hover {
+  cursor: pointer;
+  text-decoration: none;
+ text-align: center;
+  transition: transform .3s;
+ transform-origin: center;
+ transform: scale(0.9, 0.9);
+ opacity: 0.7;
+}
+
+
  #titlebutton{
   position: absolute;
-   left: 100px;
-   top: -10px;
-   width: 100px;
-   z-index: 3;
+  text-align: center;
+  font-size: 20px;
+   left: 30px;
+   top: 650px;
+   z-index: 1;
  }
- /*ここから変更*/

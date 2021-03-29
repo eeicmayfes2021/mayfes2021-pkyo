@@ -6,6 +6,7 @@ import tiles2 from '../stage/tilesets-big.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
 import gototitle from '../stage/title.png';
+import gototitle2 from '../stage/title-next.png';
 import player1 from '../stage/player.png';
 import player2 from '../stage/player2.png';
 import {SimpleButton, Simpleimage} from '../Objects/Objects.js';
@@ -46,6 +47,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("stageclear", stageclear);
         this.load.image("nextstage", nextstage);
         this.load.image("gototitle", gototitle);
+        this.load.image("gototitle2", gototitle2);
         //put the toolbox in the workspace
         var options = {
             toolbox: document.getElementById('toolbox'),
@@ -79,6 +81,9 @@ class SceneGame extends Phaser.Scene {
         var blocklyDiv = document.getElementById("blocklyDiv");
         this.workspace = Blockly.inject('blocklyDiv', options);
         blocklyDiv.style.visibility="visible";
+        //Button部分の設定
+        const ButtonDiv = document.getElementById("ButtonDiv");
+        ButtonDiv.style.visibility="visible";
         //制限を記載
         var numFrame=document.getElementById("numFrame");
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
@@ -228,6 +233,14 @@ class SceneGame extends Phaser.Scene {
             this.exitGameScene();
             this.scene.start("title");
         }.bind(this));
+        titleButton.button.on('pointerover',function(){
+            titleButton.button.setTexture("gototitle2");
+            titleButton.button.setScale(1.05, 1.05);
+        }.bind(this));
+        titleButton.button.on('pointerout',function(){
+            titleButton.button.setTexture("gototitle");
+            titleButton.button.setScale(1, 1);
+        }.bind(this));
         if(this.stage_num+1<stageinfo.stages.length){
             window.savenum=this.stage_num+1;
             var nextButton=new Simpleimage(this, 170, 420, "nextstage");
@@ -239,6 +252,8 @@ class SceneGame extends Phaser.Scene {
     }
     exitGameScene(){
         //これが何をやってるのかは実はよく知らない
+        this.isRunning = false;
+        this.commandGenerator = undefined;
         this.registry.destroy();
         this.events.off();
         this.workspace.dispose();
@@ -263,6 +278,8 @@ class SceneGame extends Phaser.Scene {
           }
     } 
     resetCommand(){
+        this.isRunning = false;
+        this.commandGenerator = undefined;
         this.exitGameScene();
         this.scene.restart({stage_num:this.stage_num});
     } 
