@@ -9,7 +9,7 @@ class SceneTitle extends Phaser.Scene {
     preload(){}
     create(){
         this.game.scale.setGameSize(800, 600);
-        this.add.text(200, 100, 'プログラミング教室', {fontSize: 50, color: 'red'});
+        this.add.text(200, 100, 'プログラミング教室', {fontFamily: "PixelMplus10", fontSize: 50, color: 'red'});
         for (let index = 0; index < stageinfo.stages.length; index++) {
             var startButton=new SimpleButton(this, 100, 200+50*index, 200, 50, 0xfffff00, "STAGE"+index, "red");
             var discription=new SimpleButton(this, 100, 200+50*index, 200, 10, 0xfffff00, stageinfo.stages[index].description, "black");
