@@ -17,19 +17,6 @@ class SceneTitle extends Phaser.Scene {
                 this.scene.start("game",{stage_num:index});
             }.bind(this));
         }
-        //いらないボタンなどを隠す(クソ実装)
-        const executeButton = document.getElementById("executeButton");
-        executeButton.style.visibility="hidden";
-        const playerChangeButton = document.getElementById("playerChangeButton");
-        playerChangeButton.style.visibility="hidden";
-        const blocklyDiv = document.getElementById("blocklyDiv");
-        blocklyDiv.style.visibility="hidden";
-        const ButtonDiv = document.getElementById("ButtonDiv");
-        ButtonDiv.style.visibility="hidden";
-        const resetbutton = document.getElementById("resetbutton");
-        resetbutton.style.visibility="hidden";
-        const titlebutton = document.getElementById("titlebutton");
-        titlebutton.style.visibility="hidden";
         if(window.savenum>-1){
             var startButton=new SimpleButton(this, 100, 200+50*stageinfo.stages.length, 200, 50, 0xfffff00, "Load", "red")
             startButton.button.on('pointerdown', function(){
