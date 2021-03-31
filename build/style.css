@@ -36,6 +36,7 @@ h1 {
   height: 100px;
   background: #dcdcdc;
   z-index: 0;
+  visibility: hidden;
 }
 
 #executeButton {
@@ -43,12 +44,14 @@ h1 {
   left: 300px;
   top: 650px;
   z-index: 1;
+  visibility: hidden;
 }
 #playerChangeButton{
   position: absolute;
   left: 160px;
   top: 650px;
   z-index: 1;
+  visibility: hidden;
 }
 .playerChange_btn{
   display: inline-block;
@@ -126,6 +129,7 @@ h1 {
    top: 680px;
    width: 100;
    z-index: 1;
+   visibility: hidden;
  }
  .arrow {
   display:inline-block;
@@ -183,4 +187,5 @@ h1 {
    left: 30px;
    top: 650px;
    z-index: 1;
+   visibility: hidden;
  }
