@@ -186,3 +186,45 @@ Blockly.JavaScript['callgroup'] = function(block) {
     `;
   return  code;
 };
+
+Blockly.Blocks['and'] = {
+  init: function() {
+    this.appendValueInput("a")
+        .setCheck(null);
+    this.appendDummyInput().appendField("かつ");
+    this.appendValueInput("b")
+        .setCheck(null);
+    this.setOutput(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['and'] = function(block) {
+  var value_a = Blockly.JavaScript.valueToCode(block, 'a', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_b = Blockly.JavaScript.valueToCode(block, 'b', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = `(${value_a} && ${value_b})`;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['or'] = {
+  init: function() {
+    this.appendValueInput("a")
+        .setCheck(null);
+    this.appendDummyInput().appendField("または");
+    this.appendValueInput("b")
+        .setCheck(null);
+    this.setOutput(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['or'] = function(block) {
+  var value_a = Blockly.JavaScript.valueToCode(block, 'a', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_b = Blockly.JavaScript.valueToCode(block, 'b', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = `(${value_a} || ${value_b})`;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};

@@ -5,6 +5,7 @@
             "description":"まっすぐに進むだけの問題です",
             "playerx":2,
             "playery":2,
+            "playerdirection":2,
             "blocks":"move,while",
             "blocklimit":2
         },
@@ -13,6 +14,7 @@
             "description":"曲がる必要がある問題です",
             "playerx":2,
             "playery":2,
+            "playerdirection":2,
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
         },
@@ -21,6 +23,7 @@
             "description":"ステージ1のコピーです",
             "playerx":3,
             "playery":2,
+            "playerdirection":2,
             "blocks":"move,while,grouping,callgroup",
             "blocklimit":10
         },
@@ -29,8 +32,36 @@
             "description":"障害物があるステージのテストです。",
             "playerx":2,
             "playery":2,
+            "playerdirection":2,
             "blocks":"move,while,remove",
             "blocklimit":3
+        },
+        {
+            "filename":"stage_rotation",
+            "description":"渦巻きが存在するステージです",
+            "playerx":2,
+            "playery":9,
+            "playerdirection":2,
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10
+        },
+        {
+            "filename":"stage_item",
+            "description":"アイテムを取得するステージです",
+            "playerx":2,
+            "playery":2,
+            "playerdirection":2,
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10
+        },
+        {
+            "filename":"stage_and",
+            "description":"「ろんりせき」を勉強しましょう",
+            "playerx":2,
+            "playery":6,
+            "playerdirection":2,
+            "blocks":"moveforward,while,turn,if,check,and,or",
+            "blocklimit":7
         }
     ]
 }
