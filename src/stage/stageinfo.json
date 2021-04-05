@@ -53,6 +53,15 @@
             "playerdirection":2,
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
+        },
+        {
+            "filename":"stage_and",
+            "description":"「ろんりせき」を勉強しましょう",
+            "playerx":2,
+            "playery":6,
+            "playerdirection":2,
+            "blocks":"moveforward,while,turn,if,check,and,or",
+            "blocklimit":7
         }
     ]
 }
