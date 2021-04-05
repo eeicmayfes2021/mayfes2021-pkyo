@@ -131,12 +131,14 @@ class SceneGame extends Phaser.Scene {
         //this.backgroundLayer.setScale(this.map2Img);
         let playerX=stageinfo.stages[this.stage_num].playerx;
         let playerY=stageinfo.stages[this.stage_num].playery;
+        let playerdirection=stageinfo.stages[this.stage_num].playerdirection;
         this.player = this.add.sprite(this.mapDat.tileWidth * playerX * this.map2Img, this.mapDat.tileWidth * playerY * this.map2Img, "player");
         this.player.setOrigin(0, 0);
         this.player.gridX=playerX;
         this.player.gridY=playerY;
         this.player.targetX = this.player.x;
         this.player.targetY = this.player.y;
+        this.player.setFrame( playerdirection*3+1 );
          //player animations https://photonstorm.github.io/phaser3-docs/Phaser.Animations.AnimationState.html
         this.player.anims.create({key:'move3-player', frames:this.player.anims.generateFrameNames('player', { start: 0, end: 2 }), frameRate:10,repeat:-1});//down
         this.player.anims.create({key:'move1-player', frames:this.player.anims.generateFrameNames('player', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
@@ -311,10 +313,12 @@ class SceneGame extends Phaser.Scene {
         //this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
         let playerX=stageinfo.stages[this.stage_num].playerx;
         let playerY=stageinfo.stages[this.stage_num].playery;
+        let playerdirection=stageinfo.stages[this.stage_num].playerdirection;
         this.player.gridX=playerX;
         this.player.gridY=playerY;
         this.player.targetX = this.player.x = this.mapDat.tileWidth * playerX * this.map2Img;
         this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
+        this.player.setFrame( playerdirection*3+1 );
         this.funcs={};//funcsの初期化
     } 
     playerChange(){//プレイヤーの容姿を変更する
