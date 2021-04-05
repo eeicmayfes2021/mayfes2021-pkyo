@@ -44,6 +44,15 @@
             "playerdirection":2,
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
+        },
+        {
+            "filename":"stage_item",
+            "description":"アイテムを取得するステージです",
+            "playerx":2,
+            "playery":2,
+            "playerdirection":2,
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10
         }
     ]
 }

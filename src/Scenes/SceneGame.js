@@ -35,6 +35,8 @@ class SceneGame extends Phaser.Scene {
         this.isRunning=false;
         this.commandGenerator=undefined;
         this.funcs={};
+
+        this.getkey=false;//キーを取得したかどうか
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
@@ -125,6 +127,7 @@ class SceneGame extends Phaser.Scene {
         this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
         this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
         this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
+        this.keyLayer = this.mapDat.createLayer("key", [this.tileset,this.tileset2]);//ないときはnullになる
         //this.map2Img = game.canvas.width / this.backgroundLayer.width;
         //configのサイズをbackgroundLayerと合わせるんだったらこれでいいのでは？
         this.map2Img =1;
@@ -172,7 +175,11 @@ class SceneGame extends Phaser.Scene {
             this.player.anims.stop();
             //ゴール判定 goal判定
             if (this.goalLayer.hasTileAt(this.player.gridX,this.player.gridY)) {
-                this.clearGame();
+                if(this.keyLayer){
+                    if(this.getkey)this.clearGame();
+                }else{
+                    this.clearGame();
+                }
             }else{
                 let gen = this.commandGenerator.next();//yieldで止まってたコマンドを再開する
                 if(gen.value)this.workspace.highlightBlock(gen.value);
@@ -193,6 +200,10 @@ class SceneGame extends Phaser.Scene {
         //this.mapDat.layers[1].data[i][j].indexでも同じ
         if (!this.movableLayer.hasTileAt(nextGX,nextGY))return;//壁には進めない
         if(this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY))return;//障害物があるとすすめない
+        if(this.keyLayer&&this.keyLayer.hasTileAt(nextGX,nextGY)){
+            this.getkey=true;
+            this.keyLayer.removeTileAt(nextGX,nextGY,false);
+        }//keyを取得
         player.targetX += dx[dir] * this.mapDat.tileWidth * this.map2Img;
         player.gridX = nextGX;
         player.targetY += dy[dir] * this.mapDat.tileHeight * this.map2Img;
@@ -271,7 +282,7 @@ class SceneGame extends Phaser.Scene {
         this.workspace.dispose();
     }
     endRunning(){
-        this.player.anims.stop();
+        if(this.player)this.player.anims.stop();
         this.isRunning=false;
         this.tick=0;
     }
@@ -303,12 +314,13 @@ class SceneGame extends Phaser.Scene {
         this.endRunning();
         //todo:マップ(obstacleLayer)の初期化をしないといけない
         //まじでこれでいいの？かなり無駄な気がするぜ！
-        this.mapDat.destroy();
+        if(this.mapDat)this.mapDat.destroy();
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.backgroundLayer = this.mapDat.createLayer("ground", [this.tileset,this.tileset2]);
         this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
         this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
         this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
+        this.keyLayer = this.mapDat.createLayer("key", [this.tileset,this.tileset2]);//ないときはnullになる
         this.player.setDepth(1);//playerを前に持ってくる
         //this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
         let playerX=stageinfo.stages[this.stage_num].playerx;
@@ -320,6 +332,7 @@ class SceneGame extends Phaser.Scene {
         this.player.targetY = this.player.y = this.mapDat.tileWidth * playerY * this.map2Img;
         this.player.setFrame( playerdirection*3+1 );
         this.funcs={};//funcsの初期化
+        this.getkey=false;
     } 
     playerChange(){//プレイヤーの容姿を変更する
         console.log("change!");
