@@ -310,8 +310,7 @@ class SceneGame extends Phaser.Scene {
     resetCommand(){
         this.isRunning = false;
         this.commandGenerator = undefined;
-        this.exitGameScene();
-        this.scene.restart({stage_num:this.stage_num});
+        this.resetRunning();
     } 
     titleCommand(){
         this.exitGameScene();
