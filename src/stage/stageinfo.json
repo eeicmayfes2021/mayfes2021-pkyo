@@ -1,19 +1,19 @@
 {
     "stages":[
         {
-            "filename":"tilemapNaomi1",
+            "filename":"stage_tuto",
             "description":"まっすぐに進むだけの問題です",
-            "playerx":2,
-            "playery":2,
+            "playerx":4,
+            "playery":7,
             "playerdirection":2,
             "blocks":"move,while",
             "blocklimit":2
         },
         {
-            "filename":"tilemapNaomi2",
+            "filename":"stage_change_dire",
             "description":"曲がる必要がある問題です",
-            "playerx":2,
-            "playery":2,
+            "playerx":4,
+            "playery":5,
             "playerdirection":2,
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
@@ -28,13 +28,13 @@
             "blocklimit":10
         },
         {
-            "filename":"obstacle-test",
-            "description":"障害物があるステージのテストです。",
-            "playerx":2,
-            "playery":2,
+            "filename":"stage_obstacle",
+            "description":"障害物があるステージです。",
+            "playerx":4,
+            "playery":7,
             "playerdirection":2,
-            "blocks":"move,while,remove",
-            "blocklimit":3
+            "blocks":"moveforward,while,remove,if,check,turn",
+            "blocklimit":10
         },
         {
             "filename":"stage_rotation",
@@ -69,7 +69,7 @@
             "playerx":3,
             "playery":8,
             "playerdirection":2,
-            "blocks":"moveforward,while,turn,if_or,check2",
+            "blocks":"moveforward,while,turn,if_or,check2,if,check",
             "blocklimit":7
         }
     ]
