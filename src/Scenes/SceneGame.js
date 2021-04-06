@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 //import map1 from '../stage/tilemapNaomi1.json';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
+import boxtiles from '../stage/boxes.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
 import nextstage2 from '../stage/nextstage2.png';
@@ -45,6 +46,7 @@ class SceneGame extends Phaser.Scene {
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
+        this.load.image("boxtiles", boxtiles);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
@@ -159,7 +161,7 @@ class SceneGame extends Phaser.Scene {
         //キャラクターの座標更新
         if (this.player.targetX != this.player.x) {
             const difX = this.player.targetX - this.player.x;
-            this.player.x += difX / Math.abs(difX) * 1;  // とてもよくない(画像サイズ規定を設けるor微分方程式なので減衰覚悟でやる)
+            this.player.x += difX / Math.abs(difX) * 1; 
         }
         if (this.player.targetY != this.player.y) {
             const difY = this.player.targetY - this.player.y;
@@ -342,7 +344,7 @@ class SceneGame extends Phaser.Scene {
             this.player.setTexture("player");
         }
     }
-    checkIf(player,direction,layer){
+    checkIf(player,direction,layer,flag){
         var player_direction=this.getDirection(player);////0:right,1;left,2:up,3,downを返すように
         var dir=0;
         if(direction==0)dir=[0,1,2,3][player_direction];//前
@@ -353,10 +355,19 @@ class SceneGame extends Phaser.Scene {
         const dy = [0, 0, -1, 1];
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
-        if (layer.hasTileAt(nextGX,nextGY)) {
-          return true;
-        }else{
-            return false;
+        if(flag == 0){
+            if (layer.hasTileAt(nextGX,nextGY)) {
+                return true;
+            }else{
+                return false;
+            }
+        }
+        else{
+            if (!layer.hasTileAt(nextGX,nextGY)) {
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 } 

@@ -124,7 +124,29 @@ Blockly.JavaScript['check'] = function(block) {
   var dropdown_direction = block.getFieldValue('direction');
   var dropdown_thing = block.getFieldValue('thing');
   // TODO: Assemble JavaScript into code variable.
-  var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing})\n`;
+  var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 0)\n`;
+  return  [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['check2'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["前","0"], ["右","1"], ["左","2"],["後ろ","3"]]), "direction")
+        .appendField("が")
+        .appendField(new Blockly.FieldDropdown([["壁","this.movableLayer"], ["障害物","this.obstacleLayer"]]), "thing");
+    this.setOutput(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['check2'] = function(block) {
+  var dropdown_direction = block.getFieldValue('direction');
+  var dropdown_thing = block.getFieldValue('thing');
+  // TODO: Assemble JavaScript into code variable.
+  var code;
+  if(dropdown_thing === "this.movableLayer") code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 1)\n`;
+  else code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 0)\n`;
   return  [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -227,4 +249,75 @@ Blockly.JavaScript['or'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = `(${value_a} || ${value_b})`;
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['if_and'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("もし");
+    this.appendValueInput("cond1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("かつ");
+    this.appendValueInput("cond2")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("なら");
+    this.appendStatementInput("iftrue")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("そうでないなら");
+    this.appendStatementInput("iffalse")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(100);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['if_and'] = function(block) {
+  var value_condition1 = Blockly.JavaScript.valueToCode(block, 'cond1', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_condition2 = Blockly.JavaScript.valueToCode(block, 'cond2', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
+  var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
+  // TODO: Assemble JavaScript into code variable.
+  var code = `if(${value_condition1} && ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
+  return code;
+};
+
+Blockly.Blocks['if_or'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("もし");
+    this.appendValueInput("cond1")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("または");
+    this.appendValueInput("cond2")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("なら");
+    this.appendStatementInput("iftrue")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("そうでないなら");
+    this.appendStatementInput("iffalse")
+        .setCheck(null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(100);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['if_or'] = function(block) {
+  var value_condition1 = Blockly.JavaScript.valueToCode(block, 'cond1', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_condition2 = Blockly.JavaScript.valueToCode(block, 'cond2', Blockly.JavaScript.ORDER_ATOMIC);
+  var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
+  var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
+  // TODO: Assemble JavaScript into code variable.
+  var code = `if(${value_condition1} || ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
+  return code;
 };
