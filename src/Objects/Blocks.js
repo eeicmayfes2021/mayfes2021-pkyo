@@ -113,7 +113,7 @@ Blockly.Blocks['check'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([["前","0"], ["右","1"], ["左","2"],["後ろ","3"]]), "direction")
         .appendField("が")
-        .appendField(new Blockly.FieldDropdown([["道","this.movableLayer"], ["障害物","this.obstacleLayer"]]), "thing");
+        .appendField(new Blockly.FieldDropdown([["道","this.movableLayer"], ["岩","this.obstacleLayer"]]), "thing");
     this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip("");
@@ -133,7 +133,7 @@ Blockly.Blocks['check2'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([["前","0"], ["右","1"], ["左","2"],["後ろ","3"]]), "direction")
         .appendField("が")
-        .appendField(new Blockly.FieldDropdown([["壁","this.movableLayer"], ["障害物","this.obstacleLayer"]]), "thing");
+        .appendField(new Blockly.FieldDropdown([["壁","this.movableLayer"], ["岩","this.obstacleLayer"]]), "thing");
     this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip("");
