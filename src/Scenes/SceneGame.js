@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 //import map1 from '../stage/tilemapNaomi1.json';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
-import boxtiles from '../stage/boxes.png';
+import fieldtiles from '../stage/fields.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
 import nextstage2 from '../stage/nextstage2.png';
@@ -36,6 +36,7 @@ class SceneGame extends Phaser.Scene {
         this.isRunning=false;
         this.commandGenerator=undefined;
         this.funcs={};
+        this.tilesets;
 
         this.getkey=false;//キーを取得したかどうか
     }
@@ -46,7 +47,7 @@ class SceneGame extends Phaser.Scene {
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
-        this.load.image("boxtiles", boxtiles);
+        this.load.image("fieldtiles", fieldtiles);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
@@ -125,12 +126,16 @@ class SceneGame extends Phaser.Scene {
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.tileset = this.mapDat.addTilesetImage("map", "tiles");
         this.tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
-        this.backgroundLayer = this.mapDat.createLayer("ground", [this.tileset,this.tileset2]);
-        this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
-        this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
-        this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
-        this.keyLayer = this.mapDat.createLayer("key", [this.tileset,this.tileset2]);//ないときはnullになる
+        this.fieldtiles = this.mapDat.addTilesetImage("fields", "fieldtiles");
+        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles];
+        this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
+        this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
+        this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
+        this.obstacleLayer = this.mapDat.createLayer("obstacle", this.tilesets);//ないときはnullになる
+        this.keyLayer = this.mapDat.createLayer("key", this.tilesets);//ないときはnullになる
+        this.teleportLayer = this.mapDat.createLayer("teleport", this.tilesets);//ないときはnullになる
         //this.map2Img = game.canvas.width / this.backgroundLayer.width;
+        //ここ破滅実装
         //configのサイズをbackgroundLayerと合わせるんだったらこれでいいのでは？
         this.map2Img =1;
         //this.backgroundLayer.setScale(this.map2Img);
@@ -318,11 +323,12 @@ class SceneGame extends Phaser.Scene {
         //まじでこれでいいの？かなり無駄な気がするぜ！
         if(this.mapDat)this.mapDat.destroy();
         this.mapDat = this.add.tilemap("map"+this.stage_num);
-        this.backgroundLayer = this.mapDat.createLayer("ground", [this.tileset,this.tileset2]);
-        this.movableLayer = this.mapDat.createLayer("movable", [this.tileset,this.tileset2]);
-        this.goalLayer = this.mapDat.createLayer("goal", [this.tileset,this.tileset2]);
-        this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
-        this.keyLayer = this.mapDat.createLayer("key", [this.tileset,this.tileset2]);//ないときはnullになる
+        this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
+        this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
+        this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
+        this.obstacleLayer = this.mapDat.createLayer("obstacle", this.tilesets);//ないときはnullになる
+        this.keyLayer = this.mapDat.createLayer("key", this.tilesets);//ないときはnullになる
+        this.teleportLayer = this.mapDat.createLayer("teleport", this.tilesets);//ないときはnullになる
         this.player.setDepth(1);//playerを前に持ってくる
         //this.obstacleLayer = this.mapDat.createLayer("obstacle", [this.tileset,this.tileset2]);//ないときはnullになる
         let playerX=stageinfo.stages[this.stage_num].playerx;

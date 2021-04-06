@@ -71,6 +71,15 @@
             "playerdirection":2,
             "blocks":"moveforward,while,turn,if_or,check2,if,check",
             "blocklimit":7
+        },
+        {
+            "filename":"stage_teleport",
+            "description":"テレポートするステージです",
+            "playerx":2,
+            "playery":11,
+            "playerdirection":2,
+            "blocks":"moveforward,while,turn,if_or,check2,if,check",
+            "blocklimit":10
         }
     ]
 }
