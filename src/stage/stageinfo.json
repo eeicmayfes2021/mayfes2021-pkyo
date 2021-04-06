@@ -60,7 +60,7 @@
             "playerx":2,
             "playery":6,
             "playerdirection":2,
-            "blocks":"moveforward,while,turn,if,check,and,or",
+            "blocks":"moveforward,while,turn,if_and,check",
             "blocklimit":7
         }
     ]
