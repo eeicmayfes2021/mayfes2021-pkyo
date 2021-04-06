@@ -124,7 +124,29 @@ Blockly.JavaScript['check'] = function(block) {
   var dropdown_direction = block.getFieldValue('direction');
   var dropdown_thing = block.getFieldValue('thing');
   // TODO: Assemble JavaScript into code variable.
-  var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing})\n`;
+  var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 0)\n`;
+  return  [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['check2'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["前","0"], ["右","1"], ["左","2"],["後ろ","3"]]), "direction")
+        .appendField("が")
+        .appendField(new Blockly.FieldDropdown([["壁","this.movableLayer"], ["障害物","this.obstacleLayer"]]), "thing");
+    this.setOutput(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['check2'] = function(block) {
+  var dropdown_direction = block.getFieldValue('direction');
+  var dropdown_thing = block.getFieldValue('thing');
+  // TODO: Assemble JavaScript into code variable.
+  var code;
+  if(dropdown_thing === "this.movableLayer") code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 1)\n`;
+  else code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 0)\n`;
   return  [code, Blockly.JavaScript.ORDER_NONE];
 };
 
