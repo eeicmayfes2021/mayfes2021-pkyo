@@ -11,8 +11,8 @@ class SceneTitle extends Phaser.Scene {
         this.game.scale.setGameSize(1200, 800);
         this.add.text(200, 100, 'プログラミング教室', {fontFamily: "PixelMplus10", fontSize: 50, color: 'red'});
         for (let index = 0; index < stageinfo.stages.length; index++) {
-            var startButton=new SimpleButton(this, 100 * ((index - index % 9) / 9 + 1), 200+50*(index % 9), 200, 50, 0xfffff00, "STAGE"+index, "red");
-            var discription=new SimpleButton(this, 100 * ((index - index % 9) / 9 + 1), 200+50*(index % 9), 200, 10, 0xfffff00, stageinfo.stages[index].description, "black");
+            var startButton=new SimpleButton(this, 100 + 400 * ((index - index % 9) / 9), 200+50*(index % 9), 200, 50, 0xfffff00, "STAGE"+index, "red");
+            var discription=new SimpleButton(this, 100 + 400 * ((index - index % 9) / 9), 200+50*(index % 9), 200, 10, 0xfffff00, stageinfo.stages[index].description, "black");
             startButton.button.on('pointerdown', function(){
                 this.scene.start("game",{stage_num:index});
             }.bind(this));
@@ -30,15 +30,15 @@ class SceneTitle extends Phaser.Scene {
         resetbutton.style.visibility="hidden";
         const titlebutton = document.getElementById("titlebutton");
         titlebutton.style.visibility="hidden";
+        let num = stageinfo.stages.length;
         if(window.savenum>-1){
-            let num = stageinfo.stages.length;
-            var startButton=new SimpleButton(this, 100 * ((num - num % 9) / 9 + 1), 200+50*(num % 9), 200, 50, 0xfffff00, "Load", "red")
+            var startButton=new SimpleButton(this, 100 + 400 * ((num - num % 9) / 9), 200+50*(num % 9), 200, 50, 0xfffff00, "Load", "red")
             startButton.button.on('pointerdown', function(){
                 this.scene.start("game",{stage_num:window.savenum});
                 }.bind(this));
-            }else{
-                var startButton=new SimpleButton(this, 100, 200+50*stageinfo.stages.length, 200, 50, 0xfffff00, "Load", "gray")    
-            }
+        }else{
+            var startButton=new SimpleButton(this, 100 + 400 * ((num - num % 9) / 9), 200+50*(num % 9), 200, 50, 0xfffff00, "Load", "gray")    
+        }
     }
     update(){}
 } 
