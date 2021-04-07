@@ -177,7 +177,10 @@ class SceneGame extends Phaser.Scene {
     }
     //さまざまな関数
     runCode() {
-        if (!this.isRunning)return;
+        if (!this.isRunning){
+            this.workspace.highlightBlock(false);
+            return;
+        }
         if (++this.tick === this.cmdDelta) {
             this.player.anims.stop();
             //ゴール判定 goal判定
