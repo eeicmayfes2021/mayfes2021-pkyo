@@ -6,6 +6,9 @@
             "playerx":4,
             "playery":7,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"move,while",
             "blocklimit":2
         },
@@ -15,6 +18,9 @@
             "playerx":4,
             "playery":5,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
         },
@@ -24,6 +30,9 @@
             "playerx":3,
             "playery":2,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"move,while,grouping,callgroup",
             "blocklimit":10
         },
@@ -33,6 +42,9 @@
             "playerx":4,
             "playery":7,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"moveforward,while,remove,if,check,turn",
             "blocklimit":10
         },
@@ -42,6 +54,9 @@
             "playerx":2,
             "playery":9,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
         },
@@ -51,6 +66,9 @@
             "playerx":2,
             "playery":2,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10
         },
@@ -60,6 +78,9 @@
             "playerx":2,
             "playery":6,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"moveforward,while,turn,if_and,check",
             "blocklimit":7
         },
@@ -69,6 +90,9 @@
             "playerx":3,
             "playery":8,
             "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
             "blocks":"moveforward,while,turn,if_or,check2,if,check",
             "blocklimit":7
         },
@@ -78,7 +102,10 @@
             "playerx":2,
             "playery":11,
             "playerdirection":2,
-            "blocks":"moveforward,while,turn,if_or,check2,if,check",
+            "teleportx": [3, 11],
+            "teleporty": [4, 11],
+            "teleportid": [1, 0],
+            "blocks":"moveforward,while,turn,if,check,can_teleport",
             "blocklimit":10
         }
     ]
