@@ -105,7 +105,7 @@
             "teleportx": [3, 11],
             "teleporty": [4, 11],
             "teleportid": [1, 0],
-            "blocks":"moveforward,while,turn,if,check,can_teleport",
+            "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
             "blocklimit":10
         }
     ]
