@@ -361,17 +361,9 @@ Blockly.Blocks['teleportation'] = {
 };
 Blockly.JavaScript['teleportation'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = `let x = this.player.gridX;
-      let y = this.player.gridY;
-      let id;
-      for(let i = 0; i < stageinfo.stages[this.stage_num].teleportx.length){
-          if(stageinfo.stages[this.stage_num].teleportx[i] == x && stageinfo.stages[this.stage_num].teleporty[i] == y){
-            id = stageinfo.stages[this.stage_num].teleportid[i];
-            break;
-          }
-      }
+  var code = `
       //関数を呼びます
-      run_teleport(this.player, id);
+      this.run_teleport();
       yield "${block.id}";`;
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return code;
 };
