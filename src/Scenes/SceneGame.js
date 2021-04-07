@@ -37,7 +37,7 @@ class SceneGame extends Phaser.Scene {
         this.commandGenerator=undefined;
         this.funcs={};
         this.tilesets;
-
+        this.teleportindex;
         this.getkey=false;//キーを取得したかどうか
     }
     preload(){
@@ -93,6 +93,7 @@ class SceneGame extends Phaser.Scene {
         ButtonDiv.style.visibility="visible";
         //制限を記載
         var numFrame=document.getElementById("numFrame");
+        this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
         numFrame.innerHTML="残りブロック数:"+this.leftblock;
         numFrame.style.left=70+'px';
@@ -158,6 +159,8 @@ class SceneGame extends Phaser.Scene {
         this.player.anims.create({key:'move1-player2', frames:this.player.anims.generateFrameNames('player2', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
         this.player.anims.create({key:'move0-player2',frames:this.player.anims.generateFrameNames('player2', { start:6, end: 8 }), frameRate:10,repeat:-1});//right
         this.player.anims.create({key:'move2-player2',   frames:this.player.anims.generateFrameNames('player2', { start: 9, end: 11 }), frameRate:10,repeat:-1});//up
+        this.player.anims.create({key:'rotate-player',   frames:this.player.anims.generateFrameNames('player', [1, 4, 7, 10]), frameRate:10,repeat:1});
+        this.player.anims.create({key:'rotate2-player',   frames:this.player.anims.generateFrameNames('player', [1, 4, 7, 10]), frameRate:5,repeat:1});
     }
     update(){
         //プレイヤーを動かしたり、衝突判定からのロジックを回したり
@@ -177,7 +180,10 @@ class SceneGame extends Phaser.Scene {
     }
     //さまざまな関数
     runCode() {
-        if (!this.isRunning)return;
+        if (!this.isRunning){
+            this.workspace.highlightBlock(false);
+            return;
+        }
         if (++this.tick === this.cmdDelta) {
             this.player.anims.stop();
             //ゴール判定 goal判定
@@ -374,6 +380,14 @@ class SceneGame extends Phaser.Scene {
                 return false;
             }
         }
+    }
+    run_teleport(player, num){
+        this.player.anims.play('rotate-' + this.playrt.texture.key);
+        this.player.anims.play('rotate2-' + this.playrt.texture.key);
+        this.player.gridX = stageinfo.stages[this.stage_num].teleportx[id];
+        this.player.gridY = stageinfo.stages[this.stage_num].teleporty[id];
+        this.player.anims.play('rotate2-' + this.playrt.texture.key);
+        this.player.anims.play('rotate-' + this.playrt.texture.key);
     }
 } 
 export default SceneGame;

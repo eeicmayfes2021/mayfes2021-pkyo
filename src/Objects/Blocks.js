@@ -1,4 +1,6 @@
 import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
+import mahojin_b from "../stage/mahojin_b.png";
+import mahojin_w from "../stage/mahojin_w2.png";
 
 Blockly.Blocks['move'] = {
     init: function() {
@@ -105,7 +107,13 @@ Blockly.JavaScript['if'] = function(block) {
   var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
   var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
   // TODO: Assemble JavaScript into code variable.
-  var code = `if(${value_condition}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
+  var code = `if(${value_condition}){
+                ${statements_iftrue}
+              }
+              else{
+                ${statements_iffalse}
+              }
+              yield "${block.id}";\n`;
   return code;
 };
 Blockly.Blocks['check'] = {
@@ -124,7 +132,7 @@ Blockly.JavaScript['check'] = function(block) {
   var dropdown_direction = block.getFieldValue('direction');
   var dropdown_thing = block.getFieldValue('thing');
   // TODO: Assemble JavaScript into code variable.
-  var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 0)\n`;
+  var code = `this.checkIf(this.player,${dropdown_direction},${dropdown_thing}, 0)`;
   return  [code, Blockly.JavaScript.ORDER_NONE];
 };
 
@@ -320,4 +328,50 @@ Blockly.JavaScript['if_or'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = `if(${value_condition1} || ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
   return code;
+};
+
+Blockly.Blocks['can_teleport'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([[{"src":mahojin_w,"width":15,"height":15,"alt":"*"},"white"], [{"src":mahojin_b,"width":15,"height":15,"alt":"*"},"black"]]), "place")
+        .appendField("にいる");
+    this.setOutput(true, null);
+    this.setColour(40);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['can_teleport'] = function(block) {
+  var dropdown_place = block.getFieldValue('place');
+  // TODO: Assemble JavaScript into code variable.
+  var code = `this.teleportLayer.hasTileAt(this.player.gridX, this.player.gridY)`;
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['teleportation'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("同じマークの場所にテレポートする");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(40);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['teleportation'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = `let x = this.player.gridX;
+      let y = this.player.gridY;
+      let id;
+      for(let i = 0; i < stageinfo.stages[this.stage_num].teleportx.length){
+          if(stageinfo.stages[this.stage_num].teleportx[i] == x && stageinfo.stages[this.stage_num].teleporty[i] == y){
+            id = stageinfo.stages[this.stage_num].teleportid[i];
+            break;
+          }
+      }
+      //関数を呼びます
+      run_teleport(this.player, id);
+      yield "${block.id}";`;
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
