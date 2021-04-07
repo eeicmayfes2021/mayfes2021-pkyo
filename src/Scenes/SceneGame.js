@@ -159,8 +159,6 @@ class SceneGame extends Phaser.Scene {
         this.player.anims.create({key:'move1-player2', frames:this.player.anims.generateFrameNames('player2', { start: 3, end: 5 }), frameRate:10,repeat:-1});//left
         this.player.anims.create({key:'move0-player2',frames:this.player.anims.generateFrameNames('player2', { start:6, end: 8 }), frameRate:10,repeat:-1});//right
         this.player.anims.create({key:'move2-player2',   frames:this.player.anims.generateFrameNames('player2', { start: 9, end: 11 }), frameRate:10,repeat:-1});//up
-        this.player.anims.create({key:'rotate-player',   frames:this.player.anims.generateFrameNames('player', [1, 4, 7, 10]), frameRate:10,repeat:1});
-        this.player.anims.create({key:'rotate2-player',   frames:this.player.anims.generateFrameNames('player', [1, 4, 7, 10]), frameRate:5,repeat:1});
     }
     update(){
         //プレイヤーを動かしたり、衝突判定からのロジックを回したり
@@ -381,13 +379,22 @@ class SceneGame extends Phaser.Scene {
             }
         }
     }
-    run_teleport(player, num){
-        this.player.anims.play('rotate-' + this.playrt.texture.key);
-        this.player.anims.play('rotate2-' + this.playrt.texture.key);
-        this.player.gridX = stageinfo.stages[this.stage_num].teleportx[id];
-        this.player.gridY = stageinfo.stages[this.stage_num].teleporty[id];
-        this.player.anims.play('rotate2-' + this.playrt.texture.key);
-        this.player.anims.play('rotate-' + this.playrt.texture.key);
+    run_teleport(){
+        //カス実装
+        let x = this.player.gridX;
+        let y = this.player.gridY;
+        let index;
+        for(let i = 0; i < stageinfo.stages[this.stage_num].teleportid.length; ++i){
+            if(stageinfo.stages[this.stage_num].teleportx[i] == x && stageinfo.stages[this.stage_num].teleporty[i] == y){
+              index = stageinfo.stages[this.stage_num].teleportid[i];
+              break;
+            }
+        }
+        this.player.gridX = stageinfo.stages[this.stage_num].teleportx[index];
+        this.player.gridY = stageinfo.stages[this.stage_num].teleporty[index];
+        this.player.targetX = this.player.x = this.mapDat.tileWidth * this.player.gridX * this.map2Img;
+        this.player.targetY = this.player.y = this.mapDat.tileWidth * this.player.gridY * this.map2Img;
+        console.log(this.player.gridX, this.player.gridY);
     }
 } 
 export default SceneGame;
