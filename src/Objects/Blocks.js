@@ -107,13 +107,13 @@ Blockly.JavaScript['if'] = function(block) {
   var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
   var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
   // TODO: Assemble JavaScript into code variable.
-  var code = `if(${value_condition}){
+  var code = `yield "${block.id}";\n
+              if(${value_condition}){
                 ${statements_iftrue}
               }
               else{
                 ${statements_iffalse}
-              }
-              yield "${block.id}";\n`;
+              }`
   return code;
 };
 Blockly.Blocks['check'] = {
