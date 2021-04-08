@@ -250,6 +250,11 @@ class SceneGame extends Phaser.Scene {
           console.log("remove!");
           return;
         }
+        else{
+            this.leftenergy -= 50;
+            this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+            return;
+        }
     }
     getDirection(player){//向いている方向を検知する
         //todo:この中身を実装する
