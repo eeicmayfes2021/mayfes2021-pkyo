@@ -34,6 +34,7 @@ class SceneGame extends Phaser.Scene {
         this.cmdDelta=45;
         this.tick=0;
         this.isRunning=false;
+        this.ismoving=false;
         this.commandGenerator=undefined;
         this.funcs={};
         this.tilesets;
@@ -203,6 +204,7 @@ class SceneGame extends Phaser.Scene {
     }
     tryMove(player, dir) {
         // ここはこれでいいの？ってなるけど
+        this.ismoving=true;
         const dx = [1, -1, 0, 0];
         const dy = [0, 0, -1, 1];
         const nextGX = player.gridX + dx[dir];
@@ -219,7 +221,6 @@ class SceneGame extends Phaser.Scene {
         player.gridX = nextGX;
         player.targetY += dy[dir] * this.mapDat.tileHeight * this.map2Img;
         player.gridY = nextGY;
-        
     }
     removeObstacle(player) {
         //向いている方角の障害物を除去しようとする
@@ -235,7 +236,7 @@ class SceneGame extends Phaser.Scene {
           return;
         }
     }
-    getDirection(player){//向いている方向を検知する(どうやってやるんや)
+    getDirection(player){//向いている方向を検知する
         //todo:この中身を実装する
         //0:right,1;left,2:up,3,downを返すように
         let num=parseInt(player.frame.name);
@@ -247,7 +248,7 @@ class SceneGame extends Phaser.Scene {
         console.log("changeDirection");
         if(dir==0)player.setFrame( [3,9,0,6][Math.floor(num/3)]+1 );//右
         else player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
-        console.log(player.frame.name)
+        console.log(player.frame.name);
     }
     clearGame(){
         window.savenum=-1;
@@ -347,10 +348,16 @@ class SceneGame extends Phaser.Scene {
     } 
     playerChange(){//プレイヤーの容姿を変更する
         console.log("change!");
+        let num=parseInt(this.player.frame.name);
         if(this.player.texture.key=="player"){
             this.player=this.player.setTexture("player2");
         }else{
             this.player.setTexture("player");
+        }
+        this.player.setFrame(num);
+        if(this.ismoving){
+            let dir = this.getDirection(this.player);
+            this.player.anims.play('move'+dir+"-"+this.player.texture.key);
         }
     }
     checkIf(player,direction,layer,flag){
