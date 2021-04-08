@@ -16,7 +16,7 @@ Blockly.Blocks['move'] = {
 };
   Blockly.JavaScript['move'] = function(block) {
     var dropdown_direction = block.getFieldValue('move_direction');
-    var code = `this.tryMove(this.player,${dropdown_direction});yield "${block.id}";\n`;
+    var code = `this.tryMove(this.player,${dropdown_direction});yield "${block.id}";this.ismoving=false;\n`;
     return code;
   };
   Blockly.Blocks['moveforward'] = {
@@ -31,7 +31,7 @@ Blockly.Blocks['move'] = {
     }
 };
   Blockly.JavaScript['moveforward'] = function(block) {
-    var code = `this.tryMove(this.player,this.getDirection(this.player));yield "${block.id}";\n`;
+    var code = `this.tryMove(this.player,this.getDirection(this.player));yield "${block.id}";this.ismoving=false;\n`;
     return code;
   };
   Blockly.Blocks['turn'] = {
