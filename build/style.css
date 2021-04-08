@@ -75,7 +75,13 @@ h1 {
   position:absolute;
   text-align: center;
   z-index: 1;
-  color: #000;
+  color: #000000;
+}
+#numenergy{
+  position:absolute;
+  text-align: center;
+  z-index: 1;
+  color: #000000;
 }
 .circle_spread_btn {
 	display: inline-block;
