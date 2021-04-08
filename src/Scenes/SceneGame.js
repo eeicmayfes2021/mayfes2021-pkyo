@@ -25,6 +25,9 @@ class SceneGame extends Phaser.Scene {
 
         //グローバル変数の代わり
         this.leftblock;
+        //体力です
+        this.leftenergy=500;//試験的に初期値を500に設定しています(あとでstageinfoにステージごとに設定すれば良いので)
+        this.numEnergy;
         //this.blocklyDiv.style.left = 30*16;
         this.player;
         this.workspace;
@@ -94,18 +97,25 @@ class SceneGame extends Phaser.Scene {
         ButtonDiv.style.visibility="visible";
         //制限を記載
         var numFrame=document.getElementById("numFrame");
+        this.numEnergy=document.getElementById("numenergy");//だいぶキモイことをしています
         this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
-        numFrame.innerHTML="残りブロック数:"+this.leftblock;
+        numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;
         numFrame.style.left=70+'px';
-        numFrame.style.top=(blocklyDiv.offsetHeight-50)+'px';
+        numFrame.style.top=(blocklyDiv.offsetHeight-30)+'px';
+        this.numEnergy.innerHTML=`残り体力: ${this.leftenergy}`;
+        this.numEnergy.style.left=70+'px';
+        this.numEnergy.style.top=(blocklyDiv.offsetHeight-60)+'px';
         this.workspace.addChangeListener(function(event) {
             if (event.type === Blockly.Events.BLOCK_CREATE) {
               this.leftblock -= 1;
+              this.leftenergy -= 10;
             } else if (event.type === Blockly.Events.BLOCK_DELETE) {
-              this.leftblock += event.ids.length;
+              this.leftblock += event.ids.length;;
+              this.leftenergy += 10 * event.ids.length;;
             }
             numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
+            this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
         }.bind(this));
         //ボタンを押すと発火するようにする
         const executeButton = document.getElementById("executeButton");
@@ -211,8 +221,11 @@ class SceneGame extends Phaser.Scene {
         const nextGY = player.gridY + dy[dir];
         this.player.anims.play('move'+dir+"-"+player.texture.key);
         //this.mapDat.layers[1].data[i][j].indexでも同じ
-        if (!this.movableLayer.hasTileAt(nextGX,nextGY))return;//壁には進めない
-        if(this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY))return;//障害物があるとすすめない
+        if (!this.movableLayer.hasTileAt(nextGX,nextGY) || (this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY))){
+            this.leftenergy -= 50;
+            this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+            return;//壁または障害物には進めない
+        }
         if(this.keyLayer&&this.keyLayer.hasTileAt(nextGX,nextGY)){
             this.getkey=true;
             this.keyLayer.removeTileAt(nextGX,nextGY,false);
@@ -221,6 +234,8 @@ class SceneGame extends Phaser.Scene {
         player.gridX = nextGX;
         player.targetY += dy[dir] * this.mapDat.tileHeight * this.map2Img;
         player.gridY = nextGY;
+        this.leftenergy -= 1;
+        this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
     }
     removeObstacle(player) {
         //向いている方角の障害物を除去しようとする
@@ -325,7 +340,10 @@ class SceneGame extends Phaser.Scene {
         this.endRunning();
         //todo:マップ(obstacleLayer)の初期化をしないといけない
         //まじでこれでいいの？かなり無駄な気がするぜ！
+        //破滅実装最高すぎ！
         if(this.mapDat)this.mapDat.destroy();
+        this.leftenergy = 500 - 10 * (stageinfo.stages[this.stage_num].blocklimit - this.leftblock);
+        this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
