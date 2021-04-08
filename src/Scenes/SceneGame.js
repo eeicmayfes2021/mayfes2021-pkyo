@@ -111,8 +111,8 @@ class SceneGame extends Phaser.Scene {
               this.leftblock -= 1;
               this.leftenergy -= 10;
             } else if (event.type === Blockly.Events.BLOCK_DELETE) {
-              this.leftblock += 1;
-              this.leftenergy += 10;
+              this.leftblock += event.ids.length;;
+              this.leftenergy += 10 * event.ids.length;;
             }
             numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
             this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
