@@ -103,7 +103,7 @@ class SceneGame extends Phaser.Scene {
         numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;
         numFrame.style.left=70+'px';
         numFrame.style.top=(blocklyDiv.offsetHeight-30)+'px';
-        this.numEnergy.innerHTML+=`残り体力: ${this.leftenergy}`;
+        this.numEnergy.innerHTML=`残り体力: ${this.leftenergy}`;
         this.numEnergy.style.left=70+'px';
         this.numEnergy.style.top=(blocklyDiv.offsetHeight-60)+'px';
         this.workspace.addChangeListener(function(event) {
