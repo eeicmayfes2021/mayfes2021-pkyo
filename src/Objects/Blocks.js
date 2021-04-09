@@ -37,8 +37,8 @@ Blockly.Blocks['move'] = {
   Blockly.Blocks['turn'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("次の方向に曲がる:")
-          .appendField(new Blockly.FieldDropdown([["右", "0"],["左", "1"]]), "turn_direction");
+          .appendField("次の方向を向く:")
+          .appendField(new Blockly.FieldDropdown([["右", "0"],["左", "1"],["後ろ", "2"]]), "turn_direction");
       this.setNextStatement(true);
       this.setPreviousStatement(true);
       this.setColour(270);
@@ -106,6 +106,7 @@ Blockly.JavaScript['if'] = function(block) {
   var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
   var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
+  if(value_condition == "") value_condition = "true";
   // TODO: Assemble JavaScript into code variable.
   var code = `yield "${block.id}";\n
               if(${value_condition}){
@@ -204,13 +205,15 @@ Blockly.JavaScript['callgroup'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = `
       if(typeof this.funcs['${group_name}']!="function"){alert("${raw_group_name}というグループはありません！");return;}
-      let tmp_gen=this.funcs['${group_name}']();
-      while(true){
-        let gen_res=tmp_gen.next();
-        if(gen_res.done){
-          break;
-        }else{
-          yield gen_res.value;
+      else{
+        let tmp_gen=this.funcs['${group_name}']();
+        while(true){
+          let gen_res=tmp_gen.next();
+          if(gen_res.done){
+            break;
+          }else{
+            yield gen_res.value;
+          }
         }
       }
     `;
@@ -289,8 +292,11 @@ Blockly.JavaScript['if_and'] = function(block) {
   var value_condition2 = Blockly.JavaScript.valueToCode(block, 'cond2', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
   var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
+  console.log(value_condition2 == "");
+  if(value_condition1 == "") value_condition1 = "true";
+  if(value_condition2 == "") value_condition2 = "true";
   // TODO: Assemble JavaScript into code variable.
-  var code = `if(${value_condition1} && ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
+  var code = `yield "${block.id}";\nif(${value_condition1} && ${value_condition2}true){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
   return code;
 };
 
@@ -325,8 +331,10 @@ Blockly.JavaScript['if_or'] = function(block) {
   var value_condition2 = Blockly.JavaScript.valueToCode(block, 'cond2', Blockly.JavaScript.ORDER_ATOMIC);
   var statements_iftrue = Blockly.JavaScript.statementToCode(block, 'iftrue');
   var statements_iffalse = Blockly.JavaScript.statementToCode(block, 'iffalse');
+  if(value_condition1 == "") value_condition1 = "true";
+  if(value_condition2 == "") value_condition2 = "true";
   // TODO: Assemble JavaScript into code variable.
-  var code = `if(${value_condition1} || ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
+  var code = `yield "${block.id};\nif(${value_condition1} || ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
   return code;
 };
 

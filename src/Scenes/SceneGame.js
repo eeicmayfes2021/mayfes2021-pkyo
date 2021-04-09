@@ -4,6 +4,7 @@ import Phaser from 'phaser';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import fieldtiles from '../stage/fields.png';
+import blacktile from '../stage/darkness.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
 import nextstage2 from '../stage/nextstage2.png';
@@ -52,6 +53,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
         this.load.image("fieldtiles", fieldtiles);
+        this.load.image("blacktile", blacktile);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
@@ -139,7 +141,8 @@ class SceneGame extends Phaser.Scene {
         this.tileset = this.mapDat.addTilesetImage("map", "tiles");
         this.tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
         this.fieldtiles = this.mapDat.addTilesetImage("fields", "fieldtiles");
-        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles];
+        this.blacktile = this.mapDat.addTilesetImage("darkness", "blacktile");
+        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles,this.blacktile];
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
         this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
@@ -250,6 +253,11 @@ class SceneGame extends Phaser.Scene {
           console.log("remove!");
           return;
         }
+        else{
+            this.leftenergy -= 50;
+            this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+            return;
+        }
     }
     getDirection(player){//向いている方向を検知する
         //todo:この中身を実装する
@@ -262,13 +270,15 @@ class SceneGame extends Phaser.Scene {
         let num=parseInt(player.frame.name);
         console.log("changeDirection");
         if(dir==0)player.setFrame( [3,9,0,6][Math.floor(num/3)]+1 );//右
-        else player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
+        else if(dir==1) player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
+        else player.setFrame( [9,6,3,0][Math.floor(num/3)]+1 );
         console.log(player.frame.name);
     }
     clearGame(){
         window.savenum=-1;
         console.log("goal");
         this.endRunning();
+        if(this.keyLayer) this.keyLayer.destroy();
         let message = new Simpleimage(this, 240, 240, "stageclear");
         let titleButton = new Simpleimage(this, 200, 500, "gototitle");
         titleButton.button.on('pointerdown',function(){
@@ -408,12 +418,17 @@ class SceneGame extends Phaser.Scene {
         //カス実装
         let x = this.player.gridX;
         let y = this.player.gridY;
-        let index;
+        let index = -1;
         for(let i = 0; i < stageinfo.stages[this.stage_num].teleportid.length; ++i){
             if(stageinfo.stages[this.stage_num].teleportx[i] == x && stageinfo.stages[this.stage_num].teleporty[i] == y){
               index = stageinfo.stages[this.stage_num].teleportid[i];
               break;
             }
+        }
+        if(index == -1){//テレポート可能のマスじゃなかったらペナルティ
+            this.leftenergy -= 50;
+            this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+            return;
         }
         this.player.gridX = stageinfo.stages[this.stage_num].teleportx[index];
         this.player.gridY = stageinfo.stages[this.stage_num].teleporty[index];

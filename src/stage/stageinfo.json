@@ -9,7 +9,7 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"move,while",
+            "blocks":"move,while,if,turn,check",
             "blocklimit":2
         },
         {
@@ -25,18 +25,6 @@
             "blocklimit":10
         },
         {
-            "filename":"tilemapNaomi1",
-            "description":"ステージ1のコピーです",
-            "playerx":3,
-            "playery":2,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"move,while,grouping,callgroup",
-            "blocklimit":10
-        },
-        {
             "filename":"stage_obstacle",
             "description":"障害物があるステージです。",
             "playerx":4,
@@ -47,6 +35,18 @@
             "teleportid": [],
             "blocks":"moveforward,while,remove,if,check,turn",
             "blocklimit":10
+        },
+        {
+            "filename":"stage_group",
+            "description":"グループを使うステージです",
+            "playerx":5,
+            "playery":11,
+            "playerdirection":3,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,grouping,callgroup,turn",
+            "blocklimit":15
         },
         {
             "filename":"stage_rotation",
@@ -102,11 +102,35 @@
             "playerx":2,
             "playery":11,
             "playerdirection":2,
-            "teleportx": [3, 11],
+            "teleportx": [11, 11],
             "teleporty": [4, 11],
             "teleportid": [1, 0],
             "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
             "blocklimit":10
+        },
+        {
+            "filename":"stage_recursive",
+            "description":"前に進むだけ？のステージです",
+            "playerx":3,
+            "playery":9,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,grouping,callgroup,turn,if,check",
+            "blocklimit":9
+        },
+        {
+            "filename":"stage_darkness",
+            "description":"暗闇を手探るステージです",
+            "playerx":2,
+            "playery":8,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
+            "blocklimit":12
         }
     ]
 }
