@@ -278,7 +278,7 @@ class SceneGame extends Phaser.Scene {
         window.savenum=-1;
         console.log("goal");
         this.endRunning();
-        this.keyLayer.destroy();
+        if(this.keyLayer) this.keyLayer.destroy();
         let message = new Simpleimage(this, 240, 240, "stageclear");
         let titleButton = new Simpleimage(this, 200, 500, "gototitle");
         titleButton.button.on('pointerdown',function(){
