@@ -9,7 +9,7 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"move,while",
+            "blocks":"move,while,if,turn,check",
             "blocklimit":2
         },
         {
@@ -47,6 +47,18 @@
             "teleportid": [],
             "blocks":"moveforward,while,remove,if,check,turn",
             "blocklimit":10
+        },
+        {
+            "filename":"stage_group",
+            "description":"グループを使うステージです",
+            "playerx":5,
+            "playery":11,
+            "playerdirection":3,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,grouping,callgroup,turn",
+            "blocklimit":15
         },
         {
             "filename":"stage_rotation",
