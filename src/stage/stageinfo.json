@@ -25,18 +25,6 @@
             "blocklimit":10
         },
         {
-            "filename":"tilemapNaomi1",
-            "description":"ステージ1のコピーです",
-            "playerx":3,
-            "playery":2,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"move,while,grouping,callgroup",
-            "blocklimit":10
-        },
-        {
             "filename":"stage_obstacle",
             "description":"障害物があるステージです。",
             "playerx":4,
@@ -119,6 +107,18 @@
             "teleportid": [1, 0],
             "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
             "blocklimit":10
+        },
+        {
+            "filename":"stage_recursive",
+            "description":"前に進むだけ？のステージです",
+            "playerx":3,
+            "playery":9,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,grouping,callgroup,turn,if,check",
+            "blocklimit":9
         }
     ]
 }
