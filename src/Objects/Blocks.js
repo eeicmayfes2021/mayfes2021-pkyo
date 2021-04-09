@@ -204,13 +204,15 @@ Blockly.JavaScript['callgroup'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = `
       if(typeof this.funcs['${group_name}']!="function"){alert("${raw_group_name}というグループはありません！");return;}
-      let tmp_gen=this.funcs['${group_name}']();
-      while(true){
-        let gen_res=tmp_gen.next();
-        if(gen_res.done){
-          break;
-        }else{
-          yield gen_res.value;
+      else{
+        let tmp_gen=this.funcs['${group_name}']();
+        while(true){
+          let gen_res=tmp_gen.next();
+          if(gen_res.done){
+            break;
+          }else{
+            yield gen_res.value;
+          }
         }
       }
     `;
