@@ -267,7 +267,8 @@ class SceneGame extends Phaser.Scene {
         let num=parseInt(player.frame.name);
         console.log("changeDirection");
         if(dir==0)player.setFrame( [3,9,0,6][Math.floor(num/3)]+1 );//右
-        else player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
+        else if(dir==1) player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
+        else player.setFrame( [9,6,3,0][Math.floor(num/3)]+1 );
         console.log(player.frame.name);
     }
     clearGame(){
