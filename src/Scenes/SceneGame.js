@@ -414,12 +414,17 @@ class SceneGame extends Phaser.Scene {
         //カス実装
         let x = this.player.gridX;
         let y = this.player.gridY;
-        let index;
+        let index = -1;
         for(let i = 0; i < stageinfo.stages[this.stage_num].teleportid.length; ++i){
             if(stageinfo.stages[this.stage_num].teleportx[i] == x && stageinfo.stages[this.stage_num].teleporty[i] == y){
               index = stageinfo.stages[this.stage_num].teleportid[i];
               break;
             }
+        }
+        if(index == -1){//テレポート可能のマスじゃなかったらペナルティ
+            this.leftenergy -= 50;
+            this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+            return;
         }
         this.player.gridX = stageinfo.stages[this.stage_num].teleportx[index];
         this.player.gridY = stageinfo.stages[this.stage_num].teleporty[index];

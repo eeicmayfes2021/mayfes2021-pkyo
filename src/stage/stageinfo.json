@@ -102,7 +102,7 @@
             "playerx":2,
             "playery":11,
             "playerdirection":2,
-            "teleportx": [3, 11],
+            "teleportx": [11, 11],
             "teleporty": [4, 11],
             "teleportid": [1, 0],
             "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
