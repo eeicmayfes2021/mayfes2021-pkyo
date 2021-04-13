@@ -45,6 +45,7 @@ class SceneGame extends Phaser.Scene {
         this.tilesets;
         this.teleportindex;
         this.getkey = 0;//キーを何個取得したか
+        this.x = 0;
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
