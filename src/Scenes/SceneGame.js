@@ -4,6 +4,7 @@ import Phaser from 'phaser';
 import tiles from '../stage/map.png';
 import tiles2 from '../stage/tilesets-big.png';
 import fieldtiles from '../stage/fields.png';
+import boxtiles from '../stage/boxes.png';
 import blacktile from '../stage/darkness.png';
 import stageclear from '../stage/stageclear.png';
 import nextstage from '../stage/nextstage.png';
@@ -43,17 +44,18 @@ class SceneGame extends Phaser.Scene {
         this.funcs={};
         this.tilesets;
         this.teleportindex;
-        this.getkey=false;//キーを取得したかどうか
+        this.getkey = 0;//キーを何個取得したか
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
         console.log(stageinfo.stages[this.stage_num].filename)
-        var map1=require('../stage/'+stageinfo.stages[this.stage_num].filename+'.json');
+        var map1 = require('../stage/'+stageinfo.stages[this.stage_num].filename+'.json');
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
         this.load.image("tiles", tiles);
         this.load.image("tiles2", tiles2);
         this.load.image("fieldtiles", fieldtiles);
         this.load.image("blacktile", blacktile);
+        this.load.image("boxtiles", boxtiles);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
@@ -142,7 +144,8 @@ class SceneGame extends Phaser.Scene {
         this.tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
         this.fieldtiles = this.mapDat.addTilesetImage("fields", "fieldtiles");
         this.blacktile = this.mapDat.addTilesetImage("darkness", "blacktile");
-        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles,this.blacktile];
+        this.boxtiles = this.mapDat.addTilesetImage("boxes", "boxtiles");
+        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles,this.blacktile,this.boxtiles];
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
         this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
@@ -201,7 +204,7 @@ class SceneGame extends Phaser.Scene {
             //ゴール判定 goal判定
             if (this.goalLayer.hasTileAt(this.player.gridX,this.player.gridY)) {
                 if(this.keyLayer){
-                    if(this.getkey)this.clearGame();
+                    if(this.getkey == stageinfo.stages[this.stage_num].keycnt)this.clearGame();
                 }else{
                     this.clearGame();
                 }
