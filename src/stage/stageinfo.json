@@ -10,7 +10,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"move,while,if,turn,check",
-            "blocklimit":2
+            "blocklimit":2,
+            "keycnt":0
         },
         {
             "filename":"stage_change_dire",
@@ -22,7 +23,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
-            "blocklimit":10
+            "blocklimit":10,
+            "keycnt":0
         },
         {
             "filename":"stage_obstacle",
@@ -34,7 +36,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,remove,if,check,turn",
-            "blocklimit":10
+            "blocklimit":10,
+            "keycnt":0
         },
         {
             "filename":"stage_group",
@@ -46,7 +49,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,grouping,callgroup,turn",
-            "blocklimit":15
+            "blocklimit":15,
+            "keycnt":0
         },
         {
             "filename":"stage_rotation",
@@ -58,7 +62,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
-            "blocklimit":10
+            "blocklimit":10,
+            "keycnt":0
         },
         {
             "filename":"stage_item",
@@ -70,7 +75,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
-            "blocklimit":10
+            "blocklimit":10,
+            "keycnt":1
         },
         {
             "filename":"stage_and",
@@ -82,7 +88,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,turn,if_and,check",
-            "blocklimit":7
+            "blocklimit":7,
+            "keycnt":0
         },
         {
             "filename":"stage_or",
@@ -94,7 +101,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,while,turn,if_or,check2,if,check",
-            "blocklimit":7
+            "blocklimit":7,
+            "keycnt":0
         },
         {
             "filename":"stage_teleport",
@@ -106,7 +114,8 @@
             "teleporty": [4, 11],
             "teleportid": [1, 0],
             "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
-            "blocklimit":10
+            "blocklimit":10,
+            "keycnt":0
         },
         {
             "filename":"stage_recursive",
@@ -118,7 +127,8 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check",
-            "blocklimit":9
+            "blocklimit":9,
+            "keycnt":0
         },
         {
             "filename":"stage_darkness",
@@ -130,7 +140,21 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
-            "blocklimit":12
+            "blocklimit":12,
+            "keycnt":0
+        },
+        {
+            "filename":"stage_dfs",
+            "description":"木のステージです",
+            "playerx":2,
+            "playery":10,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocklimit":13,
+            "keycnt":8
         }
     ]
 }
