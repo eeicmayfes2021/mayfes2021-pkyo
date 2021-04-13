@@ -375,3 +375,29 @@ Blockly.JavaScript['teleportation'] = function(block) {
       yield "${block.id}";`;
   return code;
 };
+
+Blockly.Blocks['while_if'] = {
+  init: function() {
+    this.appendValueInput("if_true")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("であるかぎり");
+    this.appendStatementInput("child")
+        .setCheck(null);
+    this.appendDummyInput()
+        .appendField("をくりかえす");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['while_if'] = function(block) {
+  var if_true = Blockly.JavaScript.valueToCode(block, 'if_true', Blockly.JavaScript.ORDER_ATOMIC);
+  var childblock = Blockly.JavaScript.statementToCode(block, 'child');
+  // TODO: Assemble JavaScript into code variable.
+  var code = `yield "${block.id}"; while(${if_true}){${childblock}}\n`;
+  return code;
+};
