@@ -152,9 +152,35 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
             "blocklimit":13,
             "keycnt":8
+        },
+        {
+            "filename":"stage_recursion",
+            "description":"再帰のステージです",
+            "playerx":1,
+            "playery":1,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
+            "blocklimit":20,
+            "keycnt":0
+        },
+        {
+            "filename":"stage_recursion_easy",
+            "description":"再帰のステージです",
+            "playerx":3,
+            "playery":4,
+            "playerdirection":0,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocklimit":20,
+            "keycnt":0
         }
     ]
 }
