@@ -43,7 +43,7 @@
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",
- "tileheight":32,
+ "tileheight":30,
  "tilesets":[
         {
          "columns":8,
@@ -58,7 +58,7 @@
          "tileheight":32,
          "tilewidth":32
         }],
- "tilewidth":32,
+ "tilewidth":30,
  "type":"map",
  "version":1.4,
  "width":16
