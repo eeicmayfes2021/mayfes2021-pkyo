@@ -1,6 +1,6 @@
 import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
-import mahojin_b from "../stage/mahojin_b.png";
-import mahojin_w from "../stage/mahojin_w2.png";
+import mahojin_b from "../images/mahojin_b.png";
+import mahojin_w from "../images/mahojin_w2.png";
 
 Blockly.Blocks['move'] = {
     init: function() {
