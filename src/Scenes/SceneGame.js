@@ -13,7 +13,7 @@ import gototitle from '../images/title.png';
 import gototitle2 from '../images/title-next.png';
 import player1 from '../images/player.png';
 import player2 from '../images/player2.png';
-import {SimpleButton, Simpleimage} from '../Objects/Objects.js';
+import {RoundedButton, SimpleButton, Simpleimage} from '../Objects/Objects.js';
 import stageinfo from '../stage/stageinfo.json';
 import { CONTROLS_FLOW_STATEMENTS_HELPURL } from 'blockly/msg/en';
 
