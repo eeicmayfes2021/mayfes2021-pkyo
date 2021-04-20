@@ -10,13 +10,15 @@ class SceneTitle extends Phaser.Scene {
     create(){
         this.game.scale.setGameSize(1500, 800);
         this.add.text(200, 50, 'プ ロ グ ラ ミ ン グ 教 室', {fontFamily: "PixelMplus10", fontSize: 70, color: 'lime'});
-        for (let index = 0; index < stageinfo.stages.length; index++) {
-            var startButton=new RoundedButton(this, 100 + 400 * ((index - index % 9) / 9), 200+60*(index % 9), 200, 50, 0xfffff00, "STAGE"+index, "red");
-            var discription=new SimpleButton(this, 100 + 400 * ((index - index % 9) / 9), 200+60*(index % 9), 200, 10, stageinfo.stages[index].description, "black");
-            startButton.button.on('pointerdown', function(){
-                this.scene.start("game",{stage_num:index});
-            }.bind(this));
-        }
+        var firststage = new RoundedButton(this, 100, 400, 500, 50, 0xffff00, "最初のステージへ", 'red');
+        firststage.button.on('pointerdown', function(){
+            this.scene.start("game", {stage_num:0});
+        }.bind(this));
+        var stageselect = new RoundedButton(this, 700, 400, 500, 50, 0xffff00, "ステージを選ぶ", "red");
+        //stageselect.text
+        stageselect.button.on('pointerdown', function(){
+            this.scene.start("select");
+        }.bind(this));
         //いらないボタンなどを隠す(クソ実装)
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="hidden";
@@ -30,15 +32,6 @@ class SceneTitle extends Phaser.Scene {
         resetbutton.style.visibility="hidden";
         const titlebutton = document.getElementById("titlebutton");
         titlebutton.style.visibility="hidden";
-        let num = stageinfo.stages.length;
-        if(window.savenum>-1){
-            var startButton=new RoundedButton(this, 100 + 400 * ((num - num % 9) / 9), 200+60*(num % 9), 200, 50, 0xfffff00, "Load", "red")
-            startButton.button.on('pointerdown', function(){
-                this.scene.start("game",{stage_num:window.savenum});
-                }.bind(this));
-        }else{
-            var startButton=new RoundedButton(this, 100 + 400 * ((num - num % 9) / 9), 200+60*(num % 9), 200, 50, 0xfffff00, "Load", "gray")    
-        }
     }
     update(){}
 } 

@@ -2,6 +2,7 @@ import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
 import Phaser from 'phaser';
 import SceneTitle from './Scenes/SceneTitle';
 import SceneGame from './Scenes/SceneGame';
+import SceneSelect from './Scenes/SceneSelect';
 import {SimpleButton, Simpleimage} from './Objects/Objects.js';
 require('./Objects/Blocks.js');
 //import xmlFile1 from '../Blockly/test.xml';
@@ -24,6 +25,7 @@ var config = {
     //ここにシーンを追加(preloadとかはここで定義しなくても良い)
     scene: [
         SceneTitle,
+        SceneSelect,
         SceneGame
     ],
     render: {
