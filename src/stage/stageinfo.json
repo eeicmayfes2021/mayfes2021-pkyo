@@ -11,7 +11,9 @@
             "teleportid": [],
             "blocks":"move,while,if,turn,check",
             "blocklimit":2,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_change_dire",
@@ -24,7 +26,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_obstacle",
@@ -37,7 +41,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,remove,if,check,turn",
             "blocklimit":10,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_group",
@@ -50,7 +56,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,grouping,callgroup,turn",
             "blocklimit":15,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_rotation",
@@ -63,7 +71,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_item",
@@ -76,7 +86,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,turn,if,check",
             "blocklimit":10,
-            "keycnt":1
+            "keycnt":1,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_and",
@@ -89,7 +101,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,turn,if_and,check",
             "blocklimit":7,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_or",
@@ -102,7 +116,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,turn,if_or,check2,if,check",
             "blocklimit":7,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_teleport",
@@ -115,7 +131,9 @@
             "teleportid": [1, 0],
             "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
             "blocklimit":10,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_recursive",
@@ -128,7 +146,9 @@
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":9,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_darkness",
@@ -141,7 +161,9 @@
             "teleportid": [],
             "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":12,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_dfs",
@@ -154,7 +176,9 @@
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
             "blocklimit":13,
-            "keycnt":8
+            "keycnt":8,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_recursion",
@@ -167,7 +191,9 @@
             "teleportid": [],
             "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":20,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_recursion_easy",
@@ -180,7 +206,9 @@
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
             "blocklimit":20,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         }
     ]
 }
