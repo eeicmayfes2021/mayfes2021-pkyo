@@ -135,7 +135,7 @@ class SceneGame extends Phaser.Scene {
         resetbutton.onclick = this.resetCommand.bind(this);
         const titlebutton = document.getElementById("titlebutton");
         titlebutton.style.visibility="visible";
-        titlebutton.onclick = this.titleCommand.bind(this);
+        titlebutton.onclick = this.selectCommand.bind(this);
     }
     create(){
         // 背景を設定したり、プレイヤーの初期配置をしたりする
@@ -346,9 +346,9 @@ class SceneGame extends Phaser.Scene {
         this.commandGenerator = undefined;
         this.resetRunning();
     } 
-    titleCommand(){
+    selectCommand(){
         this.exitGameScene();
-        this.scene.start("title");
+        this.scene.start("select");
     }
     resetRunning(){
         this.endRunning();
