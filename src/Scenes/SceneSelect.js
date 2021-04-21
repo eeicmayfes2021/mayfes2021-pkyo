@@ -8,11 +8,11 @@ class SceneSelect extends Phaser.Scene {
     }
     preload(){}
     create(){
-        this.game.scale.setGameSize(1500, 800);
-        this.add.text(200, 50, 'ス テ ー ジ せ ん た く', {fontFamily: "PixelMplus10", fontSize: 70, color: 'lime'});
+        this.game.scale.setGameSize(1500, 700);
+        this.add.text(200, 30, 'ス テ ー ジ せ ん た く', {fontFamily: "PixelMplus10", fontSize: 70, color: 'lime'});
         for (let index = 0; index < stageinfo.stages.length; index++) {
-            var startButton=new RoundedButton(this, 100 + 400 * ((index - index % 9) / 9), 200+60*(index % 9), 200, 50, 0xfffff00, "STAGE"+index, "red");
-            var discription=new SimpleButton(this, 100 + 400 * ((index - index % 9) / 9), 200+60*(index % 9), 200, 10, stageinfo.stages[index].description, "black");
+            var startButton=new RoundedButton(this, 100 + 400 * ((index - index % 9) / 9), 150+60*(index % 9), 200, 50, 0xfffff00, "STAGE"+index, "red");
+            var discription=new SimpleButton(this, 100 + 400 * ((index - index % 9) / 9), 150+60*(index % 9), 200, 10, stageinfo.stages[index].description, "black");
             startButton.button.on('pointerdown', function(){
                 this.scene.start("game",{stage_num:index});
             }.bind(this));
