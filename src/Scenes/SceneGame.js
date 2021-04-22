@@ -13,6 +13,7 @@ import gototitle from '../images/title.png';
 import gototitle2 from '../images/title-next.png';
 import player1 from '../images/player.png';
 import player2 from '../images/player2.png';
+import star from '../images/star2.png';
 import {RoundedButton, SimpleButton, Simpleimage} from '../Objects/Objects.js';
 import stageinfo from '../stage/stageinfo.json';
 import { CONTROLS_FLOW_STATEMENTS_HELPURL } from 'blockly/msg/en';
@@ -28,7 +29,7 @@ class SceneGame extends Phaser.Scene {
         //グローバル変数の代わり
         this.leftblock;
         //体力です
-        this.leftenergy=500;//試験的に初期値を500に設定しています(あとでstageinfoにステージごとに設定すれば良いので)
+        this.leftenergy;
         this.numEnergy;
         //this.blocklyDiv.style.left = 30*16;
         this.player;
@@ -49,7 +50,8 @@ class SceneGame extends Phaser.Scene {
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
-        console.log(stageinfo.stages[this.stage_num].filename)
+        console.log(stageinfo.stages[this.stage_num].filename);
+        this.leftenergy = stageinfo.stages[this.stage_num].leftenergy;
         var map1 = require('../stage/'+stageinfo.stages[this.stage_num].filename+'.json');
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
         this.load.image("tiles", tiles);
@@ -57,6 +59,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("fieldtiles", fieldtiles);
         this.load.image("blacktile", blacktile);
         this.load.image("boxtiles", boxtiles);
+        this.load.image("star", star);
         this.load.spritesheet("player", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         this.load.image("stageclear", stageclear);
@@ -135,7 +138,7 @@ class SceneGame extends Phaser.Scene {
         resetbutton.onclick = this.resetCommand.bind(this);
         const titlebutton = document.getElementById("titlebutton");
         titlebutton.style.visibility="visible";
-        titlebutton.onclick = this.titleCommand.bind(this);
+        titlebutton.onclick = this.selectCommand.bind(this);
     }
     create(){
         // 背景を設定したり、プレイヤーの初期配置をしたりする
@@ -283,8 +286,20 @@ class SceneGame extends Phaser.Scene {
         console.log("goal");
         this.endRunning();
         if(this.keyLayer) this.keyLayer.destroy();
-        let message = new Simpleimage(this, 240, 240, "stageclear");
-        let titleButton = new Simpleimage(this, 200, 500, "gototitle");
+        let message = new Simpleimage(this, 240, 200, "stageclear");
+        let titleButton = new Simpleimage(this, 200, 550, "gototitle");
+        if(stageinfo.stages[this.stage_num].clearlevel[1] <= this.leftenergy){
+            let clear = new Simpleimage(this, 250, 370, "star");
+            let clear2 = new Simpleimage(this, 160, 390, "star");
+            let clear3 = new Simpleimage(this, 340, 390, "star");
+        }
+        else if(stageinfo.stages[this.stage_num].clearlevel[0] <= this.leftenergy){
+            let clear = new Simpleimage(this, 280, 390, "star");
+            let clear2 = new Simpleimage(this, 190, 390, "star");
+        }
+        else{
+            let clear = new Simpleimage(this, 235, 390, "star");
+        }
         titleButton.button.on('pointerdown',function(){
             this.exitGameScene();
             this.scene.start("title");
@@ -299,7 +314,7 @@ class SceneGame extends Phaser.Scene {
         }.bind(this));
         if(this.stage_num+1<stageinfo.stages.length){
             window.savenum=this.stage_num+1;
-            var nextButton=new Simpleimage(this, 170, 420, "nextstage");
+            var nextButton=new Simpleimage(this, 170, 470, "nextstage");
             nextButton.button.on('pointerdown', function(){
                 this.exitGameScene();
                 this.scene.restart({stage_num:this.stage_num+1});
@@ -346,9 +361,9 @@ class SceneGame extends Phaser.Scene {
         this.commandGenerator = undefined;
         this.resetRunning();
     } 
-    titleCommand(){
+    selectCommand(){
         this.exitGameScene();
-        this.scene.start("title");
+        this.scene.start("select");
     }
     resetRunning(){
         this.endRunning();
@@ -356,7 +371,7 @@ class SceneGame extends Phaser.Scene {
         //まじでこれでいいの？かなり無駄な気がするぜ！
         //破滅実装最高すぎ！
         if(this.mapDat)this.mapDat.destroy();
-        this.leftenergy = 500 - 10 * (stageinfo.stages[this.stage_num].blocklimit - this.leftblock);
+        this.leftenergy = stageinfo.stages[this.stage_num].leftenergy  - 10 * (stageinfo.stages[this.stage_num].blocklimit - this.leftblock);
         this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);

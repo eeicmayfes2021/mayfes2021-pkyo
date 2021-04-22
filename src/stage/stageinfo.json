@@ -11,20 +11,9 @@
             "teleportid": [],
             "blocks":"move,while,if,turn,check",
             "blocklimit":2,
-            "keycnt":0
-        },
-        {
-            "filename":"stage_change_dire",
-            "description":"曲がる必要がある問題です",
-            "playerx":4,
-            "playery":5,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,while,turn,if,check",
-            "blocklimit":10,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_obstacle",
@@ -37,72 +26,9 @@
             "teleportid": [],
             "blocks":"moveforward,while,remove,if,check,turn",
             "blocklimit":10,
-            "keycnt":0
-        },
-        {
-            "filename":"stage_group",
-            "description":"グループを使うステージです",
-            "playerx":5,
-            "playery":11,
-            "playerdirection":3,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,while,grouping,callgroup,turn",
-            "blocklimit":15,
-            "keycnt":0
-        },
-        {
-            "filename":"stage_rotation",
-            "description":"渦巻きが存在するステージです",
-            "playerx":2,
-            "playery":9,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,while,turn,if,check",
-            "blocklimit":10,
-            "keycnt":0
-        },
-        {
-            "filename":"stage_item",
-            "description":"アイテムを取得するステージです",
-            "playerx":2,
-            "playery":2,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,while,turn,if,check",
-            "blocklimit":10,
-            "keycnt":1
-        },
-        {
-            "filename":"stage_and",
-            "description":"「ろんりせき」を勉強しましょう",
-            "playerx":2,
-            "playery":6,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,while,turn,if_and,check",
-            "blocklimit":7,
-            "keycnt":0
-        },
-        {
-            "filename":"stage_or",
-            "description":"「ろんりわ」を勉強しましょう",
-            "playerx":3,
-            "playery":8,
-            "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,while,turn,if_or,check2,if,check",
-            "blocklimit":7,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_teleport",
@@ -115,7 +41,54 @@
             "teleportid": [1, 0],
             "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
             "blocklimit":10,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        },
+        {
+            "filename":"stage_change_dire",
+            "description":"曲がる必要がある問題です",
+            "playerx":4,
+            "playery":5,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        }, 
+        {
+            "filename":"stage_item",
+            "description":"アイテムを取得するステージです",
+            "playerx":2,
+            "playery":2,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10,
+            "keycnt":1,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        },    
+        {
+            "filename":"stage_group",
+            "description":"グループを使うステージです",
+            "playerx":5,
+            "playery":11,
+            "playerdirection":3,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,grouping,callgroup,turn",
+            "blocklimit":15,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_recursive",
@@ -128,7 +101,69 @@
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":9,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        },
+        {
+            "filename":"stage_and",
+            "description":"「ろんりせき」を勉強しましょう",
+            "playerx":2,
+            "playery":6,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,turn,if_and,check",
+            "blocklimit":7,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        },
+        {
+            "filename":"stage_or",
+            "description":"「ろんりわ」を勉強しましょう",
+            "playerx":3,
+            "playery":8,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,turn,if_or,check2,if,check",
+            "blocklimit":7,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        },
+        {
+            "filename":"stage_rotation",
+            "description":"渦巻きが存在するステージです",
+            "playerx":2,
+            "playery":9,
+            "playerdirection":2,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,while,turn,if,check",
+            "blocklimit":10,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
+        },
+        {
+            "filename":"stage_recursion_easy",
+            "description":"ジグザグなステージです",
+            "playerx":3,
+            "playery":4,
+            "playerdirection":0,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocklimit":20,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_darkness",
@@ -141,7 +176,9 @@
             "teleportid": [],
             "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":12,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_dfs",
@@ -154,11 +191,13 @@
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
             "blocklimit":13,
-            "keycnt":8
+            "keycnt":8,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         },
         {
             "filename":"stage_recursion",
-            "description":"再帰のステージです",
+            "description":"難しいステージです",
             "playerx":1,
             "playery":1,
             "playerdirection":2,
@@ -167,20 +206,9 @@
             "teleportid": [],
             "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":20,
-            "keycnt":0
-        },
-        {
-            "filename":"stage_recursion_easy",
-            "description":"再帰のステージです",
-            "playerx":3,
-            "playery":4,
-            "playerdirection":0,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
-            "blocklimit":20,
-            "keycnt":0
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         }
     ]
 }
