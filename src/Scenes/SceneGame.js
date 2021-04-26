@@ -340,6 +340,7 @@ class SceneGame extends Phaser.Scene {
     endRunning(){
         if(this.player)this.player.anims.stop();
         this.isRunning=false;
+        this.ismoving=false;
         this.tick=0;
     }
     LoadBlocksandGenerateCommand(){//ボタンを押すと発火
