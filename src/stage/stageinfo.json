@@ -220,10 +220,10 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"while,moveforward,turn,check_energy,if,check,while_if",
-            "blocklimit":20,
+            "blocklimit":15,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [-5000, -16000]
+            "clearlevel": [0, -16000]
         }
     ]
 }
