@@ -401,3 +401,22 @@ Blockly.JavaScript['while_if'] = function(block) {
   var code = `yield "${block.id}"; while(${if_true}){${childblock}}\n`;
   return code;
 };
+
+Blockly.Blocks['check_energy'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("体力が")
+        .appendField(new Blockly.FieldDropdown([["0以上","more"], ["0より小さい","less"]]), "cond")
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['check_energy'] = function(block) {
+  var cond = block.getFieldValue('cond');
+  var code;
+  if(cond == "more") code = 'this.leftenergy >= 0';
+  else code = 'this.leftenergy < 0';
+  return  [code, Blockly.JavaScript.ORDER_NONE];
+};
