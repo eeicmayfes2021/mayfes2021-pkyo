@@ -209,6 +209,21 @@
             "keycnt":0,
             "leftenergy": 400,
             "clearlevel": [100, 200]
+        },
+        {
+            "filename":"stage_recursion",
+            "description":"16bitの世界です",
+            "playerx":8,
+            "playery":15,
+            "playerdirection":3,
+            "teleportx": [],
+            "teleporty": [],
+            "teleportid": [],
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocklimit":20,
+            "keycnt":0,
+            "leftenergy": 400,
+            "clearlevel": [100, 200]
         }
     ]
 }
