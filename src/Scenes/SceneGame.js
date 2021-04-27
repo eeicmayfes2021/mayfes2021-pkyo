@@ -1,7 +1,7 @@
 import Blockly, { CollapsibleToolboxCategory__Class } from 'blockly';
 import Phaser from 'phaser';
 //import map1 from '../stage/tilemapNaomi1.json';
-import tiles from '../images/map.png';
+import nums from '../images/num.png';
 import tiles2 from '../images/tilesets-big.png';
 import fieldtiles from '../images/fields.png';
 import boxtiles from '../images/boxes.png';
@@ -54,7 +54,7 @@ class SceneGame extends Phaser.Scene {
         this.leftenergy = stageinfo.stages[this.stage_num].leftenergy;
         var map1 = require('../stage/'+stageinfo.stages[this.stage_num].filename+'.json');
         this.load.tilemapTiledJSON('map'+this.stage_num, map1);
-        this.load.image("tiles", tiles);
+        this.load.image("tiles", nums);
         this.load.image("tiles2", tiles2);
         this.load.image("fieldtiles", fieldtiles);
         this.load.image("blacktile", blacktile);
@@ -144,7 +144,7 @@ class SceneGame extends Phaser.Scene {
         // 背景を設定したり、プレイヤーの初期配置をしたりする
         //canvasとmapの大きさは比率も合わせて一致している必要があります。
         this.mapDat = this.add.tilemap("map"+this.stage_num);
-        this.tileset = this.mapDat.addTilesetImage("map", "tiles");
+        this.tileset = this.mapDat.addTilesetImage("num", "tiles");
         this.tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
         this.fieldtiles = this.mapDat.addTilesetImage("fields", "fieldtiles");
         this.blacktile = this.mapDat.addTilesetImage("darkness", "blacktile");
@@ -153,6 +153,7 @@ class SceneGame extends Phaser.Scene {
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
         this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
+        this.numLayer = this.mapDat.createLayer("num", this.tilesets);
         this.obstacleLayer = this.mapDat.createLayer("obstacle", this.tilesets);//ないときはnullになる
         this.keyLayer = this.mapDat.createLayer("key", this.tilesets);//ないときはnullになる
         this.teleportLayer = this.mapDat.createLayer("teleport", this.tilesets);//ないときはnullになる
@@ -230,6 +231,19 @@ class SceneGame extends Phaser.Scene {
         const nextGX = player.gridX + dx[dir];
         const nextGY = player.gridY + dy[dir];
         this.player.anims.play('move'+dir+"-"+player.texture.key);
+        if(this.numLayer){
+            if(this.numLayer.hasTileAt(player.gridX, player.gridY)){
+                let tilenum = this.numLayer.getTileAt(player.gridX, player.gridY).index;
+                if(tilenum < 538) this.leftenergy += 0;//ただの数字の時の処理を何か考えてください
+                else if(tilenum < 547) this.leftenergy += tilenum - 537;
+                else if(tilenum < 556) this.leftenergy *= tilenum - 546;
+                if(this.stage_num == 14){
+                    if(this.leftenergy >= 32768) this.leftenergy -= 65536;
+                    else if(this.leftenergy < -32768) this.leftenergy += 65536;
+                }
+                this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+            }
+        }
         //this.mapDat.layers[1].data[i][j].indexでも同じ
         if (!this.movableLayer.hasTileAt(nextGX,nextGY) || (this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY))){
             this.leftenergy -= 50;
@@ -377,6 +391,7 @@ class SceneGame extends Phaser.Scene {
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
+        this.numLayer = this.mapDat.createLayer("num", this.tilesets);
         this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
         this.obstacleLayer = this.mapDat.createLayer("obstacle", this.tilesets);//ないときはnullになる
         this.keyLayer = this.mapDat.createLayer("key", this.tilesets);//ないときはnullになる
