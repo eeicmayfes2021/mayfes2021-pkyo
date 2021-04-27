@@ -302,12 +302,21 @@ class SceneGame extends Phaser.Scene {
         if(this.keyLayer) this.keyLayer.destroy();
         let message = new Simpleimage(this, 240, 200, "stageclear");
         let titleButton = new Simpleimage(this, 200, 550, "gototitle");
-        if(stageinfo.stages[this.stage_num].clearlevel[1] <= this.leftenergy){
+        let level = 0;
+        if(this.stage_num != 14){
+            if(stageinfo.stages[this.stage_num].clearlevel[1] <= this.leftenergy) level = 2;
+            else if(stageinfo.stages[this.stage_num].clearlevel[0] <= this.leftenergy) level = 1;
+        }
+        else{
+            if(stageinfo.stages[this.stage_num].clearlevel[1] >= this.leftenergy) level = 2;
+            else if(stageinfo.stages[this.stage_num].clearlevel[0] >= this.leftenergy) level = 1;
+        }
+        if(level == 2){
             let clear = new Simpleimage(this, 250, 370, "star");
             let clear2 = new Simpleimage(this, 160, 390, "star");
             let clear3 = new Simpleimage(this, 340, 390, "star");
         }
-        else if(stageinfo.stages[this.stage_num].clearlevel[0] <= this.leftenergy){
+        else if(level == 1){
             let clear = new Simpleimage(this, 280, 390, "star");
             let clear2 = new Simpleimage(this, 190, 390, "star");
         }
