@@ -78,7 +78,7 @@ class SceneGame extends Phaser.Scene {
             toolboxPosition: 'start',
             css: true,
             rtl: false,
-            scrollbars: true,
+            scrollbars: false,
             sounds: true,
             oneBasedIndex: true,
             grid: {
@@ -105,13 +105,27 @@ class SceneGame extends Phaser.Scene {
         //制限を記載
         var numFrame=document.getElementById("numFrame");
         this.numEnergy=document.getElementById("numenergy");//だいぶキモイことをしています
+        var clearlevel1=document.getElementById("level1");
+        var clearlevel2=document.getElementById("level2");
+        clearlevel1.style.left=30 + 'px';
+        clearlevel2.style.left=250 + 'px';
+        clearlevel1.style.top=10 + 'px';
+        clearlevel2.style.top=10 + 'px';
         this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
         numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;
-        numFrame.style.left=70+'px';
+        numFrame.style.left=250+'px';
         numFrame.style.top=(blocklyDiv.offsetHeight-30)+'px';
+        if(this.stage_num == 14){
+            clearlevel1.innerHTML=`レベル2: 残り体力${stageinfo.stages[this.stage_num].clearlevel[0]}以下`;
+            clearlevel2.innerHTML=`レベル3: 残り体力${stageinfo.stages[this.stage_num].clearlevel[1]}以下`;
+        }
+        else{
+            clearlevel1.innerHTML=`レベル2: 残り体力${stageinfo.stages[this.stage_num].clearlevel[0]}以上`;
+            clearlevel2.innerHTML=`レベル3: 残り体力${stageinfo.stages[this.stage_num].clearlevel[1]}以上`;
+        }
         this.numEnergy.innerHTML=`残り体力: ${this.leftenergy}`;
-        this.numEnergy.style.left=70+'px';
+        this.numEnergy.style.left=250+'px';
         this.numEnergy.style.top=(blocklyDiv.offsetHeight-60)+'px';
         this.workspace.addChangeListener(function(event) {
             if (event.type === Blockly.Events.BLOCK_CREATE) {
@@ -237,8 +251,8 @@ class SceneGame extends Phaser.Scene {
                 else if(tilenum < 547) this.leftenergy += tilenum - 537;
                 else if(tilenum < 556) this.leftenergy *= tilenum - 546;
                 if(this.stage_num == 14){
-                    if(this.leftenergy >= 32768) this.leftenergy -= 65536;
-                    else if(this.leftenergy < -32768) this.leftenergy += 65536;
+                    if(this.leftenergy >= 32768) this.leftenergy = this.leftenergy % 65536 - 65536;
+                    else if(this.leftenergy < -32768) this.leftenergy = this.leftenergy % 65536 + 65536;
                 }
                 this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
             }
