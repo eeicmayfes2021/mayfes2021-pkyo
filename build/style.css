@@ -41,7 +41,7 @@ h1 {
 
 #executeButton {
   position: absolute;
-  left: 300px;
+  left: 290px;
   top: 650px;
   z-index: 1;
   visibility: hidden;
