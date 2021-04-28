@@ -2,14 +2,14 @@
     "stages":[
         {
             "filename":"stage_tuto",
-            "description":"まっすぐに進むだけの問題です",
+            "description":"まっすぐ進もう！",
             "playerx":4,
             "playery":7,
             "playerdirection":2,
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"move,while,if,turn,check",
+            "blocks":"moveforward,while,if,turn,check",
             "blocklimit":2,
             "keycnt":0,
             "leftenergy": 400,
@@ -17,7 +17,7 @@
         },
         {
             "filename":"stage_obstacle",
-            "description":"障害物があるステージです。",
+            "description":"障害物を取り除こう！",
             "playerx":4,
             "playery":7,
             "playerdirection":2,
@@ -32,7 +32,7 @@
         },
         {
             "filename":"stage_teleport",
-            "description":"テレポートするステージです",
+            "description":"テレポートしよう！",
             "playerx":2,
             "playery":11,
             "playerdirection":2,
@@ -47,7 +47,7 @@
         },
         {
             "filename":"stage_change_dire",
-            "description":"曲がる必要がある問題です",
+            "description":"曲がって曲がろう！",
             "playerx":4,
             "playery":5,
             "playerdirection":2,
@@ -62,7 +62,7 @@
         }, 
         {
             "filename":"stage_item",
-            "description":"アイテムを取得するステージです",
+            "description":"アイテムを拾おう！",
             "playerx":2,
             "playery":2,
             "playerdirection":2,
@@ -77,7 +77,7 @@
         },    
         {
             "filename":"stage_group",
-            "description":"グループを使うステージです",
+            "description":"グループを使おう！",
             "playerx":5,
             "playery":11,
             "playerdirection":3,
@@ -92,7 +92,7 @@
         },
         {
             "filename":"stage_recursive",
-            "description":"前に進むだけ？のステージです",
+            "description":"すたっくおーばーふろー",
             "playerx":3,
             "playery":9,
             "playerdirection":2,
@@ -107,7 +107,7 @@
         },
         {
             "filename":"stage_and",
-            "description":"「ろんりせき」を勉強しましょう",
+            "description":"「ろんりせき」を勉強しよう！",
             "playerx":2,
             "playery":6,
             "playerdirection":2,
@@ -122,7 +122,7 @@
         },
         {
             "filename":"stage_or",
-            "description":"「ろんりわ」を勉強しましょう",
+            "description":"「ろんりわ」を勉強しよう！",
             "playerx":3,
             "playery":8,
             "playerdirection":2,
@@ -137,7 +137,7 @@
         },
         {
             "filename":"stage_rotation",
-            "description":"渦巻きが存在するステージです",
+            "description":"うずまき",
             "playerx":2,
             "playery":9,
             "playerdirection":2,
@@ -152,7 +152,7 @@
         },
         {
             "filename":"stage_recursion_easy",
-            "description":"ジグザグなステージです",
+            "description":"ジグザグザグジ",
             "playerx":3,
             "playery":4,
             "playerdirection":0,
@@ -167,7 +167,7 @@
         },
         {
             "filename":"stage_darkness",
-            "description":"暗闇を手探るステージです",
+            "description":"まっくら",
             "playerx":2,
             "playery":8,
             "playerdirection":2,
@@ -182,7 +182,7 @@
         },
         {
             "filename":"stage_dfs",
-            "description":"木のステージです",
+            "description":"枝分かれ of 枝分かれ",
             "playerx":2,
             "playery":10,
             "playerdirection":2,
@@ -197,7 +197,7 @@
         },
         {
             "filename":"stage_recursion",
-            "description":"難しいステージです",
+            "description":"むずかしいステージ",
             "playerx":1,
             "playery":1,
             "playerdirection":2,
@@ -212,7 +212,7 @@
         },
         {
             "filename":"stage_overflow",
-            "description":"16bitの世界です",
+            "description":"16bitの世界",
             "playerx":8,
             "playery":15,
             "playerdirection":3,
