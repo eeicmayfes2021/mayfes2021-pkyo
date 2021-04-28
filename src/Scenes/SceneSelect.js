@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import {RoundedButton, SimpleButton, Simpleimage} from '../Objects/Objects.js';
 import stageinfo from '../stage/stageinfo.json';
-
 class SceneSelect extends Phaser.Scene {
     constructor(){
         super({key:"select"});
