@@ -26,9 +26,9 @@ class SceneSelect extends Phaser.Scene {
             buttons[index].button.on('pointerover', function(){
                 buttons[index].button.clear();
                 buttons[index].button.fillStyle(0x000000, 1);
-                buttons[index].button.fillRoundedRect(100 + 500 * (index % 2) - 10, of2 + 150+40*Math.floor(index / 2), 120, 30, 15);
+                buttons[index].button.fillRoundedRect(100 + 500 * (index % 2) - 13, of2 + 150+40*Math.floor(index / 2) - 2, 125, 35, 15);
                 buttons[index].button.stroke();
-                buttons[index].button.strokeRoundedRect(100 + 500 * (index % 2) - 10, of2 + 150+40*Math.floor(index / 2), 120, 30, 15);
+                buttons[index].button.strokeRoundedRect(100 + 500 * (index % 2) - 13, of2 + 150+40*Math.floor(index / 2) - 2, 125, 35, 15);
                 buttons[index].button.lineStyle(4, 0x000000, 1);
             });
             buttons[index].button.on('pointerout', function(){
