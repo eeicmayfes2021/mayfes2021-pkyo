@@ -11,13 +11,13 @@ class SceneSelect extends Phaser.Scene {
         this.game.scale.setGameSize(1500, 1000);
         this.add.text(200, 30, 'ス テ ー ジ せ ん た く', {fontFamily: "PixelMplus10", fontSize: 70, color: 'lime'});
         this.add.text(80, 100, 'チュートリアル & 初級', {fontFamily: "PixelMplus10", fontSize: 35, color: 'maroon'});
-        this.add.text(80, 260, '中級', {fontFamily: "PixelMplus10", fontSize: 35, color: 'aqua'});
+        this.add.text(80, 270, '中級', {fontFamily: "PixelMplus10", fontSize: 35, color: 'aqua'});
         this.add.text(80, 400, '上級', {fontFamily: "PixelMplus10", fontSize: 35, color: 'purple'});
         let ofs = 0;
         var buttons = new Array(stageinfo.stages.length);
         for (let index = 0; index < stageinfo.stages.length; ++index) {
             buttons[index]=new RoundedButton(this, 100 + 500 * (index % 2), ofs + 150+40*Math.floor(index / 2), 120, 30, 0xffff00, "STAGE"+index, "red", 15);
-            let discription=new SimpleButton(this, 200 + 500 * (index % 2), ofs + 150+40*Math.floor(index / 2), 150, 10, stageinfo.stages[index].description, "black");
+            let discription=new SimpleButton(this, 220 + 500 * (index % 2), ofs + 155+40*Math.floor(index / 2), 150, 20, stageinfo.stages[index].description, "black");
             buttons[index].button.on('pointerdown', function(){
                 this.scene.start("game",{stage_num:index});
             }.bind(this));
