@@ -10,11 +10,11 @@ class SceneTitle extends Phaser.Scene {
     create(){
         this.game.scale.setGameSize(1500, 800);
         this.add.text(200, 50, 'プ ロ グ ラ ミ ン グ 教 室', {fontFamily: "PixelMplus10", fontSize: 70, color: 'lime'});
-        var firststage = new RoundedButton(this, 100, 400, 500, 50, 0xffff00, "最初のステージへ", 'red');
+        var firststage = new RoundedButton(this, 100, 400, 500, 50, 0xffff00, "最初のステージへ", 'red', 25);
         firststage.button.on('pointerdown', function(){
             this.scene.start("game", {stage_num:0});
         }.bind(this));
-        var stageselect = new RoundedButton(this, 700, 400, 500, 50, 0xffff00, "ステージを選ぶ", "red");
+        var stageselect = new RoundedButton(this, 700, 400, 500, 50, 0xffff00, "ステージを選ぶ", "red", 25);
         //stageselect.text
         stageselect.button.on('pointerdown', function(){
             this.scene.start("select");
