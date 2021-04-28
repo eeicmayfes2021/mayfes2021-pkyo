@@ -6,7 +6,7 @@ import tiles2 from '../images/tilesets-big.png';
 import fieldtiles from '../images/fields.png';
 import boxtiles from '../images/boxes.png';
 import blacktile from '../images/darkness.png';
-import stageclear from '../images/stageclear.png';
+import stageclear from '../images/stageclear2.png';
 import nextstage from '../images/nextstage.png';
 import nextstage2 from '../images/nextstage2.png';
 import gototitle from '../images/title.png';
@@ -46,7 +46,6 @@ class SceneGame extends Phaser.Scene {
         this.tilesets;
         this.teleportindex;
         this.getkey = 0;//キーを何個取得したか
-        this.x = 0;
     }
     preload(){
         //ここのthisはおそらくPhaser.sceneのこと
@@ -300,6 +299,14 @@ class SceneGame extends Phaser.Scene {
         console.log("goal");
         this.endRunning();
         if(this.keyLayer) this.keyLayer.destroy();
+        this.player.setDepth(0);
+        this.backgroundLayer.setAlpha(0.8);
+        this.movableLayer.setAlpha(0.8);
+        this.goalLayer.setAlpha(0.8);
+        this.player.setAlpha(0.8);
+        if(this.obstacleLayer) this.obstacleLayer.setAlpha(0.8);
+        if(this.numLayer) this.numLayer.setAlpha(0.8);
+        if(this.teleportLayer) this.teleportLayer.setAlpha(0.8);
         let message = new Simpleimage(this, 240, 200, "stageclear");
         let titleButton = new Simpleimage(this, 200, 550, "gototitle");
         let level = 0;
@@ -391,12 +398,12 @@ class SceneGame extends Phaser.Scene {
     }
     resetRunning(){
         this.endRunning();
-        //todo:マップ(obstacleLayer)の初期化をしないといけない
         //まじでこれでいいの？かなり無駄な気がするぜ！
         //破滅実装最高すぎ！
         if(this.mapDat)this.mapDat.destroy();
         this.leftenergy = stageinfo.stages[this.stage_num].leftenergy  - 10 * (stageinfo.stages[this.stage_num].blocklimit - this.leftblock);
         this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
+        this.mapDat.destroy();
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
