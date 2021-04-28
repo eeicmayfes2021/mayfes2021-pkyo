@@ -330,6 +330,23 @@ class SceneGame extends Phaser.Scene {
         else{
             let clear = new Simpleimage(this, 235, 390, "star");
         }
+        let twittershare=new SimpleButton(this,300,470,100,20,"Twitterでシェア","black");
+        twittershare.button.on('pointerdown',function(){
+            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(left+1)+'！ #eeic_pkyo';
+            var link = 'https://2020.eeic.jp/'//サイトができたら変更
+            var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet)+'&u=' +encodeURIComponent(link);
+            var s = window.open(url, '_blank');
+            if (s && s.focus)s.focus();
+            else if (!s)window.location.href = url;
+        }.bind(this));
+        let facebookshare=new SimpleButton(this,300,440,100,20,"Facebookでシェア","black");
+        facebookshare.button.on('pointerdown',function(){
+            var link = 'https://2020.eeic.jp/'//サイトができたら変更
+            var url = 'http://www.facebook.com/share.php?u=' + +encodeURIComponent(link);
+            var s = window.open(url, '_blank');
+            if (s && s.focus)s.focus();
+            else if (!s)window.location.href = url;
+        }.bind(this));
         titleButton.button.on('pointerdown',function(){
             this.exitGameScene();
             this.scene.start("title");
