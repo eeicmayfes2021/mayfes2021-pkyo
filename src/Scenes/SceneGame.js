@@ -223,7 +223,7 @@ class SceneGame extends Phaser.Scene {
             //ゴール判定 goal判定
             if (this.goalLayer.hasTileAt(this.player.gridX,this.player.gridY)) {
                 if(this.keyLayer){
-                    if(this.getkey == stageinfo.stages[this.stage_num].keycnt)this.clearGame();
+                    if(this.stage_num == 11 || this.getkey == stageinfo.stages[this.stage_num].keycnt)this.clearGame();
                 }else{
                     this.clearGame();
                 }
