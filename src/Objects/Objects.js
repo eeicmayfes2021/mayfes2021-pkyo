@@ -7,7 +7,7 @@ export class RoundedButton {
         this.button.stroke();
         this.button.strokeRoundedRect(x - 10, y, width, height, round);
         this.button.lineStyle(4, 0x000000, 1);
-        this.text = scene.add.text(x, y, text, {fontFamily: "PixelMplus10", fontSize: height, color: textColor});
+        this.text = scene.add.text(x + 2, y, text, {fontFamily: "PixelMplus10", fontSize: height, color: textColor});
         this.button.setInteractive(new Phaser.Geom.Rectangle(x - 10, y, width, height), Phaser.Geom.Rectangle.Contains);
     }
 };
