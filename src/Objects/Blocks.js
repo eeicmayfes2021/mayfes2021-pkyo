@@ -22,7 +22,7 @@ Blockly.Blocks['move'] = {
   Blockly.Blocks['moveforward'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("前に動く")
+          .appendField("前に１マス動く")
       this.setNextStatement(true);
       this.setPreviousStatement(true);
       this.setColour(270);
