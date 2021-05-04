@@ -359,7 +359,9 @@ Blockly.JavaScript['can_teleport'] = function(block) {
 Blockly.Blocks['teleportation'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("同じマークの場所にテレポートする");
+        .appendField("同じマークの場所に");
+    this.appendDummyInput()
+        .appendField("テレポートする");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(40);

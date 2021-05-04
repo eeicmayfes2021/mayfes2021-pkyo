@@ -36,6 +36,7 @@ class SceneGame extends Phaser.Scene {
         this.workspace;
         this.mapDat;
         this.map2Img;
+        this.stars = new Array(3);
         //ゲーム再生用変数
         this.cmdDelta=45;
         this.tick=0;
@@ -222,7 +223,7 @@ class SceneGame extends Phaser.Scene {
             //ゴール判定 goal判定
             if (this.goalLayer.hasTileAt(this.player.gridX,this.player.gridY)) {
                 if(this.keyLayer){
-                    if(this.getkey == stageinfo.stages[this.stage_num].keycnt)this.clearGame();
+                    if(this.stage_num == 11 || this.getkey == stageinfo.stages[this.stage_num].keycnt)this.clearGame();
                 }else{
                     this.clearGame();
                 }
@@ -333,16 +334,16 @@ class SceneGame extends Phaser.Scene {
             else if(stageinfo.stages[this.stage_num].clearlevel[0] >= this.leftenergy) level = 1;
         }
         if(level == 2){
-            let clear = new Simpleimage(this, 250, 370, "star");
-            let clear2 = new Simpleimage(this, 160, 390, "star");
-            let clear3 = new Simpleimage(this, 340, 390, "star");
+            this.stars[0] = new Simpleimage(this, 250, 370, "star");
+            this.stars[1] = new Simpleimage(this, 160, 390, "star");
+            this.stars[2] = new Simpleimage(this, 340, 390, "star");
         }
         else if(level == 1){
-            let clear = new Simpleimage(this, 280, 390, "star");
-            let clear2 = new Simpleimage(this, 190, 390, "star");
+            this.stars[0] = new Simpleimage(this, 280, 390, "star");
+            this.stars[1] = new Simpleimage(this, 190, 390, "star");
         }
         else{
-            let clear = new Simpleimage(this, 235, 390, "star");
+            this.stars[0] = new Simpleimage(this, 235, 390, "star");
         }
         let twittershare=new SimpleButton(this,300,470,100,20,"Twitterでシェア","black");
         twittershare.button.on('pointerdown',function(){
@@ -432,9 +433,11 @@ class SceneGame extends Phaser.Scene {
         //まじでこれでいいの？かなり無駄な気がするぜ！
         //破滅実装最高すぎ！
         if(this.mapDat)this.mapDat.destroy();
+        for(let i = 0; i < 3; ++i){
+            if(this.stars[i]) this.stars[i].button.destroy();
+        }
         this.leftenergy = stageinfo.stages[this.stage_num].leftenergy  - 10 * (stageinfo.stages[this.stage_num].blocklimit - this.leftblock);
         this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
-        this.mapDat.destroy();
         this.mapDat = this.add.tilemap("map"+this.stage_num);
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);

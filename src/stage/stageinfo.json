@@ -9,11 +9,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,if,turn,check",
-            "blocklimit":2,
+            "blocks":"moveforward,while,if,turn,check,while_if,grouping,callgroup,check2",
+            "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [200, 300]
         },
         {
             "filename":"stage_obstacle",
@@ -24,11 +24,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,remove,if,check,turn",
+            "blocks":"moveforward,while,remove,if,check,turn,check2,while_if,grouping,callgroup",
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [100, 350]
         },
         {
             "filename":"stage_teleport",
@@ -39,11 +39,11 @@
             "teleportx": [11, 11],
             "teleporty": [4, 11],
             "teleportid": [1, 0],
-            "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation",
+            "blocks":"moveforward,while,turn,if,check,can_teleport,teleportation,while_if,grouping,callgroup",
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [100, 300]
         },
         {
             "filename":"stage_change_dire",
@@ -54,11 +54,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,turn,if,check",
+            "blocks":"moveforward,while,turn,if,check,while_if,grouping,callgroup",
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [200, 290]
         }, 
         {
             "filename":"stage_item",
@@ -69,11 +69,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,turn,if,check",
+            "blocks":"moveforward,while,turn,if,check,grouping,callgroup,while_if",
             "blocklimit":10,
             "keycnt":1,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [100, 250]
         },    
         {
             "filename":"stage_group",
@@ -88,7 +88,7 @@
             "blocklimit":15,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [100, 250]
         },
         {
             "filename":"stage_recursive",
@@ -103,7 +103,7 @@
             "blocklimit":9,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [310, 350]
         },
         {
             "filename":"stage_and",
