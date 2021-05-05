@@ -97,7 +97,7 @@ Blockly.Blocks['if'] = {
     this.appendStatementInput("iffalse");
     this.setNextStatement(true);
     this.setPreviousStatement(true);
-    this.setColour(60);
+    this.setColour(120);
     this.setTooltip("");
     this.setHelpUrl("");
   }
