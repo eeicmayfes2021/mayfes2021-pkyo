@@ -109,16 +109,16 @@
             "filename":"stage_and",
             "description":"「ろんりせき」を勉強しよう！",
             "playerx":2,
-            "playery":6,
+            "playery":10,
             "playerdirection":2,
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,turn,if_and,check",
-            "blocklimit":7,
+            "blocks":"moveforward,while,turn,if_and,check,if,grouping,callgroup",
+            "blocklimit":12,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [280, 320]
         },
         {
             "filename":"stage_or",
@@ -129,17 +129,17 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,turn,if_or,check2,if,check",
-            "blocklimit":7,
+            "blocks":"moveforward,while,turn,if_or,remove,check2,check,if,grouping,callgroup",
+            "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [230, 280]
         },
         {
             "filename":"stage_rotation",
             "description":"うずまき",
-            "playerx":2,
-            "playery":9,
+            "playerx":3,
+            "playery":11,
             "playerdirection":2,
             "teleportx": [],
             "teleporty": [],
@@ -148,7 +148,7 @@
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [180, 220]
         },
         {
             "filename":"stage_recursion_easy",
@@ -159,11 +159,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocks":"moveforward,grouping,callgroup,turn,if,check",
             "blocklimit":20,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [150, 220]
         },
         {
             "filename":"stage_darkness",
@@ -178,7 +178,7 @@
             "blocklimit":12,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [200, 260]
         },
         {
             "filename":"stage_dfs",
@@ -189,11 +189,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if",
             "blocklimit":13,
             "keycnt":8,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [100, 170]
         },
         {
             "filename":"stage_recursion",
@@ -204,11 +204,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"while,moveforward,grouping,callgroup,turn,if,check",
-            "blocklimit":20,
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if",
+            "blocklimit":18,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 200]
+            "clearlevel": [180, 210]
         },
         {
             "filename":"stage_overflow",
