@@ -265,7 +265,7 @@ class SceneGame extends Phaser.Scene {
             return;//壁または障害物には進めない
         }
         if(this.keyLayer&&this.keyLayer.hasTileAt(nextGX,nextGY)){
-            this.getkey=true;
+            this.getkey += 1;
             this.keyLayer.removeTileAt(nextGX,nextGY,false);
         }//keyを取得
         player.targetX += dx[dir] * this.mapDat.tileWidth * this.map2Img;
