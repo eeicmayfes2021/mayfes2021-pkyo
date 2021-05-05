@@ -67,7 +67,7 @@
         {
          "columns":8,
          "firstgid":1,
-         "image":"tilesets-big.png",
+         "image":"../images/tilesets-big.png",
          "imageheight":2112,
          "imagewidth":256,
          "margin":0,
@@ -80,7 +80,7 @@
         {
          "columns":8,
          "firstgid":529,
-         "image":"fields.png",
+         "image":"../images/fields.png",
          "imageheight":608,
          "imagewidth":256,
          "margin":0,
