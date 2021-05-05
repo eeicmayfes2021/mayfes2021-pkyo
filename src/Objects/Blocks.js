@@ -204,6 +204,7 @@ Blockly.JavaScript['callgroup'] = function(block) {
   var group_name = "group-"+raw_group_name;
   // TODO: Assemble JavaScript into code variable.
   var code = `
+      yield "${block.id}";
       if(typeof this.funcs['${group_name}']!="function"){alert("${raw_group_name}というグループはありません！");return;}
       else{
         let tmp_gen=this.funcs['${group_name}']();
