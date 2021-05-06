@@ -4,7 +4,7 @@
   <export target="../src/stage/stage_and.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" name="tilesets-big" tilewidth="32" tileheight="32" tilecount="528" columns="8">
-  <image source="../src/stage/tilesets-big.png" width="256" height="2112"/>
+  <image source="../src/images/tilesets-big.png" width="256" height="2112"/>
  </tileset>
  <layer id="1" name="ground" width="16" height="20">
   <data encoding="csv">
@@ -36,9 +36,9 @@
 0,0,0,0,0,0,0,0,0,0,34,34,34,34,34,0,
 0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,0,
 0,0,0,0,0,0,34,0,0,0,0,0,34,34,34,0,
-0,0,0,0,0,0,34,0,0,0,34,34,34,0,0,0,
-0,0,0,0,0,0,34,0,0,0,34,0,34,0,0,0,
-0,0,34,34,34,34,34,34,34,34,34,34,34,0,0,0,
+0,0,0,0,0,0,34,0,0,0,34,34,34,0,34,0,
+0,0,0,0,0,0,34,0,0,0,34,0,34,0,34,0,
+0,0,34,34,34,34,34,34,34,34,34,34,34,34,34,0,
 0,0,0,0,34,0,0,0,34,0,0,0,34,0,0,0,
 0,0,0,0,34,0,0,0,34,0,0,0,34,0,0,0,
 0,0,0,0,34,0,0,0,34,0,0,0,34,0,0,0,

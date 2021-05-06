@@ -28,7 +28,7 @@
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 350]
+            "clearlevel": [200, 340]
         },
         {
             "filename":"stage_teleport",
@@ -73,7 +73,7 @@
             "blocklimit":10,
             "keycnt":1,
             "leftenergy": 400,
-            "clearlevel": [100, 250]
+            "clearlevel": [200, 300]
         },    
         {
             "filename":"stage_group",
@@ -114,11 +114,11 @@
             "teleportx": [],
             "teleporty": [],
             "teleportid": [],
-            "blocks":"moveforward,while,turn,if_and,check,if,grouping,callgroup",
-            "blocklimit":12,
+            "blocks":"moveforward,while,turn,if_and,check,if",
+            "blocklimit":7,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [280, 320]
+            "clearlevel": [200, 320]
         },
         {
             "filename":"stage_or",
@@ -148,7 +148,7 @@
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [180, 220]
+            "clearlevel": [200, 260]
         },
         {
             "filename":"stage_recursion_easy",
