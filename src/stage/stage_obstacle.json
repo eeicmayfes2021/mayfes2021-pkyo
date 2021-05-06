@@ -62,12 +62,12 @@
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",
- "tileheight":30,
+ "tileheight":32,
  "tilesets":[
         {
          "columns":8,
          "firstgid":1,
-         "image":"tilesets-big.png",
+         "image":"..\/images\/tilesets-big.png",
          "imageheight":2112,
          "imagewidth":256,
          "margin":0,
@@ -76,8 +76,21 @@
          "tilecount":528,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":8,
+         "firstgid":529,
+         "image":"..\/images\/fields2.png",
+         "imageheight":608,
+         "imagewidth":256,
+         "margin":0,
+         "name":"fields2",
+         "spacing":0,
+         "tilecount":152,
+         "tileheight":32,
+         "tilewidth":32
         }],
- "tilewidth":30,
+ "tilewidth":32,
  "type":"map",
  "version":1.4,
  "width":16

@@ -4,6 +4,7 @@ import Phaser from 'phaser';
 import nums from '../images/num.png';
 import tiles2 from '../images/tilesets-big.png';
 import fieldtiles from '../images/fields.png';
+import fieldtiles2 from '../images/fields2.png';
 import boxtiles from '../images/boxes.png';
 import blacktile from '../images/darkness.png';
 import stageclear from '../images/stageclear2.png';
@@ -57,6 +58,7 @@ class SceneGame extends Phaser.Scene {
         this.load.image("tiles", nums);
         this.load.image("tiles2", tiles2);
         this.load.image("fieldtiles", fieldtiles);
+        this.load.image("fieldtiles2", fieldtiles2);
         this.load.image("blacktile", blacktile);
         this.load.image("boxtiles", boxtiles);
         this.load.image("star", star);
@@ -161,9 +163,10 @@ class SceneGame extends Phaser.Scene {
         this.tileset = this.mapDat.addTilesetImage("num", "tiles");
         this.tileset2 = this.mapDat.addTilesetImage("tilesets-big", "tiles2");
         this.fieldtiles = this.mapDat.addTilesetImage("fields", "fieldtiles");
+        this.fieldtiles2 = this.mapDat.addTilesetImage("fields2", "fieldtiles2");
         this.blacktile = this.mapDat.addTilesetImage("darkness", "blacktile");
         this.boxtiles = this.mapDat.addTilesetImage("boxes", "boxtiles");
-        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles,this.blacktile,this.boxtiles];
+        this.tilesets = [this.tileset,this.tileset2,this.fieldtiles,this.fieldtiles2,this.blacktile,this.boxtiles];
         this.backgroundLayer = this.mapDat.createLayer("ground", this.tilesets);
         this.movableLayer = this.mapDat.createLayer("movable", this.tilesets);
         this.goalLayer = this.mapDat.createLayer("goal", this.tilesets);
@@ -265,7 +268,7 @@ class SceneGame extends Phaser.Scene {
             return;//壁または障害物には進めない
         }
         if(this.keyLayer&&this.keyLayer.hasTileAt(nextGX,nextGY)){
-            this.getkey=true;
+            this.getkey += 1;
             this.keyLayer.removeTileAt(nextGX,nextGY,false);
         }//keyを取得
         player.targetX += dx[dir] * this.mapDat.tileWidth * this.map2Img;

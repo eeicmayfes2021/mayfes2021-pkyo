@@ -97,7 +97,7 @@ Blockly.Blocks['if'] = {
     this.appendStatementInput("iffalse");
     this.setNextStatement(true);
     this.setPreviousStatement(true);
-    this.setColour(60);
+    this.setColour(120);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -204,6 +204,7 @@ Blockly.JavaScript['callgroup'] = function(block) {
   var group_name = "group-"+raw_group_name;
   // TODO: Assemble JavaScript into code variable.
   var code = `
+      yield "${block.id}";
       if(typeof this.funcs['${group_name}']!="function"){alert("${raw_group_name}というグループはありません！");return;}
       else{
         let tmp_gen=this.funcs['${group_name}']();
@@ -334,7 +335,7 @@ Blockly.JavaScript['if_or'] = function(block) {
   if(value_condition1 == "") value_condition1 = "true";
   if(value_condition2 == "") value_condition2 = "true";
   // TODO: Assemble JavaScript into code variable.
-  var code = `yield "${block.id};\nif(${value_condition1} || ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}};\n`;
+  var code = `yield "${block.id}";\nif(${value_condition1} || ${value_condition2}){${statements_iftrue}}\nelse{${statements_iffalse}}\n`;
   return code;
 };
 
