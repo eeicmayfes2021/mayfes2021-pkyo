@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import {RoundedButton, SimpleButton, Simpleimage} from '../Objects/Objects.js';
 import titletiles from '../images/tilesets-big.png';
-import titletiles2 from '../images/fields2.png';
 import player1 from '../images/player.png';
 import player2 from '../images/player2.png';
 
@@ -32,8 +31,7 @@ class SceneTitle extends Phaser.Scene {
     preload(){
         var map1 = require('../stage/title.json');
         this.load.tilemapTiledJSON("map", map1);
-        this.load.image("tiles", titletiles);
-        this.load.image("tiles2", titletiles2);
+        this.load.image("tiles0", titletiles);
         this.load.spritesheet("player1", player1, { frameWidth: 32, frameHeight: 32});
         this.load.spritesheet("player2", player2, { frameWidth: 32, frameHeight: 32});
         for(let i = 0; i < 36; ++i){
@@ -72,10 +70,9 @@ class SceneTitle extends Phaser.Scene {
     }
     create(){
         this.mapDat = this.add.tilemap("map");
-        this.tileset = this.mapDat.addTilesetImage("tilesets-big", "tiles");
-        this.tileset2 = this.mapDat.addTilesetImage("fields2", "tiles2");
-        this.backgroundLayer = this.mapDat.createLayer("ground", [this.tileset, this.tileset2]);
-        this.movableLayer = this.mapDat.createLayer("movable", [this.tileset, this.tileset2]);
+        this.tileset = this.mapDat.addTilesetImage("tilesets-big", "tiles0");
+        this.backgroundLayer = this.mapDat.createLayer("ground", this.tileset);
+        this.movableLayer = this.mapDat.createLayer("movable", this.tileset);
         this.game.scale.setGameSize(1300, 700);
         this.add.text(200, 50, 'プ ロ グ ラ ミ ン グ 教 室', {fontFamily: "PixelMplus10", fontSize: 70, color: 'blue'});
         var firststage = new RoundedButton(this, 100, 480, 450, 50, 0xffff00, "最初のステージへ", 'red', 15);
