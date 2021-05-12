@@ -109,7 +109,7 @@
             "filename":"stage_and",
             "description":"「ろんりせき」を勉強しよう！",
             "playerx":2,
-            "playery":10,
+            "playery":6,
             "playerdirection":2,
             "teleportx": [],
             "teleporty": [],
