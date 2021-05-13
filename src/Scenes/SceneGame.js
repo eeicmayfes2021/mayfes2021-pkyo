@@ -91,6 +91,12 @@ class SceneGame extends Phaser.Scene {
               snap: true
             }
         }
+        let sta = new Array(15);
+        for(let i = 0; i < 15; ++i){
+            let str = "stage" + i;
+            sta[i] = document.getElementById(str);
+            sta[i].style.visibility = "hidden";
+        }
         //ボタンの配置
         var toolboxDiv=document.getElementById("toolbox");
         let blocks=stageinfo.stages[this.stage_num].blocks.split(',');

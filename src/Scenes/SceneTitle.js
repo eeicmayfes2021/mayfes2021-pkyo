@@ -29,6 +29,25 @@ class SceneTitle extends Phaser.Scene {
         this.firstdirection2 = [0, 1, 0, 1, 2, 1, 2, 1, 3, 1, 3, 1, 2, 1, 2, 1, 0, 3];
     }
     preload(){
+        let sta = new Array(15);
+        for(let i = 0; i < 15; ++i){
+            let str = "stage" + i;
+            sta[i] = document.getElementById(str);
+            sta[i].style.visibility = "hidden";
+        }
+        //いらないボタンなどを隠す(クソ実装)
+        const executeButton = document.getElementById("executeButton");
+        executeButton.style.visibility="hidden";
+        const playerChangeButton = document.getElementById("playerChangeButton");
+        playerChangeButton.style.visibility="hidden";
+        const blocklyDiv = document.getElementById("blocklyDiv");
+        blocklyDiv.style.visibility="hidden";
+        const ButtonDiv = document.getElementById("ButtonDiv");
+        ButtonDiv.style.visibility="hidden";
+        const resetbutton = document.getElementById("resetbutton");
+        resetbutton.style.visibility="hidden";
+        const titlebutton = document.getElementById("titlebutton");
+        titlebutton.style.visibility="hidden";
         var map1 = require('../stage/title.json');
         this.load.tilemapTiledJSON("map", map1);
         this.load.image("tiles0", titletiles);
@@ -116,19 +135,6 @@ class SceneTitle extends Phaser.Scene {
             stageselect.button.strokeRoundedRect(700, 480, 450, 50, 15);
             stageselect.button.lineStyle(4, 0x000000, 1);
         });
-        //いらないボタンなどを隠す(クソ実装)
-        const executeButton = document.getElementById("executeButton");
-        executeButton.style.visibility="hidden";
-        const playerChangeButton = document.getElementById("playerChangeButton");
-        playerChangeButton.style.visibility="hidden";
-        const blocklyDiv = document.getElementById("blocklyDiv");
-        blocklyDiv.style.visibility="hidden";
-        const ButtonDiv = document.getElementById("ButtonDiv");
-        ButtonDiv.style.visibility="hidden";
-        const resetbutton = document.getElementById("resetbutton");
-        resetbutton.style.visibility="hidden";
-        const titlebutton = document.getElementById("titlebutton");
-        titlebutton.style.visibility="hidden";
         //以下タイトルのステージ
         this.map2Img =1;
         this.hikisuu = Math.floor(Math.random() * 2);
@@ -209,14 +215,12 @@ class SceneTitle extends Phaser.Scene {
         //todo:この中身を実装する
         //0:right,1;left,2:up,3,downを返すように
         let num=parseInt(player.frame.name);
-        console.log("direction:"+[3,1,0,2][Math.floor(num/3)]);
         return [3,1,0,2][Math.floor(num/3)];
     }
     move_player1(player){
         let zahyo = player.gridX + player.gridY * 40;
         if(this.flagfirst && this.changeind[zahyo]){
             let id = Math.floor(Math.random() * this.changeind[zahyo].length);
-            console.log(10);
             let preid = Math.floor(parseInt(player.frame.name) / 3);
             if(preid == 0 && this.changeind[zahyo][id] == 3) id = (id + 1) % this.changeind[zahyo].length;
             else if(preid == 3 && this.changeind[zahyo][id] == 0) id = (id + 1) % this.changeind[zahyo].length;
@@ -241,7 +245,6 @@ class SceneTitle extends Phaser.Scene {
         let zahyo = player.gridX + player.gridY * 40;
         if(this.flagfirst2 && this.changeind2[zahyo]){
             let id = Math.floor(Math.random() * this.changeind2[zahyo].length);
-            console.log(10);
             let preid = Math.floor(parseInt(player.frame.name) / 3);
             if(preid == 0 && this.changeind2[zahyo][id] == 3) id = (id + 1) % this.changeind2[zahyo].length;
             else if(preid == 3 && this.changeind2[zahyo][id] == 0) id = (id + 1) % this.changeind2[zahyo].length;
