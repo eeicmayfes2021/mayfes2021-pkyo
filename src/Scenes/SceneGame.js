@@ -295,7 +295,6 @@ class SceneGame extends Phaser.Scene {
         if (this.obstacleLayer&&this.obstacleLayer.hasTileAt(nextGX,nextGY)) {
           //向いている方向に障害物がある場合、それを取り除く
           this.obstacleLayer.removeTileAt(nextGX,nextGY,false);
-          console.log("remove!");
           return;
         }
         else{
@@ -313,11 +312,9 @@ class SceneGame extends Phaser.Scene {
     }
     changeDirection(player,dir){
         let num=parseInt(player.frame.name);
-        console.log("changeDirection");
         if(dir==0)player.setFrame( [3,9,0,6][Math.floor(num/3)]+1 );//右
         else if(dir==1) player.setFrame( [6,0,9,3][Math.floor(num/3)]+1 );//左
         else player.setFrame( [9,6,3,0][Math.floor(num/3)]+1 );
-        console.log(player.frame.name);
     }
     clearGame(){
         window.savenum=-1;
@@ -420,7 +417,6 @@ class SceneGame extends Phaser.Scene {
         window.LoopTrap = 1000;
           Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";¥n';
           var code = Blockly.JavaScript.workspaceToCode(this.workspace);
-          console.log(code);
           Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
           try{
             this.commandGenerator = eval("(function* () {" + code + "}.bind(this))()");
