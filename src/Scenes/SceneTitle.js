@@ -101,20 +101,20 @@ class SceneTitle extends Phaser.Scene {
         firststage.button.on('pointerover', function(){
             firststage.button.clear();
             firststage.button.fillStyle(0x000000, 1);
-            firststage.button.fillRoundedRect(95, 475, 460, 60, 15);
+            firststage.button.fillRoundedRect(87, 475, 460, 60, 15);
             firststage.button.stroke();
-            firststage.button.strokeRoundedRect(95, 475, 460, 60, 15);
+            firststage.button.strokeRoundedRect(87, 475, 460, 60, 15);
             firststage.button.lineStyle(4, 0x000000, 1);
         });
         firststage.button.on('pointerout', function(){
             firststage.button.clear();
             firststage.button.fillStyle(0xffff00, 1);
-            firststage.button.fillRoundedRect(100, 480, 450, 50, 15);
+            firststage.button.fillRoundedRect(90, 480, 450, 50, 15);
             firststage.button.stroke();
-            firststage.button.strokeRoundedRect(100, 480, 450, 50, 15);
+            firststage.button.strokeRoundedRect(90, 480, 450, 50, 15);
             firststage.button.lineStyle(4, 0x000000, 1);
         });
-        var stageselect = new RoundedButton(this, 700, 480, 450, 50, 0xffff00, "ステージを選ぶ", "red", 15);
+        var stageselect = new RoundedButton(this, 700, 480, 400, 50, 0xffff00, "ステージを選ぶ", "red", 15);
         //stageselect.text
         stageselect.button.on('pointerdown', function(){
             this.scene.start("select");
@@ -122,17 +122,17 @@ class SceneTitle extends Phaser.Scene {
         stageselect.button.on('pointerover', function(){
             stageselect.button.clear();
             stageselect.button.fillStyle(0x000000, 1);
-            stageselect.button.fillRoundedRect(695, 475, 460, 60, 15);
+            stageselect.button.fillRoundedRect(687, 475, 410, 60, 15);
             stageselect.button.stroke();
-            stageselect.button.strokeRoundedRect(695, 475, 460, 60, 15);
+            stageselect.button.strokeRoundedRect(687, 475, 410, 60, 15);
             stageselect.button.lineStyle(4, 0x000000, 1);
         });
         stageselect.button.on('pointerout', function(){
             stageselect.button.clear();
             stageselect.button.fillStyle(0xffff00, 1);
-            stageselect.button.fillRoundedRect(700, 480, 450, 50, 15);
+            stageselect.button.fillRoundedRect(690, 480, 400, 50, 15);
             stageselect.button.stroke();
-            stageselect.button.strokeRoundedRect(700, 480, 450, 50, 15);
+            stageselect.button.strokeRoundedRect(690, 480, 400, 50, 15);
             stageselect.button.lineStyle(4, 0x000000, 1);
         });
         //以下タイトルのステージ
