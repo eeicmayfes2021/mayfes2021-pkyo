@@ -5,7 +5,19 @@ class SceneSelect extends Phaser.Scene {
     constructor(){
         super({key:"select"});
     }
-    preload(){}
+    preload(){
+        let sta = new Array(15);
+        let ofs = 0;
+        for(let i = 0; i < 15; ++i){
+            let str = "stage" + i;
+            sta[i] = document.getElementById(str);
+            sta[i].style.left = 360 + 500 * (i % 2) + 'px';
+            sta[i].style.top = ofs + 180 + 40*Math.floor(i / 2) + 'px';
+            sta[i].style.visibility = "visible";
+            if(i == 5) ofs += 50;
+            else if(i == 9) ofs += 50;
+        }
+    }
     create(){
         this.game.scale.setGameSize(1300, 700);
         this.add.text(250, 30, 'ス テ ー ジ せ ん た く', {fontFamily: "PixelMplus10", fontSize: 70, color: 'lime'});
@@ -16,7 +28,7 @@ class SceneSelect extends Phaser.Scene {
         var buttons = new Array(stageinfo.stages.length);
         for (let index = 0; index < stageinfo.stages.length; ++index) {
             buttons[index]=new RoundedButton(this, 200 + 500 * (index % 2), ofs + 150+40*Math.floor(index / 2), 120, 30, 0xffff00, "STAGE"+index, "red", 15);
-            let discription=new SimpleButton(this, 320 + 500 * (index % 2), ofs + 155+40*Math.floor(index / 2), 150, 20, stageinfo.stages[index].description, "black");
+            let discription=new SimpleButton(this, 320 + 500 * (index % 2), ofs + 150+40*Math.floor(index / 2), 150, 18, stageinfo.stages[index].description, "black");
             buttons[index].button.on('pointerdown', function(){
                 this.scene.start("game",{stage_num:index});
             }.bind(this));
