@@ -97,6 +97,8 @@ class SceneGame extends Phaser.Scene {
             sta[i] = document.getElementById(str);
             sta[i].style.visibility = "hidden";
         }
+        let restraint = document.getElementById("stage11_res");
+        restraint.style.visibility = "hidden";
         //ボタンの配置
         var toolboxDiv=document.getElementById("toolbox");
         let blocks=stageinfo.stages[this.stage_num].blocks.split(',');
@@ -120,6 +122,13 @@ class SceneGame extends Phaser.Scene {
         clearlevel2.style.left=250 + 'px';
         clearlevel1.style.top=10 + 'px';
         clearlevel2.style.top=10 + 'px';
+        var alert = document.getElementById("alert");
+        if(stageinfo.stages[this.stage_num].alert){
+            alert.style.visibility="visible";
+            alert.innerHTML=stageinfo.stages[this.stage_num].alert;
+            alert.style.top=blocklyDiv.offsetHeight + 20 + 'px'; 
+            alert.style.left=10 + 'px'; 
+        }
         this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
         numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;

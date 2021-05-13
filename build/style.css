@@ -83,6 +83,12 @@ h1 {
   z-index: 1;
   color: #000000;
 }
+#alert{
+  position:absolute;
+  text-align: center;
+  z-index: 1;
+  color: #000000;
+}
 #level1{
   position:absolute;
   text-align: center;
@@ -267,6 +273,10 @@ h1 {
   visibility: hidden;
 }
 #stage14{
+  position:absolute;
+  visibility: hidden;
+}
+#stage11_res{
   position:absolute;
   visibility: hidden;
 }
