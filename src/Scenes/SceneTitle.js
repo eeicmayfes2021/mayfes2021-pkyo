@@ -35,6 +35,8 @@ class SceneTitle extends Phaser.Scene {
             sta[i] = document.getElementById(str);
             sta[i].style.visibility = "hidden";
         }
+        var alert = document.getElementById("alert");
+        alert.style.visibility = "hidden";
         //いらないボタンなどを隠す(クソ実装)
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="hidden";

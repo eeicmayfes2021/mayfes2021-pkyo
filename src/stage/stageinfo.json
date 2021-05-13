@@ -18,6 +18,7 @@
         {
             "filename":"stage_obstacle",
             "description":"障害物を取り除こう！",
+            "alert": "注意 : 岩がないのに岩を取り除くと体力が大きくへっちゃうよ！",
             "playerx":4,
             "playery":7,
             "playerdirection":2,
@@ -33,6 +34,7 @@
         {
             "filename":"stage_teleport",
             "description":"テレポートしよう！",
+            "alert": "注意 : 魔法陣の上にいないのにテレポートしようとすると体力が大きくへっちゃうよ！",
             "playerx":2,
             "playery":11,
             "playerdirection":2,
@@ -48,6 +50,7 @@
         {
             "filename":"stage_change_dire",
             "description":"曲がって曲がろう！",
+            "alert": "注意 : 前にみちがないのにすすもうとすると体力が大きくへっちゃうよ！",
             "playerx":4,
             "playery":5,
             "playerdirection":2,
@@ -63,6 +66,7 @@
         {
             "filename":"stage_item",
             "description":"アイテムを拾おう！",
+            "alert": "注意 : アイテムを拾わないとゴールできないよ！",
             "playerx":2,
             "playery":2,
             "playerdirection":2,
@@ -168,6 +172,7 @@
         {
             "filename":"stage_darkness",
             "description":"まっくら",
+            "alert": "注意 : 制約をよまないとクリアできないよ！",
             "playerx":2,
             "playery":8,
             "playerdirection":2,
@@ -183,6 +188,7 @@
         {
             "filename":"stage_dfs",
             "description":"枝分かれ of 枝分かれ",
+            "alert": "注意 : アイテムを全部拾わないとゴールできないよ！",
             "playerx":2,
             "playery":10,
             "playerdirection":2,

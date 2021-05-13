@@ -120,6 +120,13 @@ class SceneGame extends Phaser.Scene {
         clearlevel2.style.left=250 + 'px';
         clearlevel1.style.top=10 + 'px';
         clearlevel2.style.top=10 + 'px';
+        var alert = document.getElementById("alert");
+        if(stageinfo.stages[this.stage_num].alert){
+            alert.style.visibility="visible";
+            alert.innerHTML=stageinfo.stages[this.stage_num].alert;
+            alert.style.top=blocklyDiv.offsetHeight + 20 + 'px'; 
+            alert.style.left=10 + 'px'; 
+        }
         this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
         numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;

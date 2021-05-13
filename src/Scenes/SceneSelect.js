@@ -17,6 +17,8 @@ class SceneSelect extends Phaser.Scene {
             if(i == 5) ofs += 50;
             else if(i == 9) ofs += 50;
         }
+        var alert = document.getElementById("alert");
+        alert.style.visibility = "hidden";
     }
     create(){
         this.game.scale.setGameSize(1300, 700);
