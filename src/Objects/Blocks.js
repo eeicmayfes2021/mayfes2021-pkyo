@@ -142,7 +142,7 @@ Blockly.Blocks['check2'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown([["前","0"], ["右","1"], ["左","2"],["後ろ","3"]]), "direction")
         .appendField("が")
-        .appendField(new Blockly.FieldDropdown([["壁","this.movableLayer"], ["岩","this.obstacleLayer"]]), "thing");
+        .appendField(new Blockly.FieldDropdown([["草","this.movableLayer"], ["岩","this.obstacleLayer"]]), "thing");
     this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip("");
@@ -342,7 +342,7 @@ Blockly.JavaScript['if_or'] = function(block) {
 Blockly.Blocks['can_teleport'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([[{"src":mahojin_w,"width":15,"height":15,"alt":"*"},"white"], [{"src":mahojin_b,"width":15,"height":15,"alt":"*"},"black"]]), "place")
+        .appendField(new Blockly.FieldDropdown([[{"src":mahojin_b,"width":15,"height":15,"alt":"*"},"black"], [{"src":mahojin_w,"width":15,"height":15,"alt":"*"},"white"]]), "place")
         .appendField("にいる");
     this.setOutput(true, null);
     this.setColour(40);
@@ -353,14 +353,18 @@ Blockly.Blocks['can_teleport'] = {
 Blockly.JavaScript['can_teleport'] = function(block) {
   var dropdown_place = block.getFieldValue('place');
   // TODO: Assemble JavaScript into code variable.
-  var code = `this.teleportLayer.hasTileAt(this.player.gridX, this.player.gridY)`;
+  let id = 0;
+  console.log(dropdown_place);
+  if(dropdown_place == "white") id = 557;
+  else id = 556;
+  var code = `this.teleportLayer.hasTileAt(this.player.gridX, this.player.gridY) && this.teleportLayer.getTileAt(this.player.gridX, this.player.gridY).index == ${id}`;
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.Blocks['teleportation'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("同じマークの場所に");
+        .appendField("同じマークがある場所に");
     this.appendDummyInput()
         .appendField("テレポートする");
     this.setPreviousStatement(true, null);
