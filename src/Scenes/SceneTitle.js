@@ -29,6 +29,8 @@ class SceneTitle extends Phaser.Scene {
         this.firstdirection2 = [0, 1, 0, 1, 2, 1, 2, 1, 3, 1, 3, 1, 2, 1, 2, 1, 0, 3];
     }
     preload(){
+        this.flagfirst = false;
+        this.flagfirst2 = false;
         let sta = new Array(15);
         for(let i = 0; i < 15; ++i){
             let str = "stage" + i;
