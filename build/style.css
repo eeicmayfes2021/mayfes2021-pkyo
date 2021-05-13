@@ -200,12 +200,73 @@ h1 {
 }
 
 
- #titlebutton{
+#titlebutton{
   position: absolute;
   text-align: center;
   font-size: 20px;
-   left: 30px;
-   top: 660px;
-   z-index: 1;
-   visibility: hidden;
- }
+  left: 30px;
+  top: 660px;
+  z-index: 1;
+  visibility: hidden;
+}
+
+#stage0{
+  position:absolute;
+  visibility: hidden;
+}
+#stage1{
+  position:absolute;
+  visibility: hidden;
+}
+#stage2{
+  position:absolute;
+  visibility: hidden;
+}
+#stage3{
+  position:absolute;
+  visibility: hidden;
+}
+#stage4{
+  position:absolute;
+  visibility: hidden;
+}
+#stage5{
+  position:absolute;
+  visibility: hidden;
+}
+#stage6{
+  position:absolute;
+  visibility: hidden;
+}
+#stage7{
+  position:absolute;
+  visibility: hidden;
+}
+#stage8{
+  position:absolute;
+  visibility: hidden;
+}
+#stage9{
+  position:absolute;
+  visibility: hidden;
+}
+#stage10{
+  position:absolute;
+  visibility: hidden;
+}
+#stage11{
+  position:absolute;
+  visibility: hidden;
+}
+#stage12{
+  position:absolute;
+  visibility: hidden;
+}
+#stage13{
+  position:absolute;
+  visibility: hidden;
+}
+#stage14{
+  position:absolute;
+  visibility: hidden;
+}
