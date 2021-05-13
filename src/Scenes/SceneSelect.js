@@ -54,14 +54,67 @@ class SceneSelect extends Phaser.Scene {
             else if(index == 9) ofs += 50;
         }
         let num = stageinfo.stages.length;
+        let ofs3 = 40*Math.floor(num / 2);
         if(window.savenum>-1){
-            var LoadButton=new RoundedButton(this, 200, 320+40*Math.floor(num / 2), 180, 30, 0xfffff00, "Load", "red", 15)
+            var LoadButton=new RoundedButton(this, 200, 320+ofs3, 120, 30, 0xfffff00, "Load", "red", 15);
             LoadButton.button.on('pointerdown', function(){
                 this.scene.start("game",{stage_num:window.savenum});
             }.bind(this));
+            LoadButton.button.on('pointerover', function(){
+                LoadButton.button.clear();
+                LoadButton.button.fillStyle(0x000000, 1);
+                LoadButton.button.fillRoundedRect(187, 318+ofs3, 125, 35, 15);
+                LoadButton.button.stroke();
+                LoadButton.button.strokeRoundedRect(187, 318+ofs3, 125, 35, 15);
+                LoadButton.button.lineStyle(4, 0x000000, 1);
+            });
+            LoadButton.button.on('pointerout', function(){
+                LoadButton.button.clear();
+                LoadButton.button.fillStyle(0xffff00, 1);
+                LoadButton.button.fillRoundedRect(190, 320+ofs3, 120, 30, 15);
+                LoadButton.button.stroke();
+                LoadButton.button.strokeRoundedRect(190, 320+ofs3, 120, 30, 15);
+                LoadButton.button.lineStyle(4, 0x000000, 1);
+            });
         }else{
-            var LoadButton=new RoundedButton(this, 200, 320+40*Math.floor(num / 2), 180, 30, 0xfffff00, "Load", "gray", 15)    
+            var LoadButton=new RoundedButton(this, 200, 320+ofs3, 120, 30, 0xfffff00, "Load", "gray", 15);
+            LoadButton.button.on('pointerover', function(){
+                LoadButton.button.clear();
+                LoadButton.button.fillStyle(0x000000, 1);
+                LoadButton.button.fillRoundedRect(187, 318+ofs3, 125, 35, 15);
+                LoadButton.button.stroke();
+                LoadButton.button.strokeRoundedRect(187, 318+ofs3, 125, 35, 15);
+                LoadButton.button.lineStyle(4, 0x000000, 1);
+            });
+            LoadButton.button.on('pointerout', function(){
+                LoadButton.button.clear();
+                LoadButton.button.fillStyle(0xffff00, 1);
+                LoadButton.button.fillRoundedRect(190, 320+ofs3, 120, 30, 15);
+                LoadButton.button.stroke();
+                LoadButton.button.strokeRoundedRect(190, 320+ofs3, 120, 30, 15);
+                LoadButton.button.lineStyle(4, 0x000000, 1);
+            });
         }
+        var gototitlebottun = new RoundedButton(this, 700, 320+ofs3, 120, 30, 0xfffff00, "Title", "red", 15);
+        gototitlebottun.button.on('pointerdown', function(){
+            this.scene.start("title");
+        }.bind(this));
+        gototitlebottun.button.on('pointerover', function(){
+            gototitlebottun.button.clear();
+            gototitlebottun.button.fillStyle(0x000000, 1);
+            gototitlebottun.button.fillRoundedRect(687, 318+ofs3, 125, 35, 15);
+            gototitlebottun.button.stroke();
+            gototitlebottun.button.strokeRoundedRect(687, 318+ofs3, 125, 35, 15);
+            gototitlebottun.button.lineStyle(4, 0x000000, 1);
+        });
+        gototitlebottun.button.on('pointerout', function(){
+            gototitlebottun.button.clear();
+            gototitlebottun.button.fillStyle(0xffff00, 1);
+            gototitlebottun.button.fillRoundedRect(690, 320+ofs3, 120, 30, 15);
+            gototitlebottun.button.stroke();
+            gototitlebottun.button.strokeRoundedRect(690, 320+ofs3, 120, 30, 15);
+            gototitlebottun.button.lineStyle(4, 0x000000, 1);
+        });
         //いらないボタンなどを隠す(クソ実装)
         const executeButton = document.getElementById("executeButton");
         executeButton.style.visibility="hidden";
