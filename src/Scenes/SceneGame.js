@@ -81,7 +81,7 @@ class SceneGame extends Phaser.Scene {
             toolboxPosition: 'start',
             css: true,
             rtl: false,
-            scrollbars: false,
+            scrollbars: true,
             sounds: true,
             oneBasedIndex: true,
             grid: {
@@ -184,6 +184,7 @@ class SceneGame extends Phaser.Scene {
         let playerdirection=stageinfo.stages[this.stage_num].playerdirection;
         this.player = this.add.sprite(this.mapDat.tileWidth * playerX * this.map2Img, this.mapDat.tileWidth * playerY * this.map2Img, "player");
         this.player.setOrigin(0, 0);
+        this.player.setAlpha(1);
         this.player.gridX=playerX;
         this.player.gridY=playerY;
         this.player.targetX = this.player.x;
