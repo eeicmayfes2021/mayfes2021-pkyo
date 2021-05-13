@@ -13,7 +13,7 @@
             "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [200, 300]
+            "clearlevel": [0, 0]
         },
         {
             "filename":"stage_obstacle",
@@ -88,7 +88,7 @@
             "blocklimit":15,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [100, 250]
+            "clearlevel": [100, 240]
         },
         {
             "filename":"stage_recursive",
@@ -100,10 +100,10 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check",
-            "blocklimit":9,
+            "blocklimit":10,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [310, 350]
+            "clearlevel": [300, 330]
         },
         {
             "filename":"stage_and",
@@ -160,7 +160,7 @@
             "teleporty": [],
             "teleportid": [],
             "blocks":"moveforward,grouping,callgroup,turn,if,check",
-            "blocklimit":20,
+            "blocklimit":21,
             "keycnt":0,
             "leftenergy": 400,
             "clearlevel": [150, 220]
@@ -201,14 +201,14 @@
             "playerx":1,
             "playery":1,
             "playerdirection":2,
-            "teleportx": [],
-            "teleporty": [],
-            "teleportid": [],
-            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if",
-            "blocklimit":18,
+            "teleportx": [1, 11, 5, 9],
+            "teleporty": [17, 13, 18, 15],
+            "teleportid": [1, 0, 3, 2],
+            "blocks":"while,moveforward,grouping,callgroup,turn,if,check,while_if,can_teleport,teleportation",
+            "blocklimit":22,
             "keycnt":0,
             "leftenergy": 400,
-            "clearlevel": [180, 210]
+            "clearlevel": [0, 150]
         },
         {
             "filename":"stage_overflow",
