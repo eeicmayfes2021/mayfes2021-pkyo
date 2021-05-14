@@ -363,8 +363,8 @@ class SceneGame extends Phaser.Scene {
         }
         let twittershare=new SimpleButton(this,300,470,100,20,"Twitterでシェア","black");
         twittershare.button.on('pointerdown',function(){
-            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(level+1)+'！ #eeic_pkyo #近未来体験2021';
-            var link = 'https://2020.eeic.jp/'//サイトができたら変更
+            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(level+1)+'！ #eeic_pkyo #電気の展覧会';
+            var link = 'https://2021.eeic.jp/'
             var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet)+'&url=' +encodeURIComponent(link);
             var s = window.open(url, '_blank');
             if (s && s.focus)s.focus();
@@ -372,7 +372,7 @@ class SceneGame extends Phaser.Scene {
         }.bind(this));
         let facebookshare=new SimpleButton(this,300,440,100,20,"Facebookでシェア","black");
         facebookshare.button.on('pointerdown',function(){
-            var link = 'https://2020.eeic.jp/'//サイトができたら変更
+            var link = 'https://2021.eeic.jp/'
             var url = 'http://www.facebook.com/share.php?u=' +encodeURIComponent(link);
             var s = window.open(url, '_blank');
             if (s && s.focus)s.focus();

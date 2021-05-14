@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>stage1_obstacle</title></head>
+<title>stage1</title></head>
 <body><h1>STAGE1 障害物を取り除こう！</h1>
 <h2>想定解法</h2>
 <p><img src="stage1.png" referrerpolicy="no-referrer"></p>
@@ -14,6 +14,14 @@
 <h2>ステージの狙い</h2>
 <p>シンプルな条件分岐を使うステージで遊ぶことで、条件分岐に親しんでもらおうと思って作りました。</p>
 <p>条件分岐を使わなくても、ひたすら「前に１マス動く」と「岩を取り除く」を繰り返せばクリアできますが、岩を取り除く作業を岩がない場所でも行うためペナルティとしてどんどん体力が減っていき、星１つになってしまうようになっています。</p>
+<h2>擬似コード</h2>
+<pre><code class='language-python' lang='python'>while True:
+  if 前が岩:
+    岩を取り除く
+  else:
+    pass
+  前に１マス動く
+</code></pre>
 <p>&nbsp;</p>
 </body>
 </html>
