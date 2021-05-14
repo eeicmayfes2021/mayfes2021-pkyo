@@ -40,17 +40,17 @@
 </ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>このステージは「再帰関数」を知ろう！という目的で作りました。</span><br>
 <span>知らなくてもクリアはできるように「前に1マス動く」ブロックを10個使ってもクリアはできますが、星1しか取れません。</span><br>
 <span>STAGE5を思い出して、「前に1マス動く」を3個使う関数を作ると星2が取れます。</span><br>
-<span>今回の解法を擬似コードにすると</span></p><pre><code>def group1():
-    前に1マス動く
+<span>今回の解法を擬似コードにすると</span></p><pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">group1</span>():</span>
+    前に<span class="hljs-number">1</span>マス動く
     group1()
     
 group1()
-</code></pre><p><span>となります。</span></p><h2 id="ステージ名について" data-id="ステージ名について"><a class="anchor hidden-xs" href="#ステージ名について" title="ステージ名について"><span class="octicon octicon-link"></span></a><span>ステージ名について</span></h2><p><span>今回の解法の再帰関数の実行内容は以下のようになります。</span></p><pre><code>group1()が呼ばれる
-    前に1マス動く
+</code></pre><p><span>となります。</span></p><h2 id="ステージ名について" data-id="ステージ名について"><a class="anchor hidden-xs" href="#ステージ名について" title="ステージ名について"><span class="octicon octicon-link"></span></a><span>ステージ名について</span></h2><p><span>今回の解法の再帰関数の実行内容は以下のようになります。</span></p><pre><code class="python hljs">group1()が呼ばれる
+    前に<span class="hljs-number">1</span>マス動く
     group1()が呼ばれる
-        前に1マス動く
+        前に<span class="hljs-number">1</span>マス動く
         group1()が呼ばれる
-            前に1マス動く
+            前に<span class="hljs-number">1</span>マス動く
             ...
 </code></pre><p><span>このように無限に命令が実行されていきますが、何回も関数を呼び出せるわけではなく、いつかは限界を超えてしまい、「スタックオーバーフロー」というバグを発生させてしまいます。</span><br>
 <span>それがこのステージ名の元ネタなんですが、今回の想定解法はこのバグを起こしてしまうので、本来であればよくありません。</span><br>

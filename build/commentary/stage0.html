@@ -34,14 +34,25 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="STAGE0-まっすぐ進もう！" data-id="STAGE0-まっすぐ進もう！"><a class="anchor hidden-xs" href="#STAGE0-まっすぐ進もう！" title="STAGE0-まっすぐ進もう！"><span class="octicon octicon-link"></span></a><span>STAGE0 まっすぐ進もう！</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/lnHQUC6.png" alt=""></p><ul>
+    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="STAGE0-まっすぐ進もう！" data-id="STAGE0-まっすぐ進もう！"><a class="anchor hidden-xs" href="#STAGE0-まっすぐ進もう！" title="STAGE0-まっすぐ進もう！"><span class="octicon octicon-link"></span></a><span>STAGE0 まっすぐ進もう！</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/lnHQUC6.png" alt=""></p><ul>
 <li><span>使用ブロック数 : 2</span></li>
 <li><span>クリア時の残り体力 : 373</span></li>
 </ul><p><img src="https://i.imgur.com/1Xyuo5H.png" alt=""></p><ul>
 <li><span>使用ブロック数 : 7</span></li>
 <li><span>クリア時の残り体力 : 323</span></li>
 </ul><p><span>など</span></p><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>このステージはチュートリアル用です。</span><br>
-<span>このゲームの遊び方に慣れてもらうために作りました。</span></p><p><span>いろんな解法があると思いますが、クリアできたら星3になるようにしています。</span></p></div>
+<span>このゲームの遊び方に慣れてもらうために作りました。</span><br>
+<span>一つ目の解法を擬似コードにすると</span></p><pre><code class="python hljs"><span class="hljs-keyword">while</span> true:
+    前に<span class="hljs-number">1</span>マス動く
+</code></pre><p><span>となります。</span><br>
+<span>一方で二つ目の解法を擬似コードにすると</span></p><pre><code class="python hljs">    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
+</code></pre><p><span>となり、ループ文であるwhileを使った方がコードが短く済むのが分かります。</span></p><p><span>いろんな解法があると思いますが、このステージではクリアできたら星3になるようにしています。</span></p></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
             <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
@@ -50,7 +61,7 @@
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE0-まっすぐ進もう！" title="STAGE0 まっすぐ進もう！">STAGE0 まっすぐ進もう！</a><ul class="nav">
-<li><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>

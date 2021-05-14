@@ -39,20 +39,20 @@
 <li><span>クリア時残り体力 : 292</span></li>
 </ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>今度は論理和を使おうっていうステージにしています。</span><br>
 <span>論理和の条件分岐ブロックを使わずに単なる条件分岐ブロックを使用しても解けますが、星2が得られるようにしています。</span><br>
-<span>擬似コードにすると</span></p><pre><code>while true:
-    if 前が草 or 前が岩:
+<span>擬似コードにすると</span></p><pre><code class="python hljs"><span class="hljs-keyword">while</span> true:
+    <span class="hljs-keyword">if</span> 前が草 <span class="hljs-keyword">or</span> 前が岩:
         右を向く
-    前に1マス動く
+    前に<span class="hljs-number">1</span>マス動く
 </code></pre><p><span>となります。</span><br>
 <span>一方で、単なる条件分岐ブロックを使った解法としては</span><br>
 <img src="https://i.imgur.com/Hp3SVKT.png" alt=""><br>
-<span>が考えられますが、これを擬似コードにすると</span></p><pre><code>while true:
-    if 前が草:
+<span>が考えられますが、これを擬似コードにすると</span></p><pre><code class="python hljs"><span class="hljs-keyword">while</span> true:
+    <span class="hljs-keyword">if</span> 前が草:
         右を向く
-    else:
-        if 前が岩:
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> 前が岩:
             右を向く
-    前に1マス動く
+    前に<span class="hljs-number">1</span>マス動く
 </code></pre><p><span>となり、同じ操作をするのに別の条件で分けているのでコードの量が多くなっています。</span></p></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -60,13 +60,26 @@
                 <i class="fa fa-bars"></i>
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
-                
-                
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#STAGE8-論理和を勉強しよう！" title="STAGE8 論理和を勉強しよう！">STAGE8 論理和を勉強しよう！</a><ul class="nav">
+<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部見る</a><a class="back-to-top" href="#">トップへ戻る</a><a class="go-to-bottom" href="#">底へ移る</a></div>
             </ul>
         </div>
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
-        
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#STAGE8-論理和を勉強しよう！" title="STAGE8 論理和を勉強しよう！">STAGE8 論理和を勉強しよう！</a><ul class="nav">
+<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部見る</a><a class="back-to-top" href="#">トップへ戻る</a><a class="go-to-bottom" href="#">底へ移る</a></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>

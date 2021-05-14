@@ -34,10 +34,16 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="STAGE2-テレポートしよう！" data-id="STAGE2-テレポートしよう！"><a class="anchor hidden-xs" href="#STAGE2-テレポートしよう！" title="STAGE2-テレポートしよう！"><span class="octicon octicon-link"></span></a><span>STAGE2 テレポートしよう！</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/SaMiD4o.png" alt=""></p><ul>
+    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="STAGE2-テレポートしよう！" data-id="STAGE2-テレポートしよう！"><a class="anchor hidden-xs" href="#STAGE2-テレポートしよう！" title="STAGE2-テレポートしよう！"><span class="octicon octicon-link"></span></a><span>STAGE2 テレポートしよう！</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/rlOd1hd.png" alt=""></p><ul>
 <li><span>使用ブロック数 : 6</span></li>
 <li><span>クリア時残り体力 : 322</span></li>
-</ul><h2 id="このステージの狙い" data-id="このステージの狙い"><a class="anchor hidden-xs" href="#このステージの狙い" title="このステージの狙い"><span class="octicon octicon-link"></span></a><span>このステージの狙い</span></h2><p><span>このステージはテレポート後に後ろを向かなきゃいけないので条件分岐ブロックを使ってちょうど一回だけ「後ろを向く」ブロックを使う必要があります。</span></p><p><span>条件分岐ブロックを使わないとクリアできないステージとなっているので、条件分岐の大切さがわかると思います。</span></p></div>
+</ul><h2 id="このステージの狙い" data-id="このステージの狙い"><a class="anchor hidden-xs" href="#このステージの狙い" title="このステージの狙い"><span class="octicon octicon-link"></span></a><span>このステージの狙い</span></h2><p><span>このステージはテレポート後に後ろを向かなきゃいけないので条件分岐ブロックを使ってちょうど一回だけ「後ろを向く」ブロックを使う必要があります。</span><br>
+<span>擬似コードにすると</span></p><pre><code class="python hljs"><span class="hljs-keyword">while</span> true:
+    <span class="hljs-keyword">if</span> 黒色の魔法陣にいる:
+        同じマークがある場所にテレポートする
+        後ろを向く
+    前に<span class="hljs-number">1</span>マス動く
+</code></pre><p><span>となります。</span></p><p><span>条件分岐ブロックを使わないとクリアできないステージとなっているので、条件分岐の大切さがわかると思います。</span></p></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
             <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
@@ -46,7 +52,7 @@
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE2-テレポートしよう！" title="STAGE2 テレポートしよう！">STAGE2 テレポートしよう！</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#このステージの狙い" title="このステージの狙い">このステージの狙い</a></li>
 </ul>
 </li>
@@ -58,7 +64,7 @@
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE2-テレポートしよう！" title="STAGE2 テレポートしよう！">STAGE2 テレポートしよう！</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#このステージの狙い" title="このステージの狙い">このステージの狙い</a></li>
 </ul>
 </li>

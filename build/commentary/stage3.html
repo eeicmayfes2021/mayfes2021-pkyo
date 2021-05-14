@@ -34,20 +34,20 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-enabled comment-inner" data-hard-breaks="true"><h1 id="STAGE3-曲がって曲がろう！" data-id="STAGE3-曲がって曲がろう！"><a class="anchor hidden-xs" href="#STAGE3-曲がって曲がろう！" title="STAGE3-曲がって曲がろう！"><span class="octicon octicon-link"></span></a><span>STAGE3 曲がって曲がろう！</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/V4sdKPW.png" alt=""></p><ul>
+    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="STAGE3-曲がって曲がろう！" data-id="STAGE3-曲がって曲がろう！"><a class="anchor hidden-xs" href="#STAGE3-曲がって曲がろう！" title="STAGE3-曲がって曲がろう！"><span class="octicon octicon-link"></span></a><span>STAGE3 曲がって曲がろう！</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/V4sdKPW.png" alt=""></p><ul>
 <li><span>使用ブロック数 : 8</span></li>
 <li><span>クリア時残り体力 : 311</span></li>
 </ul><p><img src="https://i.imgur.com/v46NvgB.png" alt=""></p><ul>
 <li><span>使用ブロック数 : 8</span></li>
 <li><span>クリア時残り体力 : 311</span></li>
 </ul><p><span>など</span></p><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>条件分岐ブロックは複数使うことでより多くの場合に対応できるよ、というステージです。</span><br>
-<span>二番目の想定解法を擬似コードにすると</span></p><pre><code>while true:
-    if 前が道:
-        前に1マス動く
-    else:
-        if 右が道:
+<span>二番目の想定解法を擬似コードにすると</span></p><pre><code class="python hljs"><span class="hljs-keyword">while</span> true:
+    <span class="hljs-keyword">if</span> 前が道:
+        前に<span class="hljs-number">1</span>マス動く
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> 右が道:
             右を向く
-        else:
+        <span class="hljs-keyword">else</span>:
             左を向く
 </code></pre><p><span>となります。</span><br>
 <span>このコードを見ると、条件分岐を表すif文の中にもう一つのif文があるのが分かります。これを「ネスト」と呼びます。</span></p></div>
@@ -60,7 +60,7 @@
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE3-曲がって曲がろう！" title="STAGE3 曲がって曲がろう！">STAGE3 曲がって曲がろう！</a><ul class="nav">
 <li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
-<li class=""><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
+<li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
 </ul>
@@ -72,7 +72,7 @@
         <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE3-曲がって曲がろう！" title="STAGE3 曲がって曲がろう！">STAGE3 曲がって曲がろう！</a><ul class="nav">
 <li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
-<li class=""><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
+<li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
 </ul>
