@@ -39,16 +39,24 @@
 <li><span>クリア時残り体力 : -29687</span></li>
 </ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>元ネタは「オーバーフロー」です。ステージの名前にもある通り、体力を符号付き16bitとしているので、体力を32768以上まで増やすと負の値になります。</span><br>
 <span>これまでのステージとはゲーム性が異なるので、おまけ的なステージとなっています。紹介した解法は一つの例なので、もっと小さい体力でのゴールを目指して遊んでみてください。</span><br>
-<span>想定解法の擬似コードは</span></p><pre><code>while 前が道:
-    前に1マス動く
-while true:
-    if 体力 &gt;= 0:
+<span>想定解法の擬似コードは</span></p><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span data-linenumber="1"></span>
+<span data-linenumber="2"></span>
+<span data-linenumber="3"></span>
+<span data-linenumber="4"></span>
+<span data-linenumber="5"></span>
+<span data-linenumber="6"></span>
+<span data-linenumber="7"></span>
+<span data-linenumber="8"></span>
+<span data-linenumber="9"></span></div><div class="code"><span class="hljs-keyword">while</span> 前が道:
+    前に<span class="hljs-number">1</span>マス動く
+<span class="hljs-keyword">while</span> true:
+    <span class="hljs-keyword">if</span> 体力 &gt;= <span class="hljs-number">0</span>:
         右を向く
-        前に1マス動く
-        前に1マス動く
-    else:
-        前に1マス動く
-</code></pre><p><span>となります。</span></p></div>
+        前に<span class="hljs-number">1</span>マス動く
+        前に<span class="hljs-number">1</span>マス動く
+    <span class="hljs-keyword">else</span>:
+        前に<span class="hljs-number">1</span>マス動く
+</div></div></code></pre><p><span>となります。</span></p></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
             <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
@@ -57,7 +65,7 @@ while true:
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE14-16bitの世界" title="STAGE14 16bitの世界">STAGE14 16bitの世界</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
@@ -69,7 +77,7 @@ while true:
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE14-16bitの世界" title="STAGE14 16bitの世界">STAGE14 16bitの世界</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>

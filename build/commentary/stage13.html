@@ -38,27 +38,27 @@
 <span>長いので分割しています</span></p><ul>
 <li><span>使用ブロック数 : 20</span></li>
 <li><span>クリア時の残り体力 : 162</span></li>
-</ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>難しいステージを作ろうと思って、ループ文で解けない再帰関数を使うステージを想定して、それとテレポートを組み合わせたものとなりました。</span></p><p><span>大筋はSTAGE10と同じ感じなんですが、再帰ではない関数やテレポート処理を入れる必要があるなど、これまでのステージに出てきた要素を使うステージとなっています。</span><br>
-<span>想定解法の擬似コードは</span></p><pre><code>def 1():
-    前に1マス動く
-    前に1マス動く
+</ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>難しいステージを作ろうと思って、ループ文で解けない再帰関数を使うステージを想定して、それとテレポートを組み合わせたものとなりました。</span></p><p><span>大筋はSTAGE10と同じ感じなんですが、もう一つ再帰ではない関数やテレポート処理を入れる必要があるなど、これまでのステージに出てきた要素を使うステージとなっています。</span><br>
+<span>想定解法の擬似コードは</span></p><pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> 1():</span>
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
     右を向く
-    前に1マス動く
-    前に1マス動く
+    前に<span class="hljs-number">1</span>マス動く
+    前に<span class="hljs-number">1</span>マス動く
     左を向く
-def group1():
-    if 前が道:
-        1()
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">group1</span>():</span>
+    <span class="hljs-keyword">if</span> 前が道:
+        <span class="hljs-number">1</span>()
         group1()
-    else:
+    <span class="hljs-keyword">else</span>:
         右を向く
-    1()
-    if 黒い魔法陣にいる:
+    <span class="hljs-number">1</span>()
+    <span class="hljs-keyword">if</span> 黒い魔法陣にいる:
         同じマークの場所にテレポートする
 
 group1()
-前に1マス動く
-前に1マス動く
+前に<span class="hljs-number">1</span>マス動く
+前に<span class="hljs-number">1</span>マス動く
 </code></pre><p><span>となります。ただし、本来なら1()という関数は作れないので実際にプログラミングをするときは注意が必要です。</span></p></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">

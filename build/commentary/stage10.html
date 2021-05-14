@@ -42,17 +42,17 @@
 <img src="https://i.imgur.com/ZUSf801.png" alt=""><br>
 <img src="https://i.imgur.com/gmma0g2.png" alt=""></p><p><span>この二つがその繰り返される動きなんですが、これを関数化して使用すると星2が得られます。</span></p><p><span>このステージでは同じ関数が繰り返されるので、再帰関数を用いるとブロック数を省くことができます。</span><br>
 <span>先に挙げた今回の繰り返される２通りの動きについて、前者がまず5回行われて、それから後者が6回行われるとゴールできるので再帰関数の「行きがけ」と「帰りがけ」を利用でき、それが想定解法となっています。</span><br>
-<span>今回の解法の擬似コードは</span></p><pre><code>def group1():
-    if 前が道:
-        前に1マス進む
+<span>今回の解法の擬似コードは</span></p><pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">group1</span>():</span>
+    <span class="hljs-keyword">if</span> 前が道:
+        前に<span class="hljs-number">1</span>マス進む
         右を向く
-        前に1マス動く
+        前に<span class="hljs-number">1</span>マス動く
         左を向く
         group1()
     左を向く
-    前に1マス動く
+    前に<span class="hljs-number">1</span>マス動く
     右を向く
-    前に1マス動く
+    前に<span class="hljs-number">1</span>マス動く
     
 group1()
 </code></pre><p><span>となります。</span><br>
@@ -88,8 +88,8 @@ group1()
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE10-ジグザグザグジ" title="STAGE10 ジグザグザグジ">STAGE10 ジグザグザグジ</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
-<li class=""><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
 </ul>
@@ -100,8 +100,8 @@ group1()
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE10-ジグザグザグジ" title="STAGE10 ジグザグザグジ">STAGE10 ジグザグザグジ</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
-<li class=""><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
 </ul>

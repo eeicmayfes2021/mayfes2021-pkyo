@@ -37,13 +37,13 @@
     <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="STAGE12-枝分かれ-of-枝分かれ" data-id="STAGE12-枝分かれ-of-枝分かれ"><a class="anchor hidden-xs" href="#STAGE12-枝分かれ-of-枝分かれ" title="STAGE12-枝分かれ-of-枝分かれ"><span class="octicon octicon-link"></span></a><span>STAGE12 枝分かれ of 枝分かれ</span></h1><h2 id="想定解法" data-id="想定解法"><a class="anchor hidden-xs" href="#想定解法" title="想定解法"><span class="octicon octicon-link"></span></a><span>想定解法</span></h2><p><img src="https://i.imgur.com/lfRK9cJ.png" alt=""></p><ul>
 <li><span>使用ブロック数 : 8</span></li>
 <li><span>クリア時残り体力 : 195</span></li>
-</ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>シンプルに難しいステージだと思います。</span><br>
+</ul><h2 id="ステージの狙い" data-id="ステージの狙い"><a class="anchor hidden-xs" href="#ステージの狙い" title="ステージの狙い"><span class="octicon octicon-link"></span></a><span>ステージの狙い</span></h2><p><span>シンプルに難しいステージかなーと思います。</span><br>
 <span>このステージが解けたとしたら上側か下側の宝箱から順に取っていくことになると思います。</span><br>
 <span>この時のキャラクターの動きが「深さ優先探索」というアルゴリズムで探索する時の動きと同じになります。ステージを簡略化した図で「深さ優先探索」の動きを表すと以下のようになります。</span><br>
-<img src="https://i.imgur.com/XRREVGc.png" alt=""></p><p><span>深さ優先探索の具体的な実装方法はここでは紹介しませんが、再帰関数で実装するのが簡単です。今回はブロックを組み立てるというゲームなので、このアルゴリズムを再現するのが困難だったのでこのような解法になっています。</span></p><p><span>なお、今回の想定解法の擬似コードは</span></p><pre><code>while true:
-    while 前が道:
-        前に1マス動く
-        if 右が道:
+<img src="https://i.imgur.com/XRREVGc.png" alt=""></p><p><span>深さ優先探索の具体的な実装方法はここでは紹介しませんが、再帰関数で実装するのが簡単です。今回はブロックを組み立てるというゲームなので、このアルゴリズムを再現するのが困難だったのでこのような解法になっています。</span></p><p><span>なお、今回の想定解法の擬似コードは</span></p><pre><code class="python hljs"><span class="hljs-keyword">while</span> true:
+    <span class="hljs-keyword">while</span> 前が道:
+        前に<span class="hljs-number">1</span>マス動く
+        <span class="hljs-keyword">if</span> 右が道:
             右を向く
     左を向く
 </code></pre><p><span>となります。</span></p></div>
@@ -55,7 +55,7 @@
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE12-枝分かれ-of-枝分かれ" title="STAGE12 枝分かれ of 枝分かれ">STAGE12 枝分かれ of 枝分かれ</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
@@ -67,7 +67,7 @@
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
 <li class=""><a href="#STAGE12-枝分かれ-of-枝分かれ" title="STAGE12 枝分かれ of 枝分かれ">STAGE12 枝分かれ of 枝分かれ</a><ul class="nav">
-<li class=""><a href="#想定解法" title="想定解法">想定解法</a></li>
+<li><a href="#想定解法" title="想定解法">想定解法</a></li>
 <li><a href="#ステージの狙い" title="ステージの狙い">ステージの狙い</a></li>
 </ul>
 </li>
