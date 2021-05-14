@@ -106,7 +106,7 @@ class SceneTitle extends Phaser.Scene {
         }.bind(this));
         firststage.button.on('pointerover', function(){
             firststage.button.clear();
-            firststage.button.fillStyle(0x000000, 1);
+            firststage.button.fillStyle(0xaff000, 1);
             firststage.button.fillRoundedRect(87, 475, 460, 60, 15);
             firststage.button.stroke();
             firststage.button.strokeRoundedRect(87, 475, 460, 60, 15);
@@ -127,7 +127,7 @@ class SceneTitle extends Phaser.Scene {
         }.bind(this));
         stageselect.button.on('pointerover', function(){
             stageselect.button.clear();
-            stageselect.button.fillStyle(0x000000, 1);
+            stageselect.button.fillStyle(0xaff000, 1);
             stageselect.button.fillRoundedRect(687, 475, 410, 60, 15);
             stageselect.button.stroke();
             stageselect.button.strokeRoundedRect(687, 475, 410, 60, 15);

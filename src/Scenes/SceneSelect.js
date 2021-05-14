@@ -42,7 +42,7 @@ class SceneSelect extends Phaser.Scene {
             //ここ、カス実装
             buttons[index].button.on('pointerover', function(){
                 buttons[index].button.clear();
-                buttons[index].button.fillStyle(0x000000, 1);
+                buttons[index].button.fillStyle(0xaff000, 1);
                 buttons[index].button.fillRoundedRect(200 + 500 * (index % 2) - 13, of2 + 150+40*Math.floor(index / 2) - 2, 125, 35, 15);
                 buttons[index].button.stroke();
                 buttons[index].button.strokeRoundedRect(200 + 500 * (index % 2) - 13, of2 + 150+40*Math.floor(index / 2) - 2, 125, 35, 15);
@@ -68,7 +68,7 @@ class SceneSelect extends Phaser.Scene {
             }.bind(this));
             LoadButton.button.on('pointerover', function(){
                 LoadButton.button.clear();
-                LoadButton.button.fillStyle(0x000000, 1);
+                LoadButton.button.fillStyle(0xaff000, 1);
                 LoadButton.button.fillRoundedRect(187, 318+ofs3, 125, 35, 15);
                 LoadButton.button.stroke();
                 LoadButton.button.strokeRoundedRect(187, 318+ofs3, 125, 35, 15);
@@ -86,7 +86,7 @@ class SceneSelect extends Phaser.Scene {
             var LoadButton=new RoundedButton(this, 200, 320+ofs3, 120, 30, 0xfffff00, "Load", "gray", 15);
             LoadButton.button.on('pointerover', function(){
                 LoadButton.button.clear();
-                LoadButton.button.fillStyle(0x000000, 1);
+                LoadButton.button.fillStyle(0xaff000, 1);
                 LoadButton.button.fillRoundedRect(187, 318+ofs3, 125, 35, 15);
                 LoadButton.button.stroke();
                 LoadButton.button.strokeRoundedRect(187, 318+ofs3, 125, 35, 15);
@@ -107,7 +107,7 @@ class SceneSelect extends Phaser.Scene {
         }.bind(this));
         gototitlebottun.button.on('pointerover', function(){
             gototitlebottun.button.clear();
-            gototitlebottun.button.fillStyle(0x000000, 1);
+            gototitlebottun.button.fillStyle(0xaff000, 1);
             gototitlebottun.button.fillRoundedRect(687, 318+ofs3, 125, 35, 15);
             gototitlebottun.button.stroke();
             gototitlebottun.button.strokeRoundedRect(687, 318+ofs3, 125, 35, 15);
