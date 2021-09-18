@@ -75,7 +75,7 @@ class SceneGame extends Phaser.Scene {
             collapse: true,
             comments: true,
             disable: true,
-            maxBlocks: stageinfo.stages[this.stage_num].blocklimit,
+            maxBlocks: Infinity,
             trashcan: true,
             horizontalLayout: false,
             toolboxPosition: 'start',
@@ -131,7 +131,6 @@ class SceneGame extends Phaser.Scene {
         }
         this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
-        numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;
         numFrame.style.left=250+'px';
         numFrame.style.top=(blocklyDiv.offsetHeight-30)+'px';
         if(this.stage_num == 14){
@@ -153,7 +152,6 @@ class SceneGame extends Phaser.Scene {
               this.leftblock += event.ids.length;;
               this.leftenergy += 10 * event.ids.length;;
             }
-            numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
             this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
         }.bind(this));
         //ボタンを押すと発火するようにする
