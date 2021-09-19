@@ -361,7 +361,7 @@ class SceneGame extends Phaser.Scene {
         }
         let twittershare=new SimpleButton(this,300,470,100,20,"Twitterでシェア","black");
         twittershare.button.on('pointerdown',function(){
-            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(level+1)+'！ #eeic_pkyo #電気の展覧会';
+            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(level+1)+'！ #eeic_pkyo #近未来体験2021';
             var link = 'https://2021.eeic.jp/'
             var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet)+'&url=' +encodeURIComponent(link);
             var s = window.open(url, '_blank');
