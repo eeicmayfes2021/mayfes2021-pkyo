@@ -75,7 +75,7 @@ class SceneGame extends Phaser.Scene {
             collapse: true,
             comments: true,
             disable: true,
-            maxBlocks: stageinfo.stages[this.stage_num].blocklimit,
+            maxBlocks: Infinity,
             trashcan: true,
             horizontalLayout: false,
             toolboxPosition: 'start',
@@ -131,7 +131,6 @@ class SceneGame extends Phaser.Scene {
         }
         this.teleportindex = stageinfo.stages[this.stage_num].teleportid;
         this.leftblock=stageinfo.stages[this.stage_num].blocklimit;
-        numFrame.innerHTML=`残りブロック数: ${this.leftblock}`;
         numFrame.style.left=250+'px';
         numFrame.style.top=(blocklyDiv.offsetHeight-30)+'px';
         if(this.stage_num == 14){
@@ -153,7 +152,6 @@ class SceneGame extends Phaser.Scene {
               this.leftblock += event.ids.length;;
               this.leftenergy += 10 * event.ids.length;;
             }
-            numFrame.innerHTML = `残りブロック数: ${this.leftblock}`;
             this.numEnergy.innerHTML = `残り体力: ${this.leftenergy}`;
         }.bind(this));
         //ボタンを押すと発火するようにする
@@ -363,7 +361,7 @@ class SceneGame extends Phaser.Scene {
         }
         let twittershare=new SimpleButton(this,300,470,100,20,"Twitterでシェア","black");
         twittershare.button.on('pointerdown',function(){
-            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(level+1)+'！ #eeic_pkyo #電気の展覧会';
+            var tweet = 'eeicプログラミング教室　ステージ'+this.stage_num+'「'+stageinfo.stages[this.stage_num].description+'」をスコア'+this.leftenergy+'でクリアしました。星'+(level+1)+'！ #eeic_pkyo #近未来体験2021';
             var link = 'https://2021.eeic.jp/'
             var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet)+'&url=' +encodeURIComponent(link);
             var s = window.open(url, '_blank');
